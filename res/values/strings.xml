@@ -1,0 +1,37 @@
+<resources>
+
+    <string name="app_name">EMFMedical</string>
+
+     <string-array name="response_options">
+        <item>Alert</item>
+        <item>Voice</item>
+        <item>Pain</item>
+   		<item>Unresponsive</item>
+    </string-array>
+    
+    <string-array name="breathing_options">
+        <item>Normal</item>
+        <item>Shallow</item>
+        <item>Agonal</item>
+   		<item>Absent</item>
+    </string-array>
+    
+     <string-array name="circulation_options">
+        <item>Normal</item>
+        <item>Pale</item>
+        <item>Flushed</item>
+   		<item>Cyanosed</item>
+    </string-array>
+    
+      <string-array name="pupil_size_options">
+        <item>1 mm</item>
+        <item>2 mm</item>
+  		<item>3 mm</item>
+        <item>4 mm</item>
+        <item>5 mm</item>
+        <item>6 mm</item>
+        <item>7 mm</item>
+        <item>8 mm</item>
+    </string-array>
+    
+</resources>
