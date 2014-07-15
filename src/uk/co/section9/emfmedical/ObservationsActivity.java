@@ -20,32 +20,39 @@ import android.widget.LinearLayout;
 
 public class ObservationsActivity extends FragmentActivity {
 	
-	 
-
-	
+		
 	 public static class ObservationsFragment extends Fragment {
 	     
 		 	View mainView;
+		 	LinearLayout obsLinearLayout;
+		 	ArrayList<View> obsViews;
 		 	
-		 	public class ObservationActual extends View {
-
-				public ObservationActual(Context context, AttributeSet attrs) {
-					super(context, attrs);
-					// TODO Auto-generated constructor stub
-					
-				
-				}
-		 		
-		 	}
-		 		
 		 	
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
+	            obsViews = new ArrayList<View>();
 	            	            
 	        }
+	        
+	        @Override
+	        public void onPause() {
+	        	super.onPause();
+	        	for(View v: obsViews){
+	            	obsLinearLayout.removeView(v);
+	            }
+	        }
+	       
+		    @Override
+		    public void onDestroy() {
+		    	super.onDestroy();
+		    	for(View v: obsViews){
+	            	obsLinearLayout.removeView(v);
+	            }
+	            obsViews.clear();
+		    }
+	        
 
-	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
@@ -55,26 +62,48 @@ public class ObservationsActivity extends FragmentActivity {
 	        	final ViewGroup tgroup = container;
 	        	
 	            Button button = (Button) mainView.findViewById(R.id.button_add_observation);
-	            final LinearLayout obsList =(LinearLayout) mainView.findViewById(R.id.layout_observations);
+	            obsLinearLayout = (LinearLayout) mainView.findViewById(R.id.layout_observations);
 	            
+	            // run through the master obsViews and re-create them   
+	            if (obsViews.size() > 0){
+	            	for(View v: obsViews){
+		            	obsLinearLayout.addView(v);
+		            }
+	            }
+	           
+	           
         		button.setOnClickListener(new OnClickListener() {
          
         			@Override
         			public void onClick(View arg0) {
         				View obs = tinflater.inflate(R.layout.observation_actual, tgroup, false);
-        				obsList.addView(obs);
+        				obsLinearLayout.addView(obs);
         				
         				// Reverse Order
 						ArrayList<View> views = new ArrayList<View>();
-						for(int x = 0; x < obsList.getChildCount(); x++) {
-						    views.add(obsList.getChildAt(x));
+						for(int x = 0; x < obsLinearLayout.getChildCount(); x++) {
+						    views.add(obsLinearLayout.getChildAt(x));
 						}
-						obsList.removeAllViews();
+						obsLinearLayout.removeAllViews();
 						for(int x = views.size() - 1; x >= 0; x--) {
-							obsList.addView(views.get(x));
+							obsLinearLayout.addView(views.get(x));
 						}
         			
+						// Also add to the master list of obs
+						obsViews.add(obs);
+						
+						// Reverse the order
+						views = new ArrayList<View>();
+						for(int x = 0; x < obsViews.size(); x++) {
+						    views.add(obsViews.get(x));
+						}
+						obsViews.clear();
+						for(int x = views.size() - 1; x >= 0; x--) {
+							obsViews.add(views.get(x));
+						}
+					
         			}
+        			
         		});
 	            
 	            return mainView;

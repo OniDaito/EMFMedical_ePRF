@@ -30,6 +30,7 @@ public final class R {
         public static final int checkBox7=0x7f07002e;
         public static final int datePicker1=0x7f070004;
         public static final int datePicker2=0x7f07001c;
+        public static final int drawingView1=0x7f07003e;
         public static final int editText1=0x7f070007;
         public static final int editText2=0x7f070010;
         public static final int editText3=0x7f070013;
@@ -40,6 +41,7 @@ public final class R {
         public static final int editText8=0x7f070033;
         public static final int editText9=0x7f070034;
         public static final int layout_observations=0x7f07003a;
+        public static final int outcome_linear_layout=0x7f07003b;
         public static final int radio0=0x7f07000b;
         public static final int radio1=0x7f07000c;
         public static final int radio2=0x7f070032;
@@ -47,11 +49,12 @@ public final class R {
         public static final int radioButton3=0x7f070022;
         public static final int radioButton4=0x7f070023;
         public static final int radioGroup1=0x7f07000a;
-        public static final int radioGroup2=0x7f07003f;
-        public static final int radioGroup3=0x7f07003d;
-        public static final int radioGroup4=0x7f07003c;
-        public static final int radioGroup5=0x7f07003e;
+        public static final int radioGroup2=0x7f070042;
+        public static final int radioGroup3=0x7f070040;
+        public static final int radioGroup4=0x7f07003f;
+        public static final int radioGroup5=0x7f070041;
         public static final int realtabcontent=0x7f070028;
+        public static final int scrollView1=0x7f070044;
         public static final int scrollViewObs=0x7f070039;
         public static final int spinner1=0x7f070030;
         public static final int spinner2=0x7f070036;
@@ -62,7 +65,8 @@ public final class R {
         public static final int tableRow10=0x7f07001d;
         public static final int tableRow11=0x7f070020;
         public static final int tableRow12=0x7f070024;
-        public static final int tableRow13=0x7f07003b;
+        public static final int tableRow13=0x7f07003c;
+        public static final int tableRow14=0x7f07003d;
         public static final int tableRow2=0x7f070005;
         public static final int tableRow3=0x7f070008;
         public static final int tableRow4=0x7f07000d;
@@ -84,6 +88,8 @@ public final class R {
         public static final int textView8=0x7f07001e;
         public static final int textView9=0x7f070021;
         public static final int timePicker1=0x7f070003;
+        public static final int timePicker2=0x7f070045;
+        public static final int timePicker3=0x7f070043;
     }
     public static final class layout {
         public static final int hello_world=0x7f030000;

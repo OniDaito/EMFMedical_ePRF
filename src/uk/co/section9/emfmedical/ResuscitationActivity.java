@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 public class ResuscitationActivity extends FragmentActivity {
 
 	
@@ -15,6 +16,7 @@ public class ResuscitationActivity extends FragmentActivity {
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
+	            
 	        }
 
 	

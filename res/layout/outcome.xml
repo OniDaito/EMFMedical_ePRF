@@ -1,8 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/outcome_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+		    <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Handling on Departure"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textSize="32dp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+           </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/checkBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Walking un-aided" />
+
+                <CheckBox
+                    android:id="@+id/checkBox3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Walking Aided" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/checkBox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stretcher" />
+
+                <CheckBox
+                    android:id="@+id/checkBox4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Long Board" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/checkBox5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Carry chair" />
+
+                <CheckBox
+                    android:id="@+id/checkBox6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Orthopaedic Stretcher" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transport"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </TableRow>
+
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Outcome"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <TableRow
+                android:id="@+id/tableRow9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </TableRow>
+
+         
+        </TableLayout>
+        
+           <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treated by"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+           <TableLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" >
+
+               <TableRow
+                   android:id="@+id/tableRow13"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" >
+
+                   <TextView
+                       android:id="@+id/textView5"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Print name"
+                       android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                   <EditText
+                       android:id="@+id/editText1"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:ems="10"
+                       android:inputType="textPersonName" >
+
+                       <requestFocus />
+                   </EditText>
+
+               </TableRow>
+
+               <TableRow
+                   android:id="@+id/tableRow14"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" >
+               </TableRow>
+           </TableLayout>
+
+           <uk.co.section9.emfmedical.DrawingView
+               android:id="@+id/drawingView1"
+               android:layout_width="375dp"
+               android:layout_height="256dp" />
+
+    </LinearLayout>
+
+</ScrollView>
