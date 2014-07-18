@@ -38,13 +38,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox1"
+                    android:id="@+id/outcome_walking_unaided"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Walking un-aided" />
 
                 <CheckBox
-                    android:id="@+id/checkBox3"
+                    android:id="@+id/outcome_walking_aided"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Walking Aided" />
@@ -56,13 +56,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/outcome_stretcher"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Stretcher" />
 
                 <CheckBox
-                    android:id="@+id/checkBox4"
+                    android:id="@+id/outcome_longboard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Long Board" />
@@ -74,13 +74,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox5"
+                    android:id="@+id/outcome_carry_chair"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Carry chair" />
 
                 <CheckBox
-                    android:id="@+id/checkBox6"
+                    android:id="@+id/outcome_orthopaedic_stretcher"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Orthopaedic Stretcher" />
@@ -99,7 +99,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/outcome_departure_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10" />
@@ -134,19 +134,19 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox7"
+                    android:id="@+id/outcome_own_transport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Own Transport" />
 
                 <CheckBox
-                    android:id="@+id/checkBox8"
+                    android:id="@+id/outcome_public_transport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Public Transport" />
 
                 <CheckBox
-                    android:id="@+id/checkBox9"
+                    android:id="@+id/outcome_nhs_ambulance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="NHS Ambulance" />
@@ -181,13 +181,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox10"
+                    android:id="@+id/outcome_treatment_completed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Treatment Completed" />
 
                 <CheckBox
-                    android:id="@+id/checkBox11"
+                    android:id="@+id/outcome_advised_to_seek"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Advised to Seek further medical treatment" />
@@ -199,13 +199,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox12"
+                    android:id="@+id/outcome_hospital"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hospital" />
 
                 <CheckBox
-                    android:id="@+id/checkBox13"
+                    android:id="@+id/outcome_review_later"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Review Later" />
@@ -225,7 +225,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TimePicker
-                    android:id="@+id/timePicker1"
+                    android:id="@+id/outcome_time_left_first_aid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </TableRow>

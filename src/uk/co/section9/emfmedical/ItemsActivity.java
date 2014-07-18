@@ -6,26 +6,34 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 public class ItemsActivity extends FragmentActivity {
 	
 	
 	  public static class ItemsFragment extends Fragment {
 		     
+		  	static View mainView;
+		  
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
 	        }
-
 	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
-	            View v = inflater.inflate(R.layout.items, container, false);
-	          //  View tv = v.findViewById(R.id.text);
-	         //   ((TextView)tv).setText("Fragment #" + mNum);
-	         //   tv.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
-	            return v;
+	            mainView = inflater.inflate(R.layout.items, container, false);
+	            return mainView;
+	        }
+	        
+	        
+	        static String getData() {
+	        	String data = new String();
+	        	EditText items_used = (EditText)mainView.findViewById(R.id.items_used);
+	        	data += "items_used: " + items_used.getEditableText() + "\n";
+	        	
+	        	return data;
 	        }
 	    }
 

@@ -12,21 +12,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 public class SignActivity extends FragmentActivity {
 	public static class SignFragment extends Fragment {
 	     
+		static View mainView;
+		
+		
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
         }
 
+        
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View mainView = inflater.inflate(R.layout.signature, container, false);
+            mainView = inflater.inflate(R.layout.signature, container, false);
       
             Button button = (Button) mainView.findViewById(R.id.signature_complete_form);
               
@@ -74,6 +79,16 @@ public class SignActivity extends FragmentActivity {
             
             
             return mainView;
+        }
+        
+        
+        public static String getData() {
+        	String data = new String();
+        	
+        	EditText sign_name = (EditText)mainView.findViewById(R.id.sign_name);
+        	data += "sign_name: " + sign_name.getEditableText() + "\n";
+        	
+        	return data;
         }
     }
 }

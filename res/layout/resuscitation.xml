@@ -28,7 +28,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TimePicker
-                    android:id="@+id/timePicker1"
+                    android:id="@+id/resuscitation_approximate_time_of_arrest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 
@@ -63,21 +63,21 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/resuscitation_witnessed_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:width="20dp" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/resuscitation_witnessed_collapse_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/resuscitation_witnessed_collapse_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/rteras"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bystander CPR In Progress"
@@ -98,28 +98,28 @@
                 android:width="30dp" />
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/resuscitation_bystander_cpr_in_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:width="20dp" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/resuscitation_bystander_cpr_in_progress_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/resuscitation_bystander_cpr_in_progress_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
 
             <TimePicker
-                android:id="@+id/timePicker2"
+                android:id="@+id/resuscitation_bystander_cpr_in_progress_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -138,28 +138,28 @@
                 android:width="10dp" />
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/resuscitation_cpr_started"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" 
                 android:width="10dp">
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/resuscitation_cpr_started_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/resuscitation_cpr_started_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
 
             <TimePicker
-                android:id="@+id/timePicker3"
+                android:id="@+id/resuscitation_cpr_started_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -178,21 +178,21 @@
                 android:width="30dp" />
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/resuscitation_cpr_continued_during_transfer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                android:width="10dp" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/resuscitation_cpr_continued_during_transfer_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/resuscitation_cpr_continued_during_transfer_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
@@ -212,21 +212,21 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/resuscitation_defibrillator_used"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" 
                 android:width="10dp">
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/resuscitation_defibrillator_used_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/resuscitation_defibrillator_used_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
@@ -248,28 +248,28 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/resuscitation_return_of_normal_breathing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" 
                 android:width="10dp">
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/resuscitation_return_of_normal_breathing_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/resuscitation_return_of_normal_breathing_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
 
             <TimePicker
-                android:id="@+id/timePicker3"
+                android:id="@+id/resuscitation_return_of_normal_breathing_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -298,7 +298,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText1"
+                    android:id="@+id/resuscitation_number_of_shocks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"

@@ -17,7 +17,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
         
           <EditText
-              android:id="@+id/editText1"
+              android:id="@+id/items_used"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:ems="10"

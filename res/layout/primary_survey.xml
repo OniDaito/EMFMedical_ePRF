@@ -52,7 +52,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText1"
+                    android:id="@+id/primary_survey_problem"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3.24"
@@ -371,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:text="Flushed" />
                   <RadioButton
-                    android:id="@+id/primary_survey_cyanosed"
+                    android:id="@+id/primary_survey_circulation_cyanosed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cyanosed" />
@@ -411,7 +411,7 @@
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/primary_survey_circulation_no"
+                    android:id="@+id/primary_survey_external_bleeding_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
@@ -439,14 +439,14 @@
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/primary_survey_consiousness_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/primary_survey_consiousness_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />

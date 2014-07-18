@@ -6,13 +6,17 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TimePicker;
 
 public class ResponseActivity extends FragmentActivity {
 	
 	
 	 public static class ResponseFragment extends Fragment {
 	     
-	        @Override
+		 	static View mainView;
+		 
+		 	@Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
 	        }
@@ -21,11 +25,33 @@ public class ResponseActivity extends FragmentActivity {
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
-	            View v = inflater.inflate(R.layout.response, container, false);
-	          //  View tv = v.findViewById(R.id.text);
-	         //   ((TextView)tv).setText("Fragment #" + mNum);
-	         //   tv.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
-	            return v;
+	        	mainView = inflater.inflate(R.layout.response, container, false);
+	            return mainView;
+	        }
+	        
+	        static String getData() {
+	        	String data = new String();
+	        	
+	        	EditText response_callsign = (EditText)mainView.findViewById(R.id.response_callsign);
+	        	data += "response_callsign: " + response_callsign.getEditableText() + "\n";
+	        	
+	        	TimePicker response_time_received = (TimePicker)mainView.findViewById(R.id.response_time_received);
+	        	data += "response_time_received: " + response_time_received.getCurrentHour() + ":" + response_time_received.getCurrentMinute() + "\n";
+	        	
+	        	
+	        	TimePicker response_time_arrived = (TimePicker)mainView.findViewById(R.id.response_time_arrived);
+	        	data += "response_time_arrived: " + response_time_arrived.getCurrentHour() + ":" + response_time_arrived.getCurrentMinute() + "\n";
+	        	
+	        	TimePicker response_time_left = (TimePicker)mainView.findViewById(R.id.response_time_left);
+	        	data += "response_time_left: " + response_time_left.getCurrentHour() + ":" + response_time_left.getCurrentMinute() + "\n";
+	        	
+	        	TimePicker response_time_arrived_at_receiving_centre = (TimePicker)mainView.findViewById(R.id.response_time_arrived_at_receiving_centre);
+	        	data += "response_time_arrived_at_receiving_centre: " + response_time_arrived_at_receiving_centre.getCurrentHour() + ":" + response_time_arrived_at_receiving_centre.getCurrentMinute() + "\n";
+	        	
+	        	EditText response_name_of_receiving_centre = (EditText)mainView.findViewById(R.id.response_name_of_receiving_centre);
+	        	data += "response_name_of_receiving_centre: " + response_name_of_receiving_centre.getEditableText() + "\n";
+	        	
+	        	return data;
 	        }
 	    }
 

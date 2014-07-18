@@ -99,10 +99,19 @@ public class MainActivity extends FragmentActivity  {
 		public void completeForm(){
 			
 			String incident_data = IncidentActivity.IncidentFragment.getData();
+			String primary_survey_data = PrimarySurveyActivity.PrimarySurveyFragment.getData();
+			String medical_history_data = MedicalHistoryActivity.MedicalHistoryFragment.getData();
+			String secondary_survey_data = SecondarySurveyActivity.SecondarySurveyFragment.getData();
+			String observations_data = ObservationsActivity.ObservationsFragment.getData();
+			String treatment_data = TreatmentActivity.TreatmentFragment.getData();
+			String resuscitation_data = ResuscitationActivity.ResuscitationFragment.getData();
+			String response_data = ResponseActivity.ResponseFragment.getData();
+			String items_data = ItemsActivity.ItemsFragment.getData();
+			String notes_data = NotesActivity.NotesFragment.getData();
+			String outcome_data = OutcomeActivity.OutcomeFragment.getData();
+			String sign_data = SignActivity.SignFragment.getData();
 			
 			System.out.println("Completed Form");
-		
-
 		}
 
 		

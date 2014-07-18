@@ -16,7 +16,12 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TimePicker;
 
 public class ObservationsActivity extends FragmentActivity {
 	
@@ -25,14 +30,13 @@ public class ObservationsActivity extends FragmentActivity {
 	     
 		 	View mainView;
 		 	LinearLayout obsLinearLayout;
-		 	ArrayList<View> obsViews;
+		 	static ArrayList<View> obsViews;
 		 	
 		 	
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
 	            obsViews = new ArrayList<View>();
-	            	            
 	        }
 	        
 	        @Override
@@ -50,6 +54,104 @@ public class ObservationsActivity extends FragmentActivity {
 	            	obsLinearLayout.removeView(v);
 	            }
 	            obsViews.clear();
+		    }
+		    
+		    public static String getData(){
+		    	String data = new String();
+		    	int idx = 0;
+		    	for(View v: obsViews){
+		    		
+		    		TimePicker observation_time = (TimePicker)v.findViewById(R.id.observation_time);
+		        	data += "observation_time_" + idx + " : " + observation_time.getCurrentHour() + ":" + observation_time.getCurrentMinute() + "\n";
+		    		
+		        	Spinner observation_response = (Spinner)v.findViewById(R.id.observation_response);
+		        	if ( observation_response.getSelectedItem() != null)
+		        		data += "observation_response_" + idx + " : " +observation_response.getSelectedItem() + "\n";
+		    		
+		        	EditText observation_respiratory_rate = (EditText)v.findViewById(R.id.observation_respiratory_rate);
+		        	data += "observation_respiratory_rate_" + idx + " : " + observation_respiratory_rate.getEditableText() + "\n";
+		    		
+		        	EditText observation_pule_rate = (EditText)v.findViewById(R.id.observation_pule_rate);
+		        	data += "observation_pule_rate_" + idx + " : " + observation_pule_rate.getEditableText() + "\n";
+		        	
+		        	RadioButton observation_pain_score_0 = (RadioButton)v.findViewById(R.id.observation_pain_score_0);
+		        	RadioButton observation_pain_score_1 = (RadioButton)v.findViewById(R.id.observation_pain_score_1);
+		        	RadioButton observation_pain_score_2 = (RadioButton)v.findViewById(R.id.observation_pain_score_2);
+		        	RadioButton observation_pain_score_3 = (RadioButton)v.findViewById(R.id.observation_pain_score_3);
+		        	
+		        	if (observation_pain_score_0.isChecked()){
+		        		data += "observation_pain_score_" + idx +" : 0\n";
+		        	}
+		        	if (observation_pain_score_1.isChecked()){
+		        		data += "observation_pain_score_" + idx +" : 1\n";
+		        	}
+		        	if (observation_pain_score_2.isChecked()){
+		        		data += "observation_pain_score_" + idx +" : 2\n";
+		        	}
+		        	if (observation_pain_score_3.isChecked()){
+		        		data += "observation_pain_score_" + idx +" : 3\n";
+		        	}
+		        	
+		        	EditText observation_o2_saturation = (EditText)v.findViewById(R.id.observation_o2_saturation);
+		        	data += "observation_o2_saturation_" + idx + " : " + observation_o2_saturation.getEditableText() + "\n";
+		    		
+		        	EditText observation_oxygen = (EditText)v.findViewById(R.id.observation_oxygen);
+		        	data += "observation_oxygen_" + idx + " : " + observation_oxygen.getEditableText() + "\n";
+		    		
+		        	EditText observation_entonox = (EditText)v.findViewById(R.id.observation_entonox);
+		        	data += "observation_entonox_" + idx + " : " + observation_entonox.getEditableText() + "\n";
+		        	
+		        	EditText observation_blood_pressure_systolic = (EditText)v.findViewById(R.id.observation_blood_pressure_systolic);
+		        	data += "observation_blood_pressure_systolic_" + idx + " : " + observation_blood_pressure_systolic.getEditableText() + "\n";
+		        	
+		        	EditText observation_blood_pressure_dystolic = (EditText)v.findViewById(R.id.observation_blood_pressure_dystolic);
+		        	data += "observation_blood_pressure_dystolic_" + idx + " : " + observation_blood_pressure_dystolic.getEditableText() + "\n";
+		        	
+		        	
+		        	EditText observation_temperature = (EditText)v.findViewById(R.id.observation_temperature);
+		        	data += "observation_temperature_" + idx + " : " + observation_temperature.getEditableText() + "\n";
+		        	
+		        	EditText observation_blood_sugar = (EditText)v.findViewById(R.id.observation_blood_sugar);
+		        	data += "observation_blood_sugar_" + idx + " : " + observation_blood_sugar.getEditableText() + "\n";
+		        	
+		        	CheckBox observation_pupils_reactive_left_yes = (CheckBox)v.findViewById(R.id.observation_pupils_reactive_left_yes);
+		        	
+		        	if (observation_pupils_reactive_left_yes.isChecked()){
+		        		data += "observation_pupils_reactive_left" + idx +" : yes\n";
+		        	} 
+		        	
+		        	CheckBox observation_pupils_reactive_left_no = (CheckBox)v.findViewById(R.id.observation_pupils_reactive_left_no);
+		        	
+		        	if (observation_pupils_reactive_left_no.isChecked()){
+		        		data += "observation_pupils_reactive_left_no" + idx +" : no\n";
+		        	} 
+		        	
+		        	
+		        	CheckBox observation_pupils_reactive_right_yes = (CheckBox)v.findViewById(R.id.observation_pupils_reactive_right_yes);
+		        	
+		        	if (observation_pupils_reactive_right_yes.isChecked()){
+		        		data += "observation_pupils_reactive_right" + idx +" : yes\n";
+		        	} 
+		        	
+		        	CheckBox observation_pupils_reactive_right_no = (CheckBox)v.findViewById(R.id.observation_pupils_reactive_right_no);
+		        	
+		        	if (observation_pupils_reactive_right_no.isChecked()){
+		        		data += "observation_pupils_reactive_right_no" + idx +" : no\n";
+		        	} 
+		        	
+		        	Spinner observation_pupil_size_left = (Spinner)v.findViewById(R.id.observation_pupil_size_left);
+		        	if ( observation_pupil_size_left.getSelectedItem() != null)
+		        		data += "observation_pupil_size_left_" + idx + " : " +observation_pupil_size_left.getSelectedItem() + "\n";
+		        	
+		        	
+		        	Spinner observation_pupil_size_right = (Spinner)v.findViewById(R.id.observation_pupil_size_right);
+		        	if ( observation_pupil_size_right.getSelectedItem() != null)
+		        		data += "observation_pupil_size_right_" + idx + " : " +observation_pupil_size_right.getSelectedItem() + "\n";
+		        	
+		    		idx++;
+		    	}
+		    	
+		    	return data;
 		    }
 	        
 

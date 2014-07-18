@@ -21,7 +21,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/response_callsign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10" >
@@ -44,7 +44,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TimePicker
-                android:id="@+id/timePicker1"
+                android:id="@+id/response_time_received"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -69,7 +69,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TimePicker
-                android:id="@+id/timePicker3"
+                android:id="@+id/response_time_arrived"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -87,7 +87,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TimePicker
-                android:id="@+id/timePicker3"
+                android:id="@+id/response_time_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -111,7 +111,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TimePicker
-                android:id="@+id/timePicker3"
+                android:id="@+id/response_time_arrived_at_receiving_centre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -130,7 +130,7 @@
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/response_name_of_receiving_centre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10" >

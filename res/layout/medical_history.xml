@@ -59,25 +59,25 @@
                      android:layout_height="wrap_content" >
 
                      <CheckBox
-                         android:id="@+id/checkBox2"
+                         android:id="@+id/medical_history_high_blood_pressure"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="High Blood Pressure" />
 
                      <CheckBox
-                         android:id="@+id/checkBox3"
+                         android:id="@+id/medical_history_stroke"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="Stroke" />
 
                      <CheckBox
-                         android:id="@+id/checkBox4"
+                         android:id="@+id/medical_history_seizures"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="Seizures" />
 
                      <CheckBox
-                         android:id="@+id/checkBox5"
+                         android:id="@+id/medical_history_diabetes"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="Diabetes" />
@@ -88,19 +88,19 @@
                      android:layout_height="wrap_content" >
 
                      <CheckBox
-                         android:id="@+id/checkBox6"
+                         android:id="@+id/medical_history_cardiac"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="Cardiac" />
 
                      <CheckBox
-                         android:id="@+id/checkBox7"
+                         android:id="@+id/medical_history_asthma"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="Asthma" />
 
                      <CheckBox
-                         android:id="@+id/checkBox1"
+                         android:id="@+id/medical_history_respiratory"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:text="Respiratory" />
@@ -128,7 +128,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText1"
+                    android:id="@+id/medical_history_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -165,7 +165,7 @@
             android:layout_height="wrap_content" >
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/medical_history_allergies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -204,7 +204,7 @@
             android:layout_height="wrap_content" >
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/medical_history_medication"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"

@@ -39,7 +39,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/sign_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -64,7 +64,7 @@
     </TableLayout>
 
     <uk.co.section9.emfmedical.DrawingView
-        android:id="@+id/drawingView1"
+        android:id="@+id/sign_signature"
         android:layout_width="375dp"
         android:layout_height="256dp" />
 

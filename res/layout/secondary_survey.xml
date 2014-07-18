@@ -34,7 +34,7 @@
             android:layout_height="wrap_content" >
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/secondary_survey_head_and_face"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content" >
 
                         <EditText
-                            android:id="@+id/editText2"
+                            android:id="@+id/secondary_survey_right_arm_and_hand"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                                  android:lines="5"
@@ -124,7 +124,7 @@
                         android:layout_height="wrap_content" >
 
                         <EditText
-                            android:id="@+id/editText3"
+                            android:id="@+id/secondary_survey_torso_front_and_back"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                                  android:lines="5"
@@ -163,7 +163,7 @@
                         android:layout_height="wrap_content" >
 
                         <EditText
-                            android:id="@+id/editText4"
+                            android:id="@+id/secondary_survey_left_arm_and_hand"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                                  android:lines="5"
@@ -215,7 +215,7 @@
                         android:layout_height="wrap_content" >
 
                         <EditText
-                            android:id="@+id/editText6"
+                            android:id="@+id/secondary_survey_right_leg_and_right_foot"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                                  android:lines="5"
@@ -254,7 +254,7 @@
                         android:layout_height="wrap_content" >
 
                         <EditText
-                            android:id="@+id/editText5"
+                            android:id="@+id/secondary_survey_left_leg_and_left_foot"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                                  android:lines="5"

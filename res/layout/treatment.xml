@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content" >
 
                 <EditText
-                    android:id="@+id/editText1"
+                    android:id="@+id/treatment_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -47,13 +47,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox1"
+                    android:id="@+id/treatment_none"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No Treatment Required" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_airway_opened"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Airway Opened" />
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox3"
+                    android:id="@+id/treatment_airway_suctioned"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Airway Suctioned" />
@@ -92,13 +92,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_wound_cleansed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Wound Cleansed" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_recovery_position"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Recovery Position" />
@@ -111,13 +111,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_adhesive_dressing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Adhesive Dressing" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_wound_dressed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Wound Dressed" />
@@ -136,42 +136,14 @@
                     android:text="Fracture supported" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_cervical_spine_control"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cervical Spine Control" />
 
             </TableRow>
 
-            <TableRow
-                android:id="@+id/tableRow7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-            </TableRow>
+         
 
             <TableRow
                 android:id="@+id/tableRow12"
@@ -179,13 +151,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_rice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Rest Ice Comfort Elevate" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_sling"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sling" />
@@ -204,13 +176,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_splint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Splint" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_aspirin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aspirin" />
@@ -229,13 +201,13 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_ibuprofen"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ibuprofen" />
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_loratadine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Loratadine" />
@@ -254,7 +226,7 @@
                 android:layout_height="wrap_content" >
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/treatment_paraceatomol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Paraceatomol" />

@@ -33,7 +33,7 @@
         android:orientation="vertical" >
 
         <TimePicker
-            android:id="@+id/timePicker1"
+            android:id="@+id/observation_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -45,7 +45,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/observation_response"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:entries="@array/response_options" />
@@ -76,7 +76,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/observation_respiratory_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -99,7 +99,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/observation_pule_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -119,32 +119,32 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/observation_pain_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/observation_pain_score_0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:text="0" />
 
                 <RadioButton
-                    android:id="@+id/radioButton1"
+                    android:id="@+id/observation_pain_score_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/observation_pain_score_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2" />
 
                 <RadioButton
-                    android:id="@+id/radio2"
+                    android:id="@+id/observation_pain_score_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3" />
@@ -157,14 +157,14 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/observation_o2_saturation_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="02 Saturation"
+                android:text="O2 Saturation"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/observation_o2_saturation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -184,7 +184,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/observation_oxygen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -204,7 +204,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/observation_entonox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -224,14 +224,14 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/observation_blood_pressure_systolic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/observation_blood_pressure_dystolic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -251,7 +251,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText8"
+                android:id="@+id/observation_temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -271,7 +271,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
-                android:id="@+id/editText9"
+                android:id="@+id/observation_blood_sugar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -287,20 +287,39 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pupils reactive? (L/R)"
+                android:text="Left Pupils reactive? (Y/N)"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/observation_pupils_reactive_left_yes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Left" />
+                android:text="Yes" />
 
             <CheckBox
-                android:id="@+id/checkBox1"
+                android:id="@+id/observation_pupils_reactive_left_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Right" />
+                android:text="No" />
+            
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Right Pupil reactive? (Y/N)"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <CheckBox
+                android:id="@+id/observation_pupils_reactive_right_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes" />
+
+            <CheckBox
+                android:id="@+id/observation_pupils_reactive_right_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No" />
 
         </TableRow>
 
@@ -317,14 +336,14 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/observation_pupil_size_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:entries="@array/pupil_size_options" />
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/observation_pupil_size_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
