@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="false"
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:scrollbarStyle="insideOverlay"
@@ -52,20 +53,16 @@
 
                 <EditText
                     android:id="@+id/editText1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="3.24"
                     android:ems="10"
                     android:inputType="textMultiLine"
                     android:lines="6"
                     android:minLines="6"
                     android:width="200dp" >
-
-                    <requestFocus />
                 </EditText>
-
             </LinearLayout>
-
         </TableRow>
 
         <TableRow
@@ -99,20 +96,20 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
-                android:id="@+id/radioGroup4"
+                android:id="@+id/primary_survey_capacity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/primary_survey_capacity_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/primary_survey_capacity_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
@@ -132,20 +129,20 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
-                android:id="@+id/radioGroup3"
+                android:id="@+id/primary_survey_consent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/primary_survey_consent_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/primary_survey_consent_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
@@ -179,20 +176,56 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:textStyle="bold"
                 android:text="Response"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RadioGroup
+                android:id="@+id/primary_survey_response"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="30dp" >
+
+                <RadioButton
+                    android:id="@+id/primary_survey_response_alert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Alert" />
+
+                <RadioButton
+                    android:id="@+id/primary_survey_response_voice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Voice" />
+
+                <RadioButton
+                    android:id="@+id/primary_survey_response_pain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pain" />
+
+                <RadioButton
+                    android:id="@+id/primary_survey_response_none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="None" />
+            </RadioGroup>
+
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
-            <Spinner
-                android:id="@+id/spinner1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/response_options" />
         </TableRow>
 
         <TableRow
@@ -205,7 +238,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Airway"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+
         </TableRow>
 
         <TableRow
@@ -214,25 +251,26 @@
             android:layout_height="wrap_content" >
 
             <RadioGroup
-                android:id="@+id/radioGroup5"
+                android:id="@+id/primary_survey_airway"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:paddingBottom="30dp"
+                android:paddingTop="10dp" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/primary_survey_airway_clear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Clear" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/primary_survey_airway_obstructed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Obstructed" />
             </RadioGroup>
-
         </TableRow>
 
         <TableRow
@@ -245,6 +283,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Breathing"
+                   android:textSize="24dp"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
 
@@ -253,11 +293,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <Spinner
-                android:id="@+id/spinner2"
+            <RadioGroup
+                android:id="@+id/primary_survey_breathing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/breathing_options" />
+                android:orientation="horizontal"
+                android:paddingBottom="30dp"
+                android:paddingTop="10dp" >
+
+                <RadioButton
+                    android:id="@+id/primary_survey_breathing_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Normal" />
+
+                <RadioButton
+                    android:id="@+id/primary_survey_breathing_shallow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shallow" />
+                 <RadioButton
+                    android:id="@+id/primary_survey_breathing_agonal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Agonal" />
+                  <RadioButton
+                    android:id="@+id/primary_survey_breathing_absent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Absent" />
+            </RadioGroup>
         </TableRow>
 
         <TableRow
@@ -270,6 +336,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Circulation"
+                   android:textSize="24dp"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
 
@@ -278,11 +346,36 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <Spinner
-                android:id="@+id/spinner3"
+            <RadioGroup
+                android:id="@+id/primary_survey_circulation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/circulation_options" />
+                android:orientation="horizontal"
+                android:paddingBottom="30dp" >
+
+                <RadioButton
+                    android:id="@+id/primary_survey_circulation_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Normal" />
+
+                <RadioButton
+                    android:id="@+id/primary_survey_circulation_pale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pale" />
+                 <RadioButton
+                    android:id="@+id/primary_survey_circulation_flushed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flushed" />
+                  <RadioButton
+                    android:id="@+id/primary_survey_cyanosed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cyanosed" />
+            </RadioGroup>
         </TableRow>
 
         <TableRow
@@ -299,24 +392,26 @@
                 android:layout_height="wrap_content"
                 android:maxWidth="100dp"
                 android:text="Signs of external bleeding"
+                   android:textSize="24dp"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:width="100dp" />
 
             <RadioGroup
-                android:id="@+id/radioGroup2"
+                android:id="@+id/primary_survey_external_bleeding"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/primary_survey_external_bleeding_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/primary_survey_circulation_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
@@ -333,10 +428,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Loss of consciousness"
+                   android:textSize="24dp"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
-                android:id="@+id/radioGroup1"
+                android:id="@+id/primary_survey_consiousness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
@@ -345,7 +442,7 @@
                     android:id="@+id/radio0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     android:text="Yes" />
 
                 <RadioButton

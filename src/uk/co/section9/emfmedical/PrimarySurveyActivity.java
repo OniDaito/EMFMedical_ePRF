@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-
 public class PrimarySurveyActivity extends FragmentActivity {
 	
 	
@@ -16,7 +15,10 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	     
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
-	            super.onCreate(savedInstanceState);
+	      
+	        	super.onCreate(savedInstanceState);
+	       
+	            
 	        }
 
 	
@@ -24,9 +26,8 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
 	            View v = inflater.inflate(R.layout.primary_survey, container, false);
-	          //  View tv = v.findViewById(R.id.text);
-	         //   ((TextView)tv).setText("Fragment #" + mNum);
-	         //   tv.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
+	            
+	          
 	            return v;
 	        }
 	    }

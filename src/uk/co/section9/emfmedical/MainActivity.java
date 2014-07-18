@@ -83,6 +83,9 @@ public class MainActivity extends FragmentActivity  {
 	        
 	        mTabHost.addTab(mTabHost.newTabSpec("outcome").setIndicator("Outcome"),
 	        		OutcomeActivity.OutcomeFragment.class, null);
+	        
+	        mTabHost.addTab(mTabHost.newTabSpec("sign").setIndicator("Sign"),
+	        		SignActivity.SignFragment.class, null);
 	   
 	    }
 	 
@@ -93,7 +96,14 @@ public class MainActivity extends FragmentActivity  {
 		}
 		
 	   
+		public void completeForm(){
+			
+			String incident_data = IncidentActivity.IncidentFragment.getData();
+			
+			System.out.println("Completed Form");
 		
+
+		}
 
 		
 		@Override

@@ -40,12 +40,12 @@
             android:layout_height="wrap_content" >
 
             <TimePicker
-                android:id="@+id/timePicker1"
+                android:id="@+id/incident_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <DatePicker
-                android:id="@+id/datePicker1"
+                android:id="@+id/incident_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -60,18 +60,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/incident_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textMultiLine"
                 android:lines="5"
                 android:minLines="3" >
-
-                <requestFocus />
             </EditText>
         </TableRow>
 
@@ -85,32 +85,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="How Alerted"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
 
                 <RadioGroup
-                    android:id="@+id/radioGroup1"
+                    android:id="@+id/incident_alerted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
 
                     <RadioButton
-                        android:id="@+id/radio0"
+                        android:id="@+id/incident_alerted_called"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:checked="true"
+                        android:checked="false"
                         android:text="Called to Scene" />
 
                     <RadioButton
-                        android:id="@+id/radio1"
+                        android:id="@+id/incident_alerted_self"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Self-referral" />
                 </RadioGroup>
-
             </LinearLayout>
         </TableRow>
 
@@ -142,10 +143,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Family Name"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/incident_family_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -162,10 +165,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Forename(s)"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/incident_forename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -182,10 +187,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Address"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/incident_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -204,10 +211,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Post Code"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/incident_postcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10" />
@@ -224,10 +233,12 @@
                 android:layout_height="wrap_content"
                 android:hint="Date of Birth"
                 android:text="Date of Birth"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <DatePicker
-                android:id="@+id/datePicker2"
+                android:id="@+id/incident_date_of_birth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </TableRow>
@@ -242,10 +253,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Age"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/incident_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -262,19 +275,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gender"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
-            <RadioButton
-                android:id="@+id/radioButton3"
+            <RadioGroup
+                android:id="@+id/incident_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male" />
+                android:orientation="horizontal" >
 
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female" />
+                <RadioButton
+                    android:id="@+id/incident_gender_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/incident_gender_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female" />
+            </RadioGroup>
+
         </TableRow>
 
         <TableRow
@@ -287,10 +311,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next of Kin Details"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/incident_next_of_kin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

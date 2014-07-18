@@ -1,26 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TimePicker
-        android:id="@+id/timePicker1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+      <TableRow
+            android:id="@+id/tableRow13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000" >
 
-    <TextView
-        android:id="@+id/textView1"
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observation"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textSize="32dp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+        </TableRow>
+    
+      <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Response"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:orientation="vertical" >
 
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/response_options" />
+        <TimePicker
+            android:id="@+id/timePicker1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Response"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/response_options" />
+
+    </LinearLayout>
+
+    </TableRow>
+    
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
     <TableLayout
         android:layout_width="match_parent"
@@ -47,7 +84,6 @@
 
                 <requestFocus />
             </EditText>
-
         </TableRow>
 
         <TableRow
@@ -68,7 +104,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
-
         </TableRow>
 
         <TableRow
@@ -114,7 +149,6 @@
                     android:layout_height="wrap_content"
                     android:text="3" />
             </RadioGroup>
-
         </TableRow>
 
         <TableRow
@@ -135,7 +169,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
-
         </TableRow>
 
         <TableRow
@@ -156,7 +189,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
-
         </TableRow>
 
         <TableRow
@@ -177,7 +209,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
-
         </TableRow>
 
         <TableRow
@@ -205,7 +236,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="number" />
-
         </TableRow>
 
         <TableRow
@@ -226,7 +256,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberDecimal" />
-
         </TableRow>
 
         <TableRow
@@ -247,49 +276,45 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="numberDecimal" />
-
         </TableRow>
-    </TableLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pupils reactive? (L/R)"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <LinearLayout
+        <TableRow
+            android:id="@+id/tableRow10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <CheckBox
-                android:id="@+id/checkBox1"
+            <TextView
+                android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox" />
+                android:text="Pupils reactive? (L/R)"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <CheckBox
                 android:id="@+id/checkBox2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CheckBox" />
-        </LinearLayout>
+                android:text="Left" />
 
-        <TextView
-            android:id="@+id/textView12"
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Right" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow11"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pupil Size (L/R)"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pupil Size (L/R)"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
                 android:id="@+id/spinner2"
@@ -305,7 +330,10 @@
                 android:layout_weight="1"
                 android:entries="@array/pupil_size_options"
                 android:prompt="@array/pupil_size_options" />
-        </LinearLayout>
-    </LinearLayout>
+        </TableRow>
 
-</LinearLayout>
+    </TableLayout>
+
+    </TableRow>
+
+</TableLayout>

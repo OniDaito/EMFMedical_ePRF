@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-	<TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="2dp"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbarStyle="insideOverlay"
-        android:scrollbars="vertical" >
 
-        <TableRow
-            android:id="@+id/tableRow0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#000000" >
 
-            <TextView
+         <RelativeLayout 
+        android:layout_width="fill_parent"
+android:layout_height="?android:attr/listPreferredItemHeight"
+        android:padding="6dip"
+         android:background="#000000" >
+     
+         <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Patient Report Form"
+                android:layout_gravity="left"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#ffffff"
+                 android:layout_alignParentTop="true"
                 android:textSize="32dp"
                 android:textStyle="bold"
                 android:typeface="normal" />
-        </TableRow>
-    </TableLayout>
+         
+                  <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+         android:layout_gravity="right"
+     
+        android:src="@drawable/emf_logo_small" />
+</RelativeLayout>
+
 
 	
 		<android.support.v4.app.FragmentTabHost
