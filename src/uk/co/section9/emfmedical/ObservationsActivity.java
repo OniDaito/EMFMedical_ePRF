@@ -31,12 +31,13 @@ public class ObservationsActivity extends FragmentActivity {
 		 	View mainView;
 		 	LinearLayout obsLinearLayout;
 		 	static ArrayList<View> obsViews;
-		 	
+		 	static boolean mUsed = false;
 		 	
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
 	            obsViews = new ArrayList<View>();
+	            mUsed = true;
 	        }
 	        
 	        @Override
@@ -54,6 +55,10 @@ public class ObservationsActivity extends FragmentActivity {
 	            	obsLinearLayout.removeView(v);
 	            }
 	            obsViews.clear();
+		    }
+		    
+	        public static boolean used() {
+		    	return mUsed;
 		    }
 		    
 		    public static String getData(){

@@ -14,11 +14,16 @@ public class ItemsActivity extends FragmentActivity {
 	  public static class ItemsFragment extends Fragment {
 		     
 		  	static View mainView;
+		  	static boolean mUsed = false;
 		  
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
 	        }
+	        
+	        public static boolean used() {
+		    	return mUsed;
+		    }
 	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -32,12 +32,19 @@ public class IncidentActivity  extends FragmentActivity {
 	     
 	    	static View mainView;
 	    	
+	    	static boolean mUsed = false;
+	    	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	        	mainView = inflater.inflate(R.layout.incident, container, false);
+	        	mUsed = true;
 	            return mainView;
 	        }
 	        
+	        
+	        public static boolean used() {
+		    	return mUsed;
+		    }
 	        
 	        // Parse the form and grab the data
 	        

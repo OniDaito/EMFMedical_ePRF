@@ -19,18 +19,23 @@ public class OutcomeActivity extends FragmentActivity {
 	 public static class OutcomeFragment extends Fragment {
 
 		 	public static View mainView;
+		 	
+		 	static boolean mUsed = false;
 		 
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
 	        }
 
+	        public static boolean used() {
+	        	return mUsed;
+	        }
 	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
 	            mainView = inflater.inflate(R.layout.outcome, container, false);
-	     
+	            mUsed = true;
 	            return mainView;
 	        }
 	        

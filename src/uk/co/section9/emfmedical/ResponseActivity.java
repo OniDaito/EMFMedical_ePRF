@@ -15,6 +15,7 @@ public class ResponseActivity extends FragmentActivity {
 	 public static class ResponseFragment extends Fragment {
 	     
 		 	static View mainView;
+		 	static boolean mUsed = false;
 		 
 		 	@Override
 	        public void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,13 @@ public class ResponseActivity extends FragmentActivity {
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
 	        	mainView = inflater.inflate(R.layout.response, container, false);
+	        	mUsed = true;
 	            return mainView;
 	        }
+	        
+	        public static boolean used() {
+		    	return mUsed;
+		    }
 	        
 	        static String getData() {
 	        	String data = new String();

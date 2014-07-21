@@ -17,18 +17,24 @@ public class ResuscitationActivity extends FragmentActivity {
 	 public static class ResuscitationFragment extends Fragment {
 	     
 		 	static View mainView;
+		 	static boolean mUsed = false;
 		 
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
 	            
 	        }
+	        
+	        public static boolean used() {
+		    	return mUsed;
+		    }
 
 	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
 	            mainView = inflater.inflate(R.layout.resuscitation, container, false);
+	            mUsed = true;
 	            return mainView;
 	        }
 	        

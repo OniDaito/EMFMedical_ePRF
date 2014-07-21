@@ -15,16 +15,22 @@ public class SecondarySurveyActivity extends FragmentActivity {
 	     
 		 	static View mainView;
 		 
+		 	static boolean mUsed = false;
+		 	
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
 	        }
 
+	        public static boolean used() {
+		    	return mUsed;
+		    }
 	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
 	            mainView = inflater.inflate(R.layout.secondary_survey, container, false);
+	            mUsed = true;
 	            return mainView;
 	        }
 	        

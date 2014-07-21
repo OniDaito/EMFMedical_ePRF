@@ -20,10 +20,17 @@ public class SignActivity extends FragmentActivity {
 	     
 		static View mainView;
 		
+		static boolean mUsed = false;
 		
+		
+	   public static boolean used() {
+	    	return mUsed;
+	    }
+	
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            
         }
 
         
@@ -32,47 +39,45 @@ public class SignActivity extends FragmentActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             mainView = inflater.inflate(R.layout.signature, container, false);
-      
+            mUsed = true;
             Button button = (Button) mainView.findViewById(R.id.signature_complete_form);
               
     		button.setOnClickListener(new OnClickListener() {
      
     			@Override
     			public void onClick(View arg0) {
-    				final MainActivity ma = (MainActivity) getActivity();
+    				final PRFActivity ma = (PRFActivity) getActivity();
     				
     				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
     		 
-    					// set title
-    					alertDialogBuilder.setTitle("Complete Form");
-    		 
-    					// set dialog message
-    					alertDialogBuilder
-    						.setMessage("This will commit the Patient report form and encrypt it.")
-    						.setCancelable(false)
-    						.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-    							public void onClick(DialogInterface dialog,int id) {
-    								// if this button is clicked, close
-    								// current activity
-    								ma.completeForm();
-    							}
-    						  })
-    						.setNegativeButton("No",new DialogInterface.OnClickListener() {
-    							public void onClick(DialogInterface dialog,int id) {
-    								// if this button is clicked, just close
-    								// the dialog box and do nothing
-    								dialog.cancel();
-    							}
-    						});
-    		 
-    						// create alert dialog
-    						AlertDialog alertDialog = alertDialogBuilder.create();
-    		 
-    						// show it
-    						alertDialog.show();
-    				
-    				
-    				
+					// set title
+					alertDialogBuilder.setTitle("Complete Form");
+		 
+					// set dialog message
+					alertDialogBuilder
+						.setMessage("This will commit the Patient report form and encrypt it.")
+						.setCancelable(false)
+						.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								// if this button is clicked, close
+								// current activity
+								ma.completeForm();
+							}
+						  })
+						.setNegativeButton("No",new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog,int id) {
+								// if this button is clicked, just close
+								// the dialog box and do nothing
+								dialog.cancel();
+							}
+						});
+		 
+						// create alert dialog
+						AlertDialog alertDialog = alertDialogBuilder.create();
+		 
+						// show it
+						alertDialog.show();
+    					
     			}
     			
     		});

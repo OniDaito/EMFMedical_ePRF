@@ -13,6 +13,7 @@ public class NotesActivity extends FragmentActivity {
 	 public static class NotesFragment extends Fragment {
 	     		 
 		 	static View mainView;
+		 	static boolean mUsed = false;
 		 
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,13 @@ public class NotesActivity extends FragmentActivity {
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
 	        	mainView = inflater.inflate(R.layout.notes, container, false);
+	        	mUsed = true; 
 	            return mainView;
 	        }
+	        
+	        public static boolean used() {
+		    	return mUsed;
+		    }
 	        
 	        
 	        public static String getData() {
