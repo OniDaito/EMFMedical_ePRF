@@ -1,10 +1,13 @@
 package uk.co.section9.emfmedical;
 
 import android.view.SurfaceView;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,6 +19,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.widget.ImageView;
 
+import java.io.FileOutputStream;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -26,6 +30,9 @@ public class DrawingView extends SurfaceView  implements Callback{
 
 	public static final float STROKEWIDTH = 3f;
 	public static final int MOVETOLERANCE = 10;
+	
+	private Bitmap signatureBitmap;
+	private Canvas signatureCanvas;
 	
 	class FPSTimer {  
         private int mFPS;  
@@ -116,7 +123,7 @@ public class DrawingView extends SurfaceView  implements Callback{
 	private String msg2="";
 	private String msg3="";
 	
-	private int[] color = {0xFF484C47,0xFFB0C49E ,0xFFFFFEF1};
+	private int[] color = {0xFFFFFFFF,0xFFFFFFFF ,0xFFFFFEFF};
 	
 	private DrawingThread mThread = null;
 	
@@ -130,7 +137,6 @@ public class DrawingView extends SurfaceView  implements Callback{
 	    holder.addCallback(this);
 	    mThread = new DrawingThread(holder, context, new Handler());
 	    mThread.setPriority(10);
-	    
 	    setupView();
 	}
 	
@@ -150,13 +156,50 @@ public class DrawingView extends SurfaceView  implements Callback{
 	}
 	
 	
+	@SuppressLint("WrongCall")
+	void writeToFile(FileOutputStream f) {
+		
+		boolean retry = true;  
+        mThread.setRunning(false);  
+        while (retry) {  
+            try {  
+                mThread.join();  
+                retry = false;  
+            } catch (InterruptedException e) {  
+          }  
+        }
+		
+    	signatureBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.RGB_565);
+	    signatureCanvas = new Canvas(signatureBitmap);
+	   // signatureCanvas.drawRect(0, 0, width, height, backgroundPaint);
+	    
+	    final Canvas c = getHolder().lockCanvas();
+        if (c != null) {
+            c.drawBitmap(signatureBitmap, 0, 0, null);
+            getHolder().unlockCanvasAndPost(c);
+        }
+        
+		//Bitmap screenshot;
+		//setDrawingCacheEnabled(true);
+		
+		//Bitmap b = getDrawingCache();
+		//buildDrawingCache();
+		//layout( 0, 0, getWidth(), getHeight());
+		//screenshot = Bitmap.createBitmap(getDrawingCache());
+		//screenshot.compress(CompressFormat.JPEG, 95,f);
+		//setDrawingCacheEnabled(false);
+		//destroyDrawingCache();
+        signatureBitmap.compress(CompressFormat.JPEG, 95,f);
 	
+	}
+	
+	
+	@SuppressLint("WrongCall")
 	public void setupView()
 	{
 		//Load Image to canvas
 		
 //		ImageView imageview = new ImageView(this.getContext()); 
-		
 		penPaint = new Paint();
 		penPaint.setAntiAlias(true);
 			// 그리는 색깔 초기 값
@@ -186,6 +229,8 @@ public class DrawingView extends SurfaceView  implements Callback{
 		aPaint.setStrokeJoin(Paint.Join.ROUND);
 		aPaint.setStrokeCap(Paint.Cap.ROUND);
 		aPaint.setStrokeWidth(20);
+		
+		
 		
 	}
 	
@@ -325,9 +370,22 @@ public class DrawingView extends SurfaceView  implements Callback{
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
+	
+	    Paint backgroundPaint = new Paint();
+        backgroundPaint.setColor(Color.BLACK);
 		// TODO Auto-generated method stub
-		
-	}
+		signatureBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+	    signatureCanvas = new Canvas(signatureBitmap);
+	    signatureCanvas.drawRect(0, 0, width, height, backgroundPaint);
+	    
+	    final Canvas c = getHolder().lockCanvas();
+        if (c != null) {
+            c.drawBitmap(signatureBitmap, 0, 0, null);
+            getHolder().unlockCanvasAndPost(c);
+        }
+    }
+    
+  
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {

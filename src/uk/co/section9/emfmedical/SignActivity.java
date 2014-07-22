@@ -32,6 +32,11 @@ public class SignActivity extends FragmentActivity {
             super.onCreate(savedInstanceState);
             
         }
+        
+        
+        public static DrawingView getSignatureView() {
+        	return (DrawingView) mainView.findViewById(R.id.sign_signature);
+        }
 
         
 

@@ -150,9 +150,9 @@ public class PRFActivity extends FragmentActivity  {
 			System.out.println("Data: " + total_data );
 			
 			try { 
-				//File root = Environment.getExternalStorageDirectory();
+				File root = getFilesDir();
 				
-				File root = new File("/media/My Files"); 
+				//File root = new File("/media/My Files"); 
 				
 				System.out.println("Root Dir: " + root.getAbsolutePath() );
 				
@@ -163,11 +163,14 @@ public class PRFActivity extends FragmentActivity  {
 				// Write the string to the file
 				osw.write(total_data);
 
-				/* ensure that everything is
-		        * really written out and close */
+				// Write the signature to the file
+	
+				osw.write("\n***SIGNATURE_JPEG***\n");
 				osw.flush();
-				osw.close();
 				
+				SignActivity.SignFragment.getSignatureView().writeToFile(f);
+				
+				osw.close();
 				f.close();
 
 			} catch (IOException ioe) {
