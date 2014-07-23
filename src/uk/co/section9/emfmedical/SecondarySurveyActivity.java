@@ -43,9 +43,6 @@ public class SecondarySurveyActivity extends FragmentActivity {
 	        	EditText secondary_survey_right_arm_and_hand = (EditText)mainView.findViewById(R.id.secondary_survey_right_arm_and_hand);
 	        	data += "secondary_survey_right_arm_and_hand: " + secondary_survey_right_arm_and_hand.getEditableText() + "\n";
 	        	
-	        	EditText incident_family_name = (EditText)mainView.findViewById(R.id.incident_family_name);
-	        	data += "incident_family_name: " + incident_family_name.getEditableText() + "\n";
-	        	
 	        	EditText secondary_survey_torso_front_and_back = (EditText)mainView.findViewById(R.id.secondary_survey_torso_front_and_back);
 	        	data += "secondary_survey_torso_front_and_back: " + secondary_survey_torso_front_and_back.getEditableText() + "\n";
 	        	

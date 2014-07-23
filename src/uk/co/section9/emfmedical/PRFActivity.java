@@ -116,6 +116,7 @@ public class PRFActivity extends FragmentActivity  {
 				total_data += PrimarySurveyActivity.PrimarySurveyFragment.getData();
 			if (MedicalHistoryActivity.MedicalHistoryFragment.used())
 				total_data += MedicalHistoryActivity.MedicalHistoryFragment.getData();
+			
 			if (SecondarySurveyActivity.SecondarySurveyFragment.used())
 				total_data += SecondarySurveyActivity.SecondarySurveyFragment.getData();
 			if (ObservationsActivity.ObservationsFragment.used())
