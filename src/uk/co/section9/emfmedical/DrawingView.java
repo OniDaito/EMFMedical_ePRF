@@ -45,7 +45,7 @@ import android.view.SurfaceView;
 import android.widget.Toast;
 
 public class DrawingView extends SurfaceView implements SurfaceHolder.Callback {
-    private static final String TAG = "FingerpaintView";
+    private static final String TAG = "DrawingView";
     
     private Paint foregroundPaint;
     private Paint backgroundPaint;
@@ -84,7 +84,7 @@ public class DrawingView extends SurfaceView implements SurfaceHolder.Callback {
         final int x = (int) event.getX();
         final int y = (int) event.getY();
         if ((event.getAction() == MotionEvent.ACTION_DOWN) || (event.getAction() == MotionEvent.ACTION_MOVE)) {
-            Log.d(TAG, "Touched " + x + "," + y);
+            //Log.d(TAG, "Touched " + x + "," + y);
             if ((lastTouchX != -1) && (lastTouchY != -1)) {
                 pictureCanvas.drawLine(lastTouchX, lastTouchY, x, y, foregroundPaint);
                 draw();
