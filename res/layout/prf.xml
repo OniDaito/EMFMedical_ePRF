@@ -26,6 +26,13 @@ android:layout_height="?android:attr/listPreferredItemHeight"
                 android:textStyle="bold"
                 android:typeface="normal" />
          
+          <Button
+        android:id="@+id/prf_activity_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Cancel"
+        android:textSize="18sp" />
+         
                   <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
@@ -36,8 +43,9 @@ android:layout_height="?android:attr/listPreferredItemHeight"
      
         android:src="@drawable/emf_logo_small" />
 </RelativeLayout>
-
-
+		
+        
+         
 	
 		<android.support.v4.app.FragmentTabHost
 		    xmlns:android="http://schemas.android.com/apk/res/android"

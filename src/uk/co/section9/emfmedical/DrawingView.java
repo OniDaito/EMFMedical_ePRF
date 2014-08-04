@@ -23,6 +23,7 @@ import java.io.FileOutputStream;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import java.io.ByteArrayOutputStream;
 // http://androidforums.com/application-development/330687-faster-surfaceview-drawing.html
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -149,6 +150,12 @@ public class DrawingView extends SurfaceView implements SurfaceHolder.Callback {
         }
         pictureBitmap = null;
     }
+    
+    public String convertToString()  { 
+	    ByteArrayOutputStream os=new ByteArrayOutputStream(); 
+	    pictureBitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 100, (OutputStream) os); 
+	    return os.toString(); 
+    } 
 
     void writeToFile( FileOutputStream f) {
         // String filename = String.valueOf(System.currentTimeMillis()) ;
