@@ -32,15 +32,27 @@ public class IncidentActivity  extends FragmentActivity {
 	     
 	    	static View mainView;
 	    	
+	   	
 	    	static boolean mUsed = false;
 	    	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	        	mainView = inflater.inflate(R.layout.incident, container, false);
 	        	mUsed = true;
+	        	
+	        	if (PRFActivity.prePopulate.equalsIgnoreCase("MinorWoundDressed")){
+	        		populateMinorWound();
+	        	}
+	        	
 	            return mainView;
 	        }
 	        
+	        
+	        public static void populateMinorWound(){
+	        	System.out.println("Populating");
+	        	EditText incident_location = (EditText)mainView.findViewById(R.id.incident_location);
+	        	incident_location.append("EMF Camp First Aid Point");
+	        }
 	        
 	        public static boolean used() {
 		    	return mUsed;
@@ -74,6 +86,10 @@ public class IncidentActivity  extends FragmentActivity {
 	        	
 	        	EditText incident_forename = (EditText)mainView.findViewById(R.id.incident_forename);
 	        	data += "incident_forename: " + incident_forename.getEditableText() + "\n";
+	        	
+	        	EditText incident_email = (EditText)mainView.findViewById(R.id.incident_email);
+	        	data += "incident_email: " + incident_email.getEditableText() + "\n";
+	        	
 	        	
 	        	EditText incident_address = (EditText)mainView.findViewById(R.id.incident_address);
 	        	data += "incident_address: " + incident_address.getEditableText() + "\n";

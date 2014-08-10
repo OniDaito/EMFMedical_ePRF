@@ -35,7 +35,7 @@ public class RefusedActivity extends FragmentActivity {
         
         
         public static DrawingView getSignatureView() {
-        	return (DrawingView) mainView.findViewById(R.id.sign_signature);
+        	return (DrawingView) mainView.findViewById(R.id.refused_signature);
         }
 
         
@@ -43,9 +43,9 @@ public class RefusedActivity extends FragmentActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            mainView = inflater.inflate(R.layout.signature, container, false);
+            mainView = inflater.inflate(R.layout.refused, container, false);
             mUsed = true;
-            Button button = (Button) mainView.findViewById(R.id.signature_complete_form);
+            Button button = (Button) mainView.findViewById(R.id.refused_complete_form);
               
     		button.setOnClickListener(new OnClickListener() {
      
@@ -94,9 +94,6 @@ public class RefusedActivity extends FragmentActivity {
         
         public static String getData() {
         	String data = new String();
-        	
-        	EditText sign_name = (EditText)mainView.findViewById(R.id.sign_name);
-        	data += "sign_name: " + sign_name.getEditableText() + "\n";
         	
         	return data;
         }

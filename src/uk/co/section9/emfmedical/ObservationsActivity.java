@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 public class ObservationsActivity extends FragmentActivity {
@@ -186,6 +187,8 @@ public class ObservationsActivity extends FragmentActivity {
         				View obs = tinflater.inflate(R.layout.observation_actual, tgroup, false);
         				obsLinearLayout.addView(obs);
         				
+        				
+        				
         				// Reverse Order
 						ArrayList<View> views = new ArrayList<View>();
 						for(int x = 0; x < obsLinearLayout.getChildCount(); x++) {
@@ -198,6 +201,9 @@ public class ObservationsActivity extends FragmentActivity {
         			
 						// Also add to the master list of obs
 						obsViews.add(obs);
+						
+						TextView tv = (TextView) obs.findViewById(R.id.observation_actual_heading);
+        				tv.append(" " + obsViews.size());
 						
 						// Reverse the order
 						views = new ArrayList<View>();

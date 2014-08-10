@@ -37,7 +37,21 @@ public class MainActivity extends Activity {
 			public void onClick(View arg0) {
 			
 				Intent intent = new Intent(_ref, PRFActivity.class);
-				String message = new String();
+				String message = new String("None");
+				intent.putExtra(EXTRA_MESSAGE, message);
+				startActivity(intent);
+			}
+		});
+         
+         
+         Button button2 = (Button)findViewById(R.id.main_minor_wound_dressed);
+         
+         button2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+			
+				Intent intent = new Intent(_ref, PRFActivity.class);
+				String message = new String("MinorWoundDressed");
 				intent.putExtra(EXTRA_MESSAGE, message);
 				startActivity(intent);
 			}

@@ -27,6 +27,7 @@ import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,10 +49,16 @@ public class PRFActivity extends FragmentActivity  {
 	 private String mFormID; // UUID?
 	 private EMFCrypto mCrypto;
 	
+	 public static String prePopulate;
+	 
 	 
 	 @Override
 	 protected void onCreate(Bundle savedInstanceState) {
 
+		 	Intent intent = getIntent();
+		 	String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+		 
 	        super.onCreate(savedInstanceState);
 	        
 	        mFormID = java.util.UUID.randomUUID().toString();
@@ -112,12 +119,14 @@ public class PRFActivity extends FragmentActivity  {
 	        
 	        Button button = (Button) findViewById(R.id.prf_activity_cancel);
             
+	        final Activity prfactivity = this;
+	        
     		button.setOnClickListener(new OnClickListener() {
      
     			@Override
     			public void onClick(View arg0) {
     			
-    				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getBaseContext());
+    				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(prfactivity);
     		 
 					// set title
 					alertDialogBuilder.setTitle("");
@@ -150,6 +159,14 @@ public class PRFActivity extends FragmentActivity  {
     			}
     			
     		});
+    		
+    		// Pre-populate if we have been asked to
+    		
+    		if(message.equalsIgnoreCase("MinorWoundDressed")){
+    			prePopulate = "MinorWoundDressed";
+    		} else {
+    			prePopulate = "None";
+    		}
 	        
 	    }
 	 
@@ -158,6 +175,8 @@ public class PRFActivity extends FragmentActivity  {
 		@Override
 		public void onBackPressed() {
 		}
+		
+		
 		
 	   
 		public void completeForm(){
@@ -186,8 +205,7 @@ public class PRFActivity extends FragmentActivity  {
 			 total_data += NotesActivity.NotesFragment.getData();
 			if (OutcomeActivity.OutcomeFragment.used())
 				total_data += OutcomeActivity.OutcomeFragment.getData();
-			
-			if (SignActivity.getInstanceCount() > 0)
+			if (SignActivity.SignFragment.used())
 				total_data += SignActivity.SignFragment.getData();
 			
 			Calendar c = Calendar.getInstance(); 
@@ -217,9 +235,16 @@ public class PRFActivity extends FragmentActivity  {
 				// Write the string to the file
 				
 				// Encrypt!!
-	            total_data += "\n***SIGNATURE_JPEG***\n";
-	            total_data += SignActivity.SignFragment.getSignatureView().convertToString();
+	            if (SignActivity.SignFragment.used()){
+	            	total_data += "\n***SIGNATURE_JPEG***\n";
+	            	total_data += SignActivity.SignFragment.getSignatureView().convertToString();
+	            }
 	            
+	            if (RefusedActivity.RefusedFragment.used()){
+	            	total_data += "\n***REFUSED_JPEG***\n";
+	 	            total_data += RefusedActivity.RefusedFragment.getSignatureView().convertToString();
+	            }
+	           
 				byte[] encrypted_data = mCrypto.encode(total_data);
 				
 				f.write(encrypted_data);
@@ -293,8 +318,44 @@ public class PRFActivity extends FragmentActivity  {
 	    }
 	    
 
+	    @Override 
+	    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+	        return super.onKeyDown(keyCode, event);
+	    }
 		
-		 
+	    @Override
+	    public boolean dispatchKeyEvent(KeyEvent event) {
+	        int keyCode = event.getKeyCode();
+	        
+	        // 92 & 93 are on the left. 95 and 96 are the two on the right
+	       
+	        
+	        switch (keyCode) {
+	        case KeyEvent.KEYCODE_PAGE_UP:
+	        case KeyEvent.KEYCODE_PAGE_DOWN:{
+	        	if (event.getAction() == KeyEvent.ACTION_UP){
+		        	// Move tab left
+		        	int ctab = mTabHost.getCurrentTab();
+		        	mTabHost.setCurrentTab(ctab-1);
+		        	return true;
+	        	}
+	        }
+	        	
+	        case KeyEvent.KEYCODE_PICTSYMBOLS:
+	        case KeyEvent.KEYCODE_SWITCH_CHARSET:{
+	        	if (event.getAction() == KeyEvent.ACTION_UP){
+		        	// Move tab left
+		        	int ctab = mTabHost.getCurrentTab();
+		        	mTabHost.setCurrentTab(ctab+1);
+		        	return true;
+	        	}
+	        }
+	        	
+	        default:
+	            return super.dispatchKeyEvent(event);
+	        }
+	    }
 
 	
 

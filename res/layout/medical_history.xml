@@ -172,8 +172,6 @@
                 android:inputType="textMultiLine"
                 android:lines="3"
                 android:minLines="3" >
-
-                <requestFocus />
             </EditText>
 
         </TableRow>

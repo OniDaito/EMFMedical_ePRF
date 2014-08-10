@@ -31,6 +31,7 @@ android:layout_height="?android:attr/listPreferredItemHeight"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Cancel"
+         android:layout_toLeftOf="@+id/imageView1"
         android:textSize="18sp" />
          
                   <ImageView
