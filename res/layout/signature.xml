@@ -36,6 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Print name"
+                android:textSize="24dp"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
            <EditText
@@ -59,6 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sign below"
+                   android:textSize="24dp"
+                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
     </TableLayout>

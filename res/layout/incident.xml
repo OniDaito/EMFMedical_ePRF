@@ -18,7 +18,7 @@
 
         <TableRow
             android:id="@+id/tableRow0"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#000000" >
 
@@ -36,8 +36,12 @@
 
         <TableRow
             android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TimePicker
                 android:id="@+id/incident_time"
@@ -47,13 +51,22 @@
             <DatePicker
                 android:id="@+id/incident_date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/incident_time" />
+
+           
+
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView1"
@@ -66,32 +79,19 @@
 
             <EditText
                 android:id="@+id/incident_location"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine"
-                android:lines="5"
-                android:minLines="3" >
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/textView1"
+                android:inputType="text" >
+
             </EditText>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView2"
+            
+             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="How Alerted"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="24dp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_toRightOf="@id/incident_location" >
 
                 <RadioGroup
                     android:id="@+id/incident_alerted"
@@ -113,30 +113,21 @@
                         android:text="Self-referral" />
                 </RadioGroup>
             </LinearLayout>
+            
+            </RelativeLayout>
         </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#000000" >
+     
 
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Patient Details"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffff"
-                android:textSize="32dp"
-                android:textStyle="bold"
-                android:typeface="normal" />
-        </TableRow>
 
         <TableRow
             android:id="@+id/tableRow5"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView3"
@@ -151,14 +142,22 @@
                 android:id="@+id/incident_family_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:layout_toRightOf="@id/textView3"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow6"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView4"
@@ -173,17 +172,25 @@
                 android:id="@+id/incident_forename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/textView4"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
+            </RelativeLayout>
         </TableRow>
         
         <TableRow
             android:id="@+id/tableRow6"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/textView44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email Address"
@@ -195,14 +202,22 @@
                 android:id="@+id/incident_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/textView44"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow7"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView5"
@@ -217,16 +232,24 @@
                 android:id="@+id/incident_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView5"
                 android:ems="10"
+                 android:layout_marginLeft="60dp"
                 android:inputType="textMultiLine"
                 android:lines="5"
                 android:minLines="3" />
+
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow8"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView6"
@@ -241,28 +264,40 @@
                 android:id="@+id/incident_postcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="38dp"
+                android:layout_toRightOf="@id/textView6"
                 android:ems="10" />
+
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow9"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Date of Birth"
-                android:text="Date of Birth"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="24dp"
-                android:textStyle="bold" />
+            
+        	<RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+      
+              <TextView
+                      android:id="@+id/textView77"
+                      android:layout_width="200dp"
+                      android:layout_height="wrap_content"
+                      android:text="Date of Birth"
+                      android:textAppearance="?android:attr/textAppearanceMedium"
+                      android:textSize="24dp"
+                      android:textStyle="bold" />
 
             <DatePicker
                 android:id="@+id/incident_date_of_birth"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView77" />
+            
+            </RelativeLayout>
+
+     
         </TableRow>
 
         <TableRow
@@ -270,21 +305,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Age"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="24dp"
-                android:textStyle="bold" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-            <EditText
-                android:id="@+id/incident_age"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Age"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/incident_age"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@id/textView8"
+                    android:ems="10"
+                    android:inputType="number" >
+
+                </EditText>
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/incident_age"
+                    android:text="Gender"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/incident_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/textView9"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/incident_gender_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/incident_gender_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female" />
+                </RadioGroup>
+            </RelativeLayout>
+
         </TableRow>
 
         <TableRow
@@ -292,41 +369,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gender"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="24dp"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/incident_gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <RadioButton
-                    android:id="@+id/incident_gender_male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="Male" />
-
-                <RadioButton
-                    android:id="@+id/incident_gender_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Female" />
-            </RadioGroup>
-
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
+            
+                <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView10"
@@ -341,8 +393,11 @@
                 android:id="@+id/incident_next_of_kin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView10"
                 android:ems="10"
+                android:layout_marginLeft="10dp"
                 android:inputType="textMultiLine" />
+            </RelativeLayout>
         </TableRow>
     </TableLayout>
 

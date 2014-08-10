@@ -27,7 +27,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="The Problem"
+                android:text="Problem &amp; Primary Survey"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#ffffff"
                 android:textSize="32dp"
@@ -37,11 +37,12 @@
 
         <TableRow
             android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+              
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
                 <TextView
@@ -49,45 +50,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="The Problem"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
                     android:id="@+id/primary_survey_problem"
-                    android:layout_width="fill_parent"
+                    android:layout_width="400dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3.24"
+                    android:layout_toRightOf="@id/textView1"
                     android:ems="10"
                     android:inputType="textMultiLine"
-                    android:lines="6"
-                    android:minLines="6"
-                    android:width="200dp" >
+                    android:lines="3"
+                    android:minLines="3" >
+
                 </EditText>
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#000000" >
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Capacity &amp; Consent"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffff"
-                android:textSize="32dp"
-                android:textStyle="bold"
-                android:typeface="normal" />
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+	    
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
@@ -99,6 +88,7 @@
                 android:id="@+id/primary_survey_capacity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView10"
                 android:orientation="horizontal" >
 
                 <RadioButton
@@ -114,13 +104,17 @@
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+    
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
@@ -132,6 +126,7 @@
                 android:id="@+id/primary_survey_consent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView3"
                 android:orientation="horizontal" >
 
                 <RadioButton
@@ -147,31 +142,17 @@
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#000000" >
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Primary Survey"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#ffffff"
-                android:textSize="32dp"
-                android:textStyle="bold"
-                android:typeface="normal" />
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+    
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
@@ -180,19 +161,24 @@
                 android:textStyle="bold"
                 android:text="Response"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
+                
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <RadioGroup
                 android:id="@+id/primary_survey_response"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="30dp" >
+                android:paddingBottom="10dp" >
 
                 <RadioButton
                     android:id="@+id/primary_survey_response_alert"
@@ -219,19 +205,18 @@
                     android:layout_height="wrap_content"
                     android:text="None" />
             </RadioGroup>
-
+			</RelativeLayout>
         </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </TableRow>
 
         <TableRow
             android:id="@+id/tableRow5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
+                
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView5"
@@ -242,6 +227,7 @@
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 />
+            </RelativeLayout>
 
         </TableRow>
 
@@ -249,14 +235,14 @@
             android:id="@+id/tableRow6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
+            
             <RadioGroup
                 android:id="@+id/primary_survey_airway"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="30dp"
-                android:paddingTop="10dp" >
+                android:paddingBottom="10dp"
+                android:paddingTop="0dp" >
 
                 <RadioButton
                     android:id="@+id/primary_survey_airway_clear"
@@ -298,8 +284,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="30dp"
-                android:paddingTop="10dp" >
+                android:paddingBottom="10dp" >
 
                 <RadioButton
                     android:id="@+id/primary_survey_breathing_normal"
@@ -351,7 +336,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingBottom="30dp" >
+                android:paddingBottom="10dp" >
 
                 <RadioButton
                     android:id="@+id/primary_survey_circulation_normal"
@@ -385,22 +370,25 @@
             android:baselineAligned="false"
             android:fitsSystemWindows="true"
             android:orientation="horizontal" >
+    
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:maxWidth="100dp"
                 android:text="Signs of external bleeding"
-                   android:textSize="24dp"
-                android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:width="100dp" />
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/primary_survey_external_bleeding"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView8"
                 android:orientation="horizontal" >
 
                 <RadioButton
@@ -416,12 +404,17 @@
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
+            </RelativeLayout>
         </TableRow>
 
         <TableRow
             android:id="@+id/tableRow12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
+                
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
             <TextView
                 android:id="@+id/textView9"
@@ -436,6 +429,7 @@
                 android:id="@+id/primary_survey_consiousness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView9"
                 android:orientation="horizontal" >
 
                 <RadioButton
@@ -451,6 +445,7 @@
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
+            </RelativeLayout>
         </TableRow>
     </TableLayout>
 

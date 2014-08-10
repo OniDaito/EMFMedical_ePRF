@@ -21,11 +21,22 @@ public class TreatmentActivity extends FragmentActivity {
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
+	           
 	        }
 	        
 	        public static boolean used() {
 		    	return mUsed;
 		    }
+	        
+	        
+	        public static void populateMinorWound() {
+	        	CheckBox treatment_wound_dressed = (CheckBox)mainView.findViewById(R.id.treatment_wound_dressed);
+	        	treatment_wound_dressed.setChecked(true);
+	        	CheckBox treatment_wound_cleansed = (CheckBox)mainView.findViewById(R.id.treatment_wound_cleansed);
+	        	treatment_wound_cleansed.setChecked(true);
+
+	        }
+	        
 
 	
 	        @Override
@@ -33,6 +44,11 @@ public class TreatmentActivity extends FragmentActivity {
 	                Bundle savedInstanceState) {
 	            mainView = inflater.inflate(R.layout.treatment, container, false);
 	            mUsed = true;
+	            
+	            if (PRFActivity.prePopulate.equalsIgnoreCase("MinorWoundDressed")){
+	        		populateMinorWound();
+	        	}
+	            
 	            return mainView;
 	        }
 	        

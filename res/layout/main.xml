@@ -4,24 +4,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+       <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingBottom="30dp" >
+        
+       
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+             android:layout_marginRight="30dp"
             android:src="@drawable/emf_logo_small" />
-
-        <TextView
-            android:id="@+id/textView1"
+        
+         <TextView
+            android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="EMF 2014 Patient Report System"
+            android:text="EMF Camp First Aid 2014\nPatient Report System"
+            android:layout_toRightOf="@+id/imageView1"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="32sp" />
-    </LinearLayout>
+
+    
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,7 +56,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Minor Wound Dressed"
+             android:paddingBottom="20dp"
             android:textSize="32sp" />
+    </RelativeLayout>
+
+     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+    <AnalogClock
+        android:id="@+id/analogClock1"
+        android:layout_width="wrap_content"
+         android:layout_marginTop="30dp"
+        android:layout_height="wrap_content" />
+    
+    <DigitalClock
+        android:id="@+id/digitalClock1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:textSize="32sp"
+         android:layout_marginLeft="20dp"
+        android:layout_below="@+id/analogClock1"
+        android:textStyle="bold"
+         android:layout_marginBottom="50dp"/>
+    
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Benjamin Blundell\nsection9.co.uk"
+            android:layout_below="@+id/digitalClock1"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="18sp" />
+    
     </RelativeLayout>
 
 </LinearLayout>

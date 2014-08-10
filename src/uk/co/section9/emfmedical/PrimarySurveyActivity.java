@@ -22,18 +22,49 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	        	super.onCreate(savedInstanceState);
+	        
 	        }
+	        
+	        
 
 	        public static boolean used() {
 	        	return mUsed;
 	        }
 	        
 	
+	        public static void populateMinorWound() {
+	        	RadioButton primary_survey_capacity_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_capacity_yes);
+	        	primary_survey_capacity_yes.setChecked(true);
+	        	
+	        	RadioButton primary_survey_consent_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_consent_yes);
+	        	primary_survey_consent_yes.setChecked(true);
+	        	
+	        	RadioButton primary_survey_response_alert = (RadioButton)mainView.findViewById(R.id.primary_survey_response_alert);
+	        	primary_survey_response_alert.setChecked(true);
+	        	
+	        	RadioButton primary_survey_airway_clear = (RadioButton)mainView.findViewById(R.id.primary_survey_airway_clear);
+	        	primary_survey_airway_clear.setChecked(true);
+	        	
+	        	RadioButton primary_survey_breathing_normal = (RadioButton)mainView.findViewById(R.id.primary_survey_breathing_normal);
+	        	primary_survey_breathing_normal.setChecked(true);
+	        	
+	        	RadioButton primary_survey_circulation_normal = (RadioButton)mainView.findViewById(R.id.primary_survey_circulation_normal);
+	        	primary_survey_circulation_normal.setChecked(true);
+	        	
+	         	RadioButton primary_survey_consiousness_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_consiousness_yes);
+	         	primary_survey_consiousness_yes.setChecked(true);
+
+	        }
+	        
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
 	            mainView = inflater.inflate(R.layout.primary_survey, container, false);
 	            mUsed = true;
+	            
+	            if (PRFActivity.prePopulate.equalsIgnoreCase("MinorWoundDressed")){
+	        		populateMinorWound();
+	        	}
 	            return mainView;
 	        }
 	        
