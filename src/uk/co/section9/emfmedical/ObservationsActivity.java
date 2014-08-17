@@ -24,8 +24,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+// Observations main tab
+
 public class ObservationsActivity extends FragmentActivity {
-	
 		
 	 public static class ObservationsFragment extends Fragment {
 	     
@@ -160,7 +161,7 @@ public class ObservationsActivity extends FragmentActivity {
 		    	return data;
 		    }
 	        
-
+		    
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
@@ -179,6 +180,8 @@ public class ObservationsActivity extends FragmentActivity {
 		            }
 	            }
 	           
+	            
+	            // When button is clicked, create a new Obs form
 	           
         		button.setOnClickListener(new OnClickListener() {
          

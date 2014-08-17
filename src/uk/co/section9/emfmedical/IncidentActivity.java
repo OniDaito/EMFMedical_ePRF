@@ -1,6 +1,8 @@
 package uk.co.section9.emfmedical;
 
 import android.os.Bundle;
+
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +15,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TimePicker;
+
+// Incident Tab - the first tab to be completed
 
 public class IncidentActivity  extends FragmentActivity {
 	 
@@ -32,7 +36,6 @@ public class IncidentActivity  extends FragmentActivity {
 	     
 	    	static View mainView;
 	    	
-	   	
 	    	static boolean mUsed = false;
 	    	
 	        @Override
@@ -47,11 +50,12 @@ public class IncidentActivity  extends FragmentActivity {
 	            return mainView;
 	        }
 	        
-	        
+	        // Populate some of the fields in the case of minor wounds
 	        public static void populateMinorWound(){
-	        	System.out.println("Populating");
 	        	EditText incident_location = (EditText)mainView.findViewById(R.id.incident_location);
 	        	incident_location.append("EMF Camp First Aid Point");
+	        	RadioButton incident_alerted_self = (RadioButton)mainView.findViewById(R.id.incident_alerted_self);
+	        	incident_alerted_self.setChecked(true);
 	        }
 	        
 	        public static boolean used() {

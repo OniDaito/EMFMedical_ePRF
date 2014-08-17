@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+// Tab for any further notes
+
 public class NotesActivity extends FragmentActivity {
 
 	 public static class NotesFragment extends Fragment {

@@ -45,6 +45,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.Toast;
 
+
+// Creates a view we can draw out our signature on
+
 public class DrawingView extends SurfaceView implements SurfaceHolder.Callback {
     private static final String TAG = "DrawingView";
     
@@ -144,17 +147,16 @@ public class DrawingView extends SurfaceView implements SurfaceHolder.Callback {
         if (pictureBitmap != null) {
             
             //saveFile(pictureBitmap,"MyImage");
-            
-            
+           
             pictureBitmap.recycle();
         }
         pictureBitmap = null;
     }
     
-    public String convertToString()  { 
+    public ByteArrayOutputStream convertToByteArrayOutputStream()  { 
 	    ByteArrayOutputStream os=new ByteArrayOutputStream(); 
-	    pictureBitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 100, (OutputStream) os); 
-	    return os.toString(); 
+	    pictureBitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 80, (OutputStream) os);
+	    return os;
     } 
 
     void writeToFile( FileOutputStream f) {
@@ -163,7 +165,6 @@ public class DrawingView extends SurfaceView implements SurfaceHolder.Callback {
     	pictureBitmap.compress(Bitmap.CompressFormat.JPEG, 80, f);
                     
         Toast.makeText(context, "Saved", Toast.LENGTH_LONG).show();
-     
 
     }
 }

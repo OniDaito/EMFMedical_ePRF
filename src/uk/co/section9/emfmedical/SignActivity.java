@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+
+// Finished? Then you need to sign the form
+
 public class SignActivity extends FragmentActivity {
 	public static class SignFragment extends Fragment {
 	     
@@ -38,8 +41,7 @@ public class SignActivity extends FragmentActivity {
         	return (DrawingView) mainView.findViewById(R.id.sign_signature);
         }
 
-        
-
+       
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {

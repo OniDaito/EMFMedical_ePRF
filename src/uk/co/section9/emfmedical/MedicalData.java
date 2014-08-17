@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
+// Originally going to use an SQL data-base. Settled for key value pairs
+
 public class MedicalData extends SQLiteOpenHelper {
 
 	public MedicalData(Context context, String name, CursorFactory factory,

@@ -1,6 +1,7 @@
 package uk.co.section9.emfmedical;
 
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
+// Medical History tab
 
 public class MedicalHistoryActivity extends FragmentActivity {
 

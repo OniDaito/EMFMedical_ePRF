@@ -24,7 +24,6 @@
               android:inputType="textMultiLine"
               android:lines="10" >
 
-        <requestFocus />
     </EditText>
   </LinearLayout>
 </ScrollView>

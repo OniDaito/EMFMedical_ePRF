@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+
+// If the patient refuses, they should use this tab
+
 public class RefusedActivity extends FragmentActivity {
 	public static class RefusedFragment extends Fragment {
 	     

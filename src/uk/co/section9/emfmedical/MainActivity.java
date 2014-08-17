@@ -11,6 +11,9 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+
+// The starting screen with options for PRF, a clock and some extra details
+
 public class MainActivity extends Activity {
 	
 	 public final static String EXTRA_MESSAGE = "uk.co.section9.emfmedical";
@@ -29,7 +32,6 @@ public class MainActivity extends Activity {
 	        
 	     setContentView(R.layout.main);
 	        
-	      
          Button button = (Button)findViewById(R.id.main_start_new_prf);
           
          button.setOnClickListener(new OnClickListener() {

@@ -1,6 +1,7 @@
 package uk.co.section9.emfmedical;
 
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
+// Treatment Administered
 
 public class TreatmentActivity extends FragmentActivity {
 	
@@ -28,6 +31,7 @@ public class TreatmentActivity extends FragmentActivity {
 		    	return mUsed;
 		    }
 	        
+	        // If minor wound, set a few things for us
 	        
 	        public static void populateMinorWound() {
 	        	CheckBox treatment_wound_dressed = (CheckBox)mainView.findViewById(R.id.treatment_wound_dressed);
@@ -37,7 +41,6 @@ public class TreatmentActivity extends FragmentActivity {
 
 	        }
 	        
-
 	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,

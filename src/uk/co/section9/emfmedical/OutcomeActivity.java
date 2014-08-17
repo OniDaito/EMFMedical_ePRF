@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.TimePicker;
 import uk.co.section9.emfmedical.DrawingView;
 
+// Outcome Tab
 
 public class OutcomeActivity extends FragmentActivity {
 	

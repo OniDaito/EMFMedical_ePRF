@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 
 
+// Primary Survey Tab
+
 public class PrimarySurveyActivity extends FragmentActivity {
 	
 	
@@ -25,12 +27,12 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        
 	        }
 	        
-	        
-
+	       
 	        public static boolean used() {
 	        	return mUsed;
 	        }
 	        
+	        // Setup some basic things for minor wound treatment
 	
 	        public static void populateMinorWound() {
 	        	RadioButton primary_survey_capacity_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_capacity_yes);

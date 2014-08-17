@@ -31,10 +31,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+// Basic RSA Encryption with block_size byte blocks to keep our data safe
+
 public class EMFCrypto{ 
 	
 	private PublicKey mKey = null;
 	private Cipher mEncodeCipher = null;
+	private int block_size=117;
 	
 	public void init(Context ctx) {
 				
@@ -64,7 +67,7 @@ public class EMFCrypto{
 		    for (String aLine: lines)
 		        sb.append(aLine);
 		    String keyString = sb.toString();
-		    Log.d("log", "keyString:"+keyString);
+		    //Log.d("log", "keyString:"+keyString);
 	
 		   
 		    // converts the String to a PublicKey instance
@@ -78,7 +81,9 @@ public class EMFCrypto{
 			
 			    mKey = keyFactory.generatePublic(spec);
 	
-			    mEncodeCipher = Cipher.getInstance("RSA/None/PKCS1Padding","BC");
+			    mEncodeCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding","BC");
+			    //mEncodeCipher = Cipher.getInstance("RSA");
+
 			    mEncodeCipher.init(Cipher.ENCRYPT_MODE, mKey);
 			
 			} catch (UnsupportedEncodingException e) {
@@ -157,23 +162,23 @@ public class EMFCrypto{
      return source;
    }
 
-	public byte[] encode(String data){
+	public byte[] encode(byte[] data_bytes){
 		byte[] finalBytes = null;
 
 		try {
 			
-			byte[] data_bytes = data.getBytes();
+			//byte[] data_bytes = data.getBytes();
 			int pos = 0;
 			int block_idx = 0;
-			int num_blocks = (int) Math.ceil((double)(data_bytes.length) / 64.0);
-			byte[][] byte_blocks = new byte[num_blocks][64]; // 64 byte blocks for RSA I decided
-			byte[][] encrypted_byte_blocks = new byte[num_blocks][]; // 64 byte blocks for RSA I decided
+			int num_blocks = (int) Math.ceil((double)(data_bytes.length) / block_size);
+			byte[][] byte_blocks = new byte[num_blocks][block_size]; // block_size byte blocks for RSA I decided
+			byte[][] encrypted_byte_blocks = new byte[num_blocks][]; // block_size byte blocks for RSA I decided
 			
-			System.out.println("ByteBlocks: " + num_blocks + " Length: " + data_bytes.length);
+			//System.out.println("ByteBlocks: " + num_blocks + " Length: " + data_bytes.length);
 			
 			while (pos < data_bytes.length){			
 				int i =0;
-				for (i =0; i < 64; i++){
+				for (i =0; i < block_size; i++){
 					if (pos + i >= data_bytes.length ){
 						break;
 					} else {

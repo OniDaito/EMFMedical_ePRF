@@ -1,5 +1,6 @@
 package uk.co.section9.emfmedical;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,6 +41,8 @@ import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
+
+// The actual PRF Activity itself
 
 @SuppressWarnings("deprecation")
 
@@ -116,6 +119,9 @@ public class PRFActivity extends FragmentActivity  {
 	        mTabHost.addTab(mTabHost.newTabSpec("refused").setIndicator("12.Refused"),
 	        		RefusedActivity.RefusedFragment.class, null);
 	   
+	      
+	        
+	        // Setup the cancel button
 	        
 	        Button button = (Button) findViewById(R.id.prf_activity_cancel);
             
@@ -177,8 +183,7 @@ public class PRFActivity extends FragmentActivity  {
 		}
 		
 		
-		
-	   
+		// Form is completed! Grab all data and encrypt
 		public void completeForm(){
 		
 			String total_data = new String();
@@ -219,44 +224,44 @@ public class PRFActivity extends FragmentActivity  {
 			
 			String filename = new String(time_date + "_" + mFormID + ".prf");
 			
-			System.out.println("Data: " + total_data );
+			//System.out.println("Data: " + total_data );
 			
 			try { 
 				File root = getFilesDir();
 				
 				//File root = new File("/media/My Files"); 
 				
-				System.out.println("Root Dir: " + root.getAbsolutePath() );
+				//System.out.println("Root Dir: " + root.getAbsolutePath() );
 				
 	            FileOutputStream f = new FileOutputStream(new File(root, filename));
 	  
-				//OutputStreamWriter osw = new OutputStreamWriter(f); 
-
+		
 				// Write the string to the file
-				
+	            
+	            // Start with all the text then do the two jpegs seperately
+	            
+	            byte[] encrypted_data = mCrypto.encode(total_data.getBytes());
+	            f.write(encrypted_data);
 				// Encrypt!!
 	            if (SignActivity.SignFragment.used()){
-	            	total_data += "\n***SIGNATURE_JPEG***\n";
-	            	total_data += SignActivity.SignFragment.getSignatureView().convertToString();
+	            	String jpg_sig ="***JPEG_SIGNATURE***:";
+	            	byte[] encrypted_sig_header = mCrypto.encode(jpg_sig.getBytes());
+	 	            f.write(encrypted_sig_header);
+	            	ByteArrayOutputStream bs = SignActivity.SignFragment.getSignatureView().convertToByteArrayOutputStream();
+	            	byte[] encrypted_signature = mCrypto.encode(bs.toByteArray());
+	            	f.write(encrypted_signature);
 	            }
 	            
+	            
 	            if (RefusedActivity.RefusedFragment.used()){
-	            	total_data += "\n***REFUSED_JPEG***\n";
-	 	            total_data += RefusedActivity.RefusedFragment.getSignatureView().convertToString();
+	            	String jpg_sig ="***JPEG_REFUSED***:";
+	            	byte[] encrypted_sig_header = mCrypto.encode(jpg_sig.getBytes());
+	 	            f.write(encrypted_sig_header);
+	            	ByteArrayOutputStream bs = RefusedActivity.RefusedFragment.getSignatureView().convertToByteArrayOutputStream();
+	            	byte[] encrypted_signature = mCrypto.encode(bs.toByteArray());
+	            	f.write(encrypted_signature);
 	            }
 	           
-				byte[] encrypted_data = mCrypto.encode(total_data);
-				
-				f.write(encrypted_data);
-
-				// Write the signature to the file
-	
-				//osw.write("\n***SIGNATURE_JPEG***\n");
-				//osw.flush();
-				
-				//SignActivity.SignFragment.getSignatureView().writeToFile(f);
-				
-				//osw.close();
 				f.close();
 
 			} catch (IOException ioe) {
@@ -324,6 +329,8 @@ public class PRFActivity extends FragmentActivity  {
 	        return super.onKeyDown(keyCode, event);
 	    }
 		
+	    
+	    // Override so we can move the tabs left and right with the nook buttons
 	    @Override
 	    public boolean dispatchKeyEvent(KeyEvent event) {
 	        int keyCode = event.getKeyCode();
