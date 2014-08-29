@@ -53,8 +53,9 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        	RadioButton primary_survey_circulation_normal = (RadioButton)mainView.findViewById(R.id.primary_survey_circulation_normal);
 	        	primary_survey_circulation_normal.setChecked(true);
 	        	
-	         	RadioButton primary_survey_consiousness_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_consiousness_yes);
-	         	primary_survey_consiousness_yes.setChecked(true);
+	        	
+	         	RadioButton primary_survey_consiousness_no = (RadioButton)mainView.findViewById(R.id.primary_survey_consiousness_no);
+	         	primary_survey_consiousness_no.setChecked(true);
 
 	        }
 	        
