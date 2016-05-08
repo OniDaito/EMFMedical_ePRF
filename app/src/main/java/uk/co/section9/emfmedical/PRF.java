@@ -1,19 +1,32 @@
 package uk.co.section9.emfmedical;
 
-import android.content.Context;
+
+import java.util.Date;
 
 /**
- * Created by oni on 01/05/2016.
- * A class that represents the actual PRF data - including writing and reading it in
+ * Created by oni on 08/05/2016.
  */
+public class PRF {
 
-public class PRF  {
+    protected  String uuid;
+    protected  Incident _incident;
+    protected Date _createdAt;
 
-    // Data members held inside a small database which is cleared
-    // then written out - must make sure memory is cleared
+    public PRF () {
+        uuid = java.util.UUID.randomUUID().toString();
+        _incident = new Incident();
+    }
 
-    private static final String DATABASE_NAME = "prf";
+    String id() {
+        return uuid;
+    }
 
+    Date getCreatedAt() {
+        return _createdAt;
+    }
 
+    Incident getIncident() {
+        return _incident;
+    }
 
 }

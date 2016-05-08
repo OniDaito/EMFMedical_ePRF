@@ -13,12 +13,10 @@ import android.widget.RadioButton;
 // Primary Survey Tab
 
 public class PrimarySurveyActivity extends FragmentActivity {
-	
-	
+
 	 public static class PrimarySurveyFragment extends Fragment {
 	     
 		 	static View mainView;
-		 
 		 	static boolean mUsed = false;
 		 	
 	        @Override
@@ -26,8 +24,7 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        	super.onCreate(savedInstanceState);
 	        
 	        }
-	        
-	       
+
 	        public static boolean used() {
 	        	return mUsed;
 	        }
@@ -96,7 +93,6 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        	if (primary_survey_consent_no.isChecked()){
 	        		data += "primary_survey_consent: no\n";
 	        	}
-	        
 	        	
 	        	RadioButton primary_survey_response_alert = (RadioButton)mainView.findViewById(R.id.primary_survey_response_alert);
 	        	RadioButton primary_survey_response_voice = (RadioButton)mainView.findViewById(R.id.primary_survey_response_voice);

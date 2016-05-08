@@ -8,10 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TimePicker;
-import uk.co.section9.emfmedical.DrawingView;
 
 // Outcome Tab
 

@@ -23,13 +23,11 @@ public class IncidentActivity  extends FragmentActivity {
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	    
 	    }
 
 	    @Override
 	    public void onSaveInstanceState(Bundle outState) {
 	        super.onSaveInstanceState(outState);
-
 	    }
 
 	    public static class IncidentFragment extends Fragment {
