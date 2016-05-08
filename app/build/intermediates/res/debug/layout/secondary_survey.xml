@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?><ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+  
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000" >
+
+              <TextView
+                  android:id="@+id/textView11"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Head and Face"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:textColor="#ffffff"
+                  android:textSize="32dp"
+                  android:textStyle="bold"
+                  android:typeface="normal" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/secondary_survey_head_and_face"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="5"
+                android:inputType="textMultiLine" >
+			
+            </EditText>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TableRow
+                        android:id="@+id/TableRow02"
+                        android:layout_width="wrap_content"
+                        android:background="#000000"
+                        android:layout_height="wrap_content" >
+
+                         <TextView
+                             android:id="@+id/textView11"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:maxWidth="200dp"
+                             android:text="Right Arm and Hand"
+                             android:textAppearance="?android:attr/textAppearanceMedium"
+                             android:textColor="#ffffff"
+                             android:textSize="32dp"
+                             android:textStyle="bold"
+                             android:typeface="normal" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/secondary_survey_right_arm_and_hand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                 android:lines="5"
+                            android:inputType="textMultiLine" />
+
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" >
+
+                    <TableRow
+                        android:id="@+id/tableRow5"
+                        android:layout_width="wrap_content"
+                        android:background="#000000"
+                        android:layout_height="wrap_content" >
+
+                          <TextView
+                              android:id="@+id/textView11"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:maxWidth="200dp"
+                              android:text="Torso Front and Back"
+                              android:textAppearance="?android:attr/textAppearanceMedium"
+                              android:textColor="#ffffff"
+                              android:textSize="32dp"
+                              android:textStyle="bold"
+                              android:typeface="normal" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/secondary_survey_torso_front_and_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                 android:lines="5"
+                            android:inputType="textMultiLine" />
+
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TableRow
+                        android:id="@+id/tableRow7"
+                        android:layout_width="wrap_content"
+                        android:background="#000000"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="200dp"
+                            android:text="Left Arm and Hand"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#ffffff"
+                            android:textSize="32dp"
+                            android:textStyle="bold"
+                            android:typeface="normal" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/secondary_survey_left_arm_and_hand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                 android:lines="5"
+                            android:inputType="textMultiLine" />
+
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" >
+
+                    <TableRow
+                        android:id="@+id/tableRow9"
+                        android:layout_width="wrap_content"
+                        android:background="#000000"
+                        android:layout_height="wrap_content" >
+
+                       <TextView
+                           android:id="@+id/textView11"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:maxWidth="300dp"
+                           android:text="Right Leg and Right Foot"
+                           android:textAppearance="?android:attr/textAppearanceMedium"
+                           android:textColor="#ffffff"
+                           android:textSize="32dp"
+                           android:textStyle="bold"
+                           android:typeface="normal" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/secondary_survey_right_leg_and_right_foot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                 android:lines="5"
+                            android:inputType="textMultiLine" />
+
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" >
+
+                    <TableRow
+                        android:id="@+id/TableRow04"
+                        android:layout_width="wrap_content"
+                        android:background="#000000"
+                        android:layout_height="wrap_content" >
+
+                       <TextView
+                           android:id="@+id/textView11"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:maxWidth="300dp"
+                           android:text="Left Leg and Left Foot"
+                           android:textAppearance="?android:attr/textAppearanceMedium"
+                           android:textColor="#ffffff"
+                           android:textSize="32dp"
+                           android:textStyle="bold"
+                           android:typeface="normal" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/secondary_survey_left_leg_and_left_foot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                                 android:lines="5"
+                            android:inputType="textMultiLine" />
+
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+
+        </TableRow>
+
+    </TableLayout>
+
+</ScrollView>
+<!-- From: file:/C:/Users/oni/Projects/EMFMedical_ePRF_AndroidStudio/app/src/main/res/layout/secondary_survey.xml -->

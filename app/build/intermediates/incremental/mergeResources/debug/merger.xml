@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res"><file name="emf_logo_small" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\drawable-hdpi\emf_logo_small.png" qualifiers="hdpi" type="drawable"/><file name="favicon" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\drawable-hdpi\favicon.ico" qualifiers="hdpi" type="drawable"/><file name="ic_launcher" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\drawable-hdpi\ic_launcher.png" qualifiers="hdpi" type="drawable"/><file name="ic_launcher" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\drawable-mdpi\ic_launcher.png" qualifiers="mdpi" type="drawable"/><file name="ic_launcher" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\drawable-xhdpi\ic_launcher.png" qualifiers="xhdpi" type="drawable"/><file name="ic_launcher" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\drawable-xxhdpi\ic_launcher.png" qualifiers="xxhdpi" type="drawable"/><file name="incident" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\incident.xml" qualifiers="" type="layout"/><file name="items" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\items.xml" qualifiers="" type="layout"/><file name="main" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\main.xml" qualifiers="" type="layout"/><file name="medical_history" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\medical_history.xml" qualifiers="" type="layout"/><file name="notes" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\notes.xml" qualifiers="" type="layout"/><file name="observations" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\observations.xml" qualifiers="" type="layout"/><file name="observation_actual" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\observation_actual.xml" qualifiers="" type="layout"/><file name="outcome" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\outcome.xml" qualifiers="" type="layout"/><file name="prf" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\prf.xml" qualifiers="" type="layout"/><file name="primary_survey" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\primary_survey.xml" qualifiers="" type="layout"/><file name="refused" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\refused.xml" qualifiers="" type="layout"/><file name="response" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\response.xml" qualifiers="" type="layout"/><file name="resuscitation" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\resuscitation.xml" qualifiers="" type="layout"/><file name="secondary_survey" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\secondary_survey.xml" qualifiers="" type="layout"/><file name="signature" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\signature.xml" qualifiers="" type="layout"/><file name="treatment" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\layout\treatment.xml" qualifiers="" type="layout"/><file name="emf_medical" path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\raw\emf_medical.pub" qualifiers="" type="raw"/><file path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\values\strings.xml" qualifiers=""><string-array name="response_options">
+        <item>Alert</item>
+        <item>Voice</item>
+        <item>Pain</item>
+   		<item>Unresponsive</item>
+    </string-array><string name="app_name">EMFMedical</string><string-array name="breathing_options">
+        <item>Normal</item>
+        <item>Shallow</item>
+        <item>Agonal</item>
+   		<item>Absent</item>
+    </string-array><string-array name="circulation_options">
+        <item>Normal</item>
+        <item>Pale</item>
+        <item>Flushed</item>
+   		<item>Cyanosed</item>
+    </string-array><string-array name="pupil_size_options">
+        <item>1 mm</item>
+        <item>2 mm</item>
+  		<item>3 mm</item>
+        <item>4 mm</item>
+        <item>5 mm</item>
+        <item>6 mm</item>
+        <item>7 mm</item>
+        <item>8 mm</item>
+    </string-array></file><file path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style><style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style></file></source><source path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\build\generated\res\rs\debug"/><source path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\build\generated\res\generated\debug"/></dataSet><dataSet config="debug"><source path="C:\Users\oni\Projects\EMFMedical_ePRF_AndroidStudio\app\src\debug\res"/></dataSet><mergedItems/></merger>

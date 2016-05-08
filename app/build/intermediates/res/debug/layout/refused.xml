@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:id="@+id/tableRow13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000" >
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Patient Refused Treatment"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textSize="32dp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+        </TableRow>
+
+      
+
+        <TableRow
+            android:id="@+id/tableRow14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Patient needs to Sign below:"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </TableRow>
+    </TableLayout>
+
+    <uk.co.section9.emfmedical.DrawingView
+        android:id="@+id/refused_signature"
+        android:layout_width="375dp"
+        android:layout_height="256dp" />
+
+    <Button
+        android:id="@+id/refused_complete_form"
+        android:layout_width="wrap_content"
+        android:layout_height="132dp"
+        android:text="Finish Report Form"
+        android:textSize="32sp" />
+
+
+</LinearLayout><!-- From: file:/C:/Users/oni/Projects/EMFMedical_ePRF_AndroidStudio/app/src/main/res/layout/refused.xml -->
