@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 'Barnes and Noble:NOOK Tablet SDK:10'
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 10 // Potentially this should be Nook API or similar
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "uk.co.section9.emfmedical"

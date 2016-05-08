@@ -103,20 +103,17 @@ public class PRFActivity extends FragmentActivity  {
 	        
 	        mTabHost.addTab(mTabHost.newTabSpec("ambulance").setIndicator("8.Ambulance"),
 	        		ResponseActivity.ResponseFragment.class, null);
-	        
-	        mTabHost.addTab(mTabHost.newTabSpec("items").setIndicator("9.Items"),
-	        		ItemsActivity.ItemsFragment.class, null);
-	        
-	        mTabHost.addTab(mTabHost.newTabSpec("notes").setIndicator("10.Notes"),
+
+	        mTabHost.addTab(mTabHost.newTabSpec("notes").setIndicator("9.Notes"),
 	        		NotesActivity.NotesFragment.class, null);
 	        
-	        mTabHost.addTab(mTabHost.newTabSpec("outcome").setIndicator("11.Outcome"),
+	        mTabHost.addTab(mTabHost.newTabSpec("outcome").setIndicator("10.Outcome"),
 	        		OutcomeActivity.OutcomeFragment.class, null);
 	        
-	        mTabHost.addTab(mTabHost.newTabSpec("sign").setIndicator("12.Sign"),
+	        mTabHost.addTab(mTabHost.newTabSpec("sign").setIndicator("11.Sign"),
 	        		SignActivity.SignFragment.class, null);
 	        
-	        mTabHost.addTab(mTabHost.newTabSpec("refused").setIndicator("12.Refused"),
+	        mTabHost.addTab(mTabHost.newTabSpec("refused").setIndicator("11.Refused"),
 	        		RefusedActivity.RefusedFragment.class, null);
 	   
 	      
@@ -204,8 +201,6 @@ public class PRFActivity extends FragmentActivity  {
 				total_data += ResuscitationActivity.ResuscitationFragment.getData();
 			if ( ResponseActivity.ResponseFragment.used())
 				total_data += ResponseActivity.ResponseFragment.getData();
-			if (ItemsActivity.ItemsFragment.used())
-				total_data += ItemsActivity.ItemsFragment.getData();
 			if (NotesActivity.NotesFragment.used())
 			 total_data += NotesActivity.NotesFragment.getData();
 			if (OutcomeActivity.OutcomeFragment.used())
