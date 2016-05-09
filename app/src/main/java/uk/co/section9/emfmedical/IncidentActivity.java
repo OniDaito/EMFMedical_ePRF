@@ -33,7 +33,6 @@ public class IncidentActivity  extends FragmentActivity {
 	    public static class IncidentFragment extends Fragment {
 	     
 	    	static View mainView;
-	    	
 	    	static boolean mUsed = false;
 	    	
 	        @Override
@@ -91,8 +90,7 @@ public class IncidentActivity  extends FragmentActivity {
 	        	
 	        	EditText incident_email = (EditText)mainView.findViewById(R.id.incident_email);
 	        	data += "incident_email: " + incident_email.getEditableText() + "\n";
-	        	
-	        	
+
 	        	EditText incident_address = (EditText)mainView.findViewById(R.id.incident_address);
 	        	data += "incident_address: " + incident_address.getEditableText() + "\n";
 	        	

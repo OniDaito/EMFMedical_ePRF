@@ -15,9 +15,8 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
-	private PRFDatabase prfDatabase;
-
 	public final static String EXTRA_MESSAGE = "uk.co.section9.emfmedical";
+	public final static String PRF_ID = "uk.co.section9.emfmedical.prf.id";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,34 +28,35 @@ public class MainActivity extends Activity {
 	                                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 	    setContentView(R.layout.main);
+		Context context = getApplicationContext();
 
-        Button button = (Button)findViewById(R.id.main_start_new_prf);
-
-        Context context = getApplicationContext();
-        context.
-
+		// Button option for a full PRF
+		Button button = (Button)findViewById(R.id.main_start_new_prf);
         button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent(_ref, PRFActivity.class);
-				String message = "None";
-				intent.putExtra(EXTRA_MESSAGE, message);
+				intent.putExtra(EXTRA_MESSAGE, "New PRF");
+				intent.putExtra(PRF_ID, "new");
 				startActivity(intent);
 			}
 		});
 
 
+		// Button option for a minor wound dressed PRF
 		Button button2 = (Button)findViewById(R.id.main_minor_wound_dressed);
-
 		button2.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent(_ref, PRFActivity.class);
 				String message = "MinorWoundDressed";
 				intent.putExtra(EXTRA_MESSAGE, message);
+				intent.putExtra(PRF_ID, "new");
 				startActivity(intent);
 			}
 		});
+
+		// TODO - Listing existing PRFs for editing
 	}
 }
 	

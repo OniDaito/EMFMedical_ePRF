@@ -30,119 +30,133 @@ import android.widget.Button;
 
 public class PRFActivity extends FragmentActivity  {
 	 
-	private FragmentTabHost mTabHost;
-	private String mFormID; // UUID?
-	private EMFCrypto mCrypto;
-	public static String prePopulate;
+	private FragmentTabHost _tabhost;
+	private String          _prfID;
+    private PRF             _currentPRF;
+	private EMFCrypto       _crypto;
+
+    public static String prePopulate;
+    private static EMFMedicalApp _app;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-
-
+        String prf_id = intent.getStringExtra(MainActivity.PRF_ID);
 
 		super.onCreate(savedInstanceState);
 
-		mFormID = java.util.UUID.randomUUID().toString();
-	        
-	    mCrypto = new EMFCrypto();
-		mCrypto.init(getBaseContext());
+        _app = (EMFMedicalApp) getApplication();
+        // Deal with our PRF - either load one if we've passed in an ID
+		_prfID = java.util.UUID.randomUUID().toString();
+
+        if (prf_id.equals("new")) {
+            _currentPRF = new PRF(_prfID);
+        } else {
+            // TODO - graceful fallback on failure needed here
+            _currentPRF = _app.getDatabase().readPRF(_prfID);
+        }
+
+	    _crypto = new EMFCrypto();
+		_crypto.init(getBaseContext());
+
+        // Create the view and add all the tabs
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 	        
 		setContentView(R.layout.prf);
 
-		mTabHost = (FragmentTabHost)findViewById(R.id.tabhost);
-	    mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+		_tabhost = (FragmentTabHost)findViewById(R.id.tabhost);
+	    _tabhost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
-        mTabHost.addTab(mTabHost.newTabSpec("incident").setIndicator("1.Incident"),
+        _tabhost.addTab(_tabhost.newTabSpec("incident").setIndicator("1.Incident"),
 				IncidentActivity.IncidentFragment.class, null);
 	        
-	    mTabHost.addTab(mTabHost.newTabSpec("primary_survey").setIndicator("2.Primary Survey"),
+	    _tabhost.addTab(_tabhost.newTabSpec("primary_survey").setIndicator("2.Primary Survey"),
 	    		PrimarySurveyActivity.PrimarySurveyFragment.class, null);
 	        
-		mTabHost.addTab(mTabHost.newTabSpec("medical_history").setIndicator("3.Medical History"),
+		_tabhost.addTab(_tabhost.newTabSpec("medical_history").setIndicator("3.Medical History"),
 				MedicalHistoryActivity.MedicalHistoryFragment.class, null);
 	        
-		mTabHost.addTab(mTabHost.newTabSpec("secondary_survey").setIndicator("4.Secondary Survey"),
+		_tabhost.addTab(_tabhost.newTabSpec("secondary_survey").setIndicator("4.Secondary Survey"),
 				SecondarySurveyActivity.SecondarySurveyFragment.class, null);
 	        
-		mTabHost.addTab(mTabHost.newTabSpec("observations").setIndicator("5.Observations"),
+		_tabhost.addTab(_tabhost.newTabSpec("observations").setIndicator("5.Observations"),
 				ObservationsActivity.ObservationsFragment.class, null);
 	        
-		mTabHost.addTab(mTabHost.newTabSpec("treatment").setIndicator("6.Treatment"),
+		_tabhost.addTab(_tabhost.newTabSpec("treatment").setIndicator("6.Treatment"),
 				TreatmentActivity.TreatmentFragment.class, null);
 	        
-		mTabHost.addTab(mTabHost.newTabSpec("resuscitation").setIndicator("7.Resuscitation"),
+		_tabhost.addTab(_tabhost.newTabSpec("resuscitation").setIndicator("7.Resuscitation"),
 				ResuscitationActivity.ResuscitationFragment.class, null);
 	        
-		mTabHost.addTab(mTabHost.newTabSpec("ambulance").setIndicator("8.Ambulance"),
+		_tabhost.addTab(_tabhost.newTabSpec("ambulance").setIndicator("8.Ambulance"),
 				ResponseActivity.ResponseFragment.class, null);
 
-        mTabHost.addTab(mTabHost.newTabSpec("notes").setIndicator("9.Notes"),
+        _tabhost.addTab(_tabhost.newTabSpec("notes").setIndicator("9.Notes"),
                 NotesActivity.NotesFragment.class, null);
 
-        mTabHost.addTab(mTabHost.newTabSpec("outcome").setIndicator("10.Outcome"),
+        _tabhost.addTab(_tabhost.newTabSpec("outcome").setIndicator("10.Outcome"),
                 OutcomeActivity.OutcomeFragment.class, null);
 
-        mTabHost.addTab(mTabHost.newTabSpec("sign").setIndicator("11.Sign"),
+        _tabhost.addTab(_tabhost.newTabSpec("sign").setIndicator("11.Sign"),
                 SignActivity.SignFragment.class, null);
 
-        mTabHost.addTab(mTabHost.newTabSpec("refused").setIndicator("11.Refused"),
+        _tabhost.addTab(_tabhost.newTabSpec("refused").setIndicator("11.Refused"),
                 RefusedActivity.RefusedFragment.class, null);  	   // Setup the cancel button
 
         Button button = (Button) findViewById(R.id.prf_activity_cancel);
 
         final Activity prfactivity = this;
-	        
+
+        // Cancel button
     	button.setOnClickListener(new OnClickListener() {
      
     	    @Override
             public void onClick(View arg0) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(prfactivity);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(prfactivity);
 
-				// set title
-				alertDialogBuilder.setTitle("");
+            // set title
+            alertDialogBuilder.setTitle("");
 
+            // set dialog message
+            alertDialogBuilder
+                .setMessage("This will cancel the Patient Report Form. All data will be lost.")
+                .setCancelable(false)
+                .setPositiveButton("Yes",new DialogInterface.OnClickListener()
+            {
 
-                // set dialog message
-				alertDialogBuilder
-                    .setMessage("This will cancel the Patient Report Form. All data will be lost.")
-					.setCancelable(false)
-					.setPositiveButton("Yes",new DialogInterface.OnClickListener()
-                {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // if this button is clicked, close
+                        // current activity
+                        finish();
+                    }
+            }).setNegativeButton("No",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // if this button is clicked, just close
+                        // the dialog box and do nothing
+                        dialog.cancel();
+                    }
+            });
 
-                        public void onClick(DialogInterface dialog,int id) {
-						    // if this button is clicked, close
-							// current activity
-							finish();
-                        }
-                }).setNegativeButton("No",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
-                            // if this button is clicked, just close
-							// the dialog box and do nothing
-							dialog.cancel();
-                        }
-                });
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
 
-                // create alert dialog
-				AlertDialog alertDialog = alertDialogBuilder.create();
-
-				// show it
-				alertDialog.show();
+            // show it
+            alertDialog.show();
     					
             }
     			
         });
     		
-    		// Pre-populate if we have been asked to
-    		
+
+        // Pre-populate if we have been asked to
+        // TODO - move this to the PRF Class
         if(message.equalsIgnoreCase("MinorWoundDressed")){
     		prePopulate = "MinorWoundDressed";
-
         } else {
             prePopulate = "None";
         }
@@ -158,7 +172,7 @@ public class PRFActivity extends FragmentActivity  {
 
     // Form is completed! Grab all data and encrypt
     public void completeForm(){
-
+/*
         String total_data = new String();
         if (IncidentActivity.IncidentFragment.used())
             total_data += IncidentActivity.IncidentFragment.getData();
@@ -193,7 +207,7 @@ public class PRFActivity extends FragmentActivity  {
         String time_date = new String();
         time_date += hour + "_" + minute + "_" + day + "_" + month;
 
-        String filename = new String(time_date + "_" + mFormID + ".prf");
+        String filename = new String(time_date + "_" + _prfID + ".prf");
 
         //System.out.println("Data: " + total_data );
 
@@ -210,25 +224,25 @@ public class PRFActivity extends FragmentActivity  {
 
             // Start with all the text then do the two jpegs seperately
 
-            byte[] encrypted_data = mCrypto.encode(total_data.getBytes());
+            byte[] encrypted_data = _crypto.encode(total_data.getBytes());
             f.write(encrypted_data);
             // Encrypt!!
             if (SignActivity.SignFragment.used()){
                 String jpg_sig ="***JPEG_SIGNATURE***:";
-                byte[] encrypted_sig_header = mCrypto.encode(jpg_sig.getBytes());
+                byte[] encrypted_sig_header = _crypto.encode(jpg_sig.getBytes());
                 f.write(encrypted_sig_header);
                 ByteArrayOutputStream bs = SignActivity.SignFragment.getSignatureView().convertToByteArrayOutputStream();
-                byte[] encrypted_signature = mCrypto.encode(bs.toByteArray());
+                byte[] encrypted_signature = _crypto.encode(bs.toByteArray());
                 f.write(encrypted_signature);
             }
 
 
             if (RefusedActivity.RefusedFragment.used()){
                 String jpg_sig ="***JPEG_REFUSED***:";
-                byte[] encrypted_sig_header = mCrypto.encode(jpg_sig.getBytes());
+                byte[] encrypted_sig_header = _crypto.encode(jpg_sig.getBytes());
                 f.write(encrypted_sig_header);
                 ByteArrayOutputStream bs = RefusedActivity.RefusedFragment.getSignatureView().convertToByteArrayOutputStream();
-                byte[] encrypted_signature = mCrypto.encode(bs.toByteArray());
+                byte[] encrypted_signature = _crypto.encode(bs.toByteArray());
                 f.write(encrypted_signature);
             }
 
@@ -239,7 +253,9 @@ public class PRFActivity extends FragmentActivity  {
             ioe.printStackTrace();
         }
 
-        System.out.println("Completed Form: " + filename);
+        System.out.println("Completed Form: " + filename);*/
+
+        System.out.println(_currentPRF.toXML());
 
         finish();
 
@@ -313,8 +329,8 @@ public class PRFActivity extends FragmentActivity  {
         case KeyEvent.KEYCODE_PAGE_DOWN:{
             if (event.getAction() == KeyEvent.ACTION_UP){
                 // Move tab left
-                int ctab = mTabHost.getCurrentTab();
-                mTabHost.setCurrentTab(ctab-1);
+                int ctab = _tabhost.getCurrentTab();
+                _tabhost.setCurrentTab(ctab-1);
                 return true;
             }
         }
@@ -323,8 +339,8 @@ public class PRFActivity extends FragmentActivity  {
         case KeyEvent.KEYCODE_SWITCH_CHARSET:{
             if (event.getAction() == KeyEvent.ACTION_UP){
                 // Move tab left
-                int ctab = mTabHost.getCurrentTab();
-                mTabHost.setCurrentTab(ctab+1);
+                int ctab = _tabhost.getCurrentTab();
+                _tabhost.setCurrentTab(ctab+1);
                 return true;
             }
         }
