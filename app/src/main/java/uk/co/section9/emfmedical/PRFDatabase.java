@@ -86,7 +86,7 @@ public class PRFDatabase extends SQLiteOpenHelper {
 
         String CREATE_TABLE_OBSERVATIONS = "CREATE TABLE \"observations\" (\"time\" DATETIME DEFAULT CURRENT_TIMESTAMP, " +
                 "\"response\" VARCHAR, \"respiratory\" INTEGER, \"pulse\" INTEGER, \"painscore\" INTEGER, " +
-                "\"o2sats\" INTEGER, \"bp_sis\" INTEGER, \"bp_dis\" INTEGER, \"temperature\" FLOAT, \"perl\"" +
+                "\"o2sats\" FLOAT, \"bp_sis\" INTEGER, \"bp_dis\" INTEGER, \"temperature\" FLOAT, \"perl\"" +
                 " BOOL, \"eyes\" VARCHAR, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
         if (!checkTableExists("observations",db)) { db.execSQL(CREATE_TABLE_OBSERVATIONS); }
 
@@ -115,19 +115,19 @@ public class PRFDatabase extends SQLiteOpenHelper {
         values.put("created", prf.getCreatedAt().toLocaleString());
 
         db.insert(TABLE_PRF, null, values);
-        db.close(); // Closing database connection
+        db.close(); // Closing database co nnection
 
     }
+
 
     public int updatePRF(PRF prf){
+        int result;
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("time", prf.getIncident().getTime().toLocaleString());
-        values.put("location", prf.getIncident().getLocation());
+        result = prf.getIncident().dbUpdate(db,TABLE_INCIDENT,prf.id());
 
-        return db.update(TABLE_INCIDENT, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(prf.id()) });
+        return result;
     }
+
 
     public void deletePRF(String id){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -162,29 +162,6 @@ public class PRFDatabase extends SQLiteOpenHelper {
         db.close();
     }
 
-    private String dateToDBString(Date d){
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
-
-    private Date dbStringToDate(String s) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        try {
-            return dateFormat.parse(s);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return new Date(1970,1,1);
-    }
-
-    private void copyDate(Date from, Date to){
-        to.setDate(from.getDate());
-        to.setTime(from.getTime());
-    }
-
     public PRF readPRF (String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -196,8 +173,8 @@ public class PRFDatabase extends SQLiteOpenHelper {
         if (cursor != null) {
             cursor.moveToFirst();
             // Start with the PRF Table - should only be one!
-            Date dd = dbStringToDate(cursor.getString(1));
-            copyDate(prf.getCreatedAt(), dd);
+            Date dd = Util.dbStringToDate(cursor.getString(1));
+            Util.copyDate(prf.getCreatedAt(), dd);
 
             // Now copy the Incident Table
             cursor = db.query(TABLE_INCIDENT, new String[]{KEY_ID, "time", "location"}, KEY_ID + "=?",
