@@ -1,15 +1,16 @@
-package uk.co.section9.emfmedical;
+package uk.co.section9.emfmedical.data;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.Date;
-import java.util.concurrent.ThreadPoolExecutor;
+
+import uk.co.section9.emfmedical.Util;
 
 /**
  * Created by oni on 11/05/2016.
  */
-public class Discharge {
+public class Discharge extends BaseData {
 
     protected char _walking_unaided; // We use chars for boolean fields as we may use null, true or false
     protected char _walking_aided;
@@ -44,6 +45,14 @@ public class Discharge {
         _seen_by = "";
     }
 
+    public static void createTable(SQLiteDatabase db, String TABLE_DISCHARGE) {
+        String CREATE_TABLE_DISCHARGE = "CREATE TABLE \"" + TABLE_DISCHARGE + "\" (\"walking_unaided\" BOOL, \"walking_aided\" BOOL, " +
+                "\"other\" TEXT, \"own_transport\" BOOL, \"public_transport\" BOOL, \"ambulance\" BOOL, \"taxi\" BOOL, " +
+                "\"completed\" BOOL, \"hospital\" BOOL, \"review\" BOOL, \"advised\" BOOL, \"time_left\" DATETIME, " +
+                "\"refused\" BOOL, \"seen_by\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
+        if (!checkTableExists("discharge",db)) { db.execSQL(CREATE_TABLE_DISCHARGE); }
+    }
+
     public String toXML() {
         String s;
         s = "<discharge>\n";
@@ -66,10 +75,7 @@ public class Discharge {
         return s;
     }
 
-    public int dbUpdate(SQLiteDatabase db, String TABLE_DISCHARGE, String id ){
-
-        ContentValues values = new ContentValues();
-
+    public void _set_values(ContentValues values) {
         values.put("walking_aided", new String(""+_walking_aided));
         values.put("walking_unaided", new String(""+_walking_unaided));
         values.put("other", _other);
@@ -84,9 +90,20 @@ public class Discharge {
         values.put("time_left", Util.dateToDBString(_time_left));
         values.put("refused", new String(""+_refused));
         values.put("seen_by", _seen_by);
+    }
 
+    public int dbUpdate(SQLiteDatabase db, String TABLE_DISCHARGE, String id ){
+
+        ContentValues values = new ContentValues();
+        _set_values(values);
         return db.update(TABLE_DISCHARGE, values, "id = ?",
                 new String[] { String.valueOf(id) });
+    }
+
+    public void dbNew(SQLiteDatabase db, String TABLE_DISCHARGE, String id) {
+        ContentValues values = new ContentValues();
+        _set_values(values);
+        db.insert(TABLE_DISCHARGE, null, values); // Could return value here
     }
 
 

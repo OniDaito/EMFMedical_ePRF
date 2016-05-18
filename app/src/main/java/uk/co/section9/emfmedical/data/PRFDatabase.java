@@ -1,4 +1,4 @@
-package uk.co.section9.emfmedical;
+package uk.co.section9.emfmedical.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,10 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.ObjectStreamException;
 import java.util.Date;
-import java.util.Locale;
+import java.util.Vector;
+
+import uk.co.section9.emfmedical.Util;
+import uk.co.section9.emfmedical.data.PRF;
 
 /**
  * Created by oni on 01/05/2016.
@@ -44,66 +46,20 @@ public class PRFDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    private boolean checkTableExists(String name, SQLiteDatabase db) {
-        Cursor cursor = db.query("sqlite_master", new String[]{"name"}, "name=?",
-                new String[]{name}, null, null, null, null);
-        if(cursor != null){
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create all the tables, presumably in memory
         // We double check to see if we have any database tables already
-        String CREATE_INCIDENT_TABLE = "CREATE TABLE \"incident\" (\"time\" DATETIME" +
-                ", \"location\" TEXT, \"forname\" TEXT, \"surname\" TEXT, \"email\" TEXT, " +
-                "\"address\" TEXT, \"postcode\" TEXT, \"dob\" DATETIME, \"age\" INTEGER, \"gender\" VARCHAR, " +
-                "\"kin\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("incident",db)) { db.execSQL(CREATE_INCIDENT_TABLE); }
-
-        String CREATE_PRIMARY_TABLE = "CREATE TABLE \"primary\" (\"presenting\" TEXT, \"capacity\" BOOL, " +
-                "\"consent\" BOOL, \"response\" VARCHAR, \"airway\" VARCHAR, \"breathing\" VARCHAR, \"circulation\"" +
-                " VARCHAR, \"external\" BOOL, \"consciousness\" BOOL, \"alcoholdrugs\" BOOL, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-
-        if (!checkTableExists("primary",db)) {db.execSQL(CREATE_PRIMARY_TABLE); }
-
-        String CREATE_SECONDARY_TABLE = "CREATE TABLE \"secondary\" (\"high_blood_pressure\" BOOL, \"stroke\" BOOL," +
-                " \"seizures\" BOOL, \"diabetes\" BOOL, \"cardiac\" BOOL, \"asthma\" BOOL, \"respiratory\"" +
-                " BOOL, \"allergies\" TEXT, \"medications\" TEXT, \"history\" TEXT, \"fast\" BOOL, \"id\" TEXT PRIMARY KEY  NOT NULL )";
-
-        if (!checkTableExists("secondary",db)) { db.execSQL(CREATE_SECONDARY_TABLE); }
-
-        String CREATE_TABLE_NOTES = "CREATE TABLE \"notes\" (\"notes\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("notes",db)) { db.execSQL(CREATE_TABLE_NOTES); }
-
-        String CREATE_TABLE_DISCHARGE = "CREATE TABLE \"discharge\" (\"walking_unaided\" BOOL, \"walking_aided\" BOOL, " +
-                "\"other\" TEXT, \"own_transport\" BOOL, \"public_transport\" BOOL, \"ambulance\" BOOL, \"taxi\" BOOL, " +
-                "\"completed\" BOOL, \"hospital\" BOOL, \"review\" BOOL, \"advised\" BOOL, \"time_left\" DATETIME, " +
-                "\"refused\" BOOL, \"seen_by\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("discharge",db)) { db.execSQL(CREATE_TABLE_DISCHARGE); }
-
-        String CREATE_TABLE_OBSERVATIONS = "CREATE TABLE \"observations\" (\"time\" DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                "\"response\" VARCHAR, \"respiratory\" INTEGER, \"pulse\" INTEGER, \"painscore\" INTEGER, " +
-                "\"o2sats\" FLOAT, \"bp_sis\" INTEGER, \"bp_dis\" INTEGER, \"temperature\" FLOAT, \"perl\"" +
-                " BOOL, \"eyes\" VARCHAR, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("observations",db)) { db.execSQL(CREATE_TABLE_OBSERVATIONS); }
-
-        String CREATE_TABLE_SERIOUS = "CREATE TABLE \"serious\" (\"ambulance_arrived\" DATETIME, " +
-                "\"ambulance_departed\" DATETIME, \"cpr\" BOOL, \"cpr_started\" DATETIME, " +
-                "\"defib_used\" BOOL, \"defib_shocks\" INTEGER, \"witnessed_collapse\" BOOL," +
-                " \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("serious",db)) { db.execSQL(CREATE_TABLE_SERIOUS); }
-
-        String CREATE_TABLE_TREATMENT = "CREATE TABLE \"treatment\" (\"none\" BOOL, \"airway_opened\" BOOL, " +
-                "\"wound_cleaned\" BOOL, \"wound_dressed\" BOOL, \"rice\" BOOL, \"adhesive_dressing\" BOOL, " +
-                "\"sling\" BOOL, \"splint\" BOOL, \"recovery_position\" BOOL, \"other\" TEXT, \"id\"" +
-                " VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("treatment",db)) { db.execSQL(CREATE_TABLE_TREATMENT); }
-
-        String CREATE_TABLE_PRFS = "CREATE TABLE \"prfs\" (\"id\" VARCHAR PRIMARY KEY  NOT NULL , \"created\" DATETIME)";
-        if (!checkTableExists("prfs",db)) { db.execSQL(CREATE_TABLE_PRFS); }
+        Discharge.createTable(db, TABLE_DISCHARGE);
+        Incident.createTable(db, TABLE_INCIDENT);
+        Notes.createTable(db, TABLE_NOTES);
+        Observation.createTable(db, TABLE_OBSERVATIONS);
+        PRF.createTable(db, TABLE_PRF);
+        Primary.createTable(db, TABLE_PRIMARY);
+        Secondary.createTable(db, TABLE_SECONDARY);
+        Serious.createTable(db, TABLE_SERIOUS);
+        Treatment.createTable(db, TABLE_TREATMENT);
     }
 
     // Create a new PRF, setting the current one to this one
@@ -115,7 +71,11 @@ public class PRFDatabase extends SQLiteOpenHelper {
         values.put("created", prf.getCreatedAt().toLocaleString());
 
         db.insert(TABLE_PRF, null, values);
-        db.close(); // Closing database co nnection
+
+        // Write out base tables
+
+
+        db.close(); // Closing database connection
 
     }
 
@@ -123,7 +83,19 @@ public class PRFDatabase extends SQLiteOpenHelper {
     public int updatePRF(PRF prf){
         int result;
         SQLiteDatabase db = this.getWritableDatabase();
-        result = prf.getIncident().dbUpdate(db,TABLE_INCIDENT,prf.id());
+        result = prf.get_discharge().dbUpdate(db,TABLE_DISCHARGE,prf.id());
+        result = prf.get_incident().dbUpdate(db,TABLE_INCIDENT,prf.id());
+        result = prf.get_notes().dbUpdate(db,TABLE_INCIDENT,prf.id());
+
+        Vector<Observation> obs = prf.get_observations();
+        for (Observation ob : obs) {
+            result = ob.dbUpdate(db,TABLE_OBSERVATIONS,prf.id());
+        }
+
+        result = prf.get_primary().dbUpdate(db, TABLE_PRIMARY, prf.id());
+        result = prf.get_secondary().dbUpdate(db, TABLE_SECONDARY, prf.id());
+        result = prf.get_serious().dbUpdate(db, TABLE_SERIOUS, prf.id());
+        result = prf.get_treatment().dbUpdate(db, TABLE_TREATMENT, prf.id());
 
         return result;
     }
@@ -177,8 +149,16 @@ public class PRFDatabase extends SQLiteOpenHelper {
             Util.copyDate(prf.getCreatedAt(), dd);
 
             // Now copy the Incident Table
-            cursor = db.query(TABLE_INCIDENT, new String[]{KEY_ID, "time", "location"}, KEY_ID + "=?",
+            cursor = db.query(TABLE_DISCHARGE, new String[]{KEY_ID, "walking_unaided", "walking_aided" , "other", "own_transport",
+            "public_transport", "ambulance", "taxi", "completed", "hospital", "review", "advised", "time_left", "refused",
+            "seen_by"}, KEY_ID + "=?",
+                    new String[]{String.valueOf(id)}, null, null, null, null);
+
+            cursor = db.query(TABLE_INCIDENT, new String[]{KEY_ID, "time", "location", "forname", "surname", "email", "address",
+                    "postcode", "dob", "age", "gender", "kin"}, KEY_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
+
+
         }
 
         return prf;

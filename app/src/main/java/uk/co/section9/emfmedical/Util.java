@@ -34,4 +34,11 @@ public class Util {
         to.setTime(from.getTime());
     }
 
+
+    public  static String ynConv(char v) {
+        if (v == 'y') return "yes";
+        if (v == 'n') return "no";
+        if (v == 'x') return "unknown";
+        return "ERROR";
+    }
 }

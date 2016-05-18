@@ -2,6 +2,8 @@ package uk.co.section9.emfmedical;
 
 import android.app.Application;
 
+import uk.co.section9.emfmedical.data.PRFDatabase;
+
 // We have this as a global holder for the database we are using
 
 public class EMFMedicalApp extends Application {

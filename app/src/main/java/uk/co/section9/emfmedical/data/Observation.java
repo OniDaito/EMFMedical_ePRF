@@ -1,4 +1,4 @@
-package uk.co.section9.emfmedical;
+package uk.co.section9.emfmedical.data;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,10 +6,12 @@ import android.view.ViewDebug;
 
 import java.util.Date;
 
+import uk.co.section9.emfmedical.Util;
+
 /**
  * Created by oni on 11/05/2016.
  */
-public class Observation {
+public class Observation extends BaseData {
 
     protected Date _time;
     protected char _response;
@@ -34,11 +36,21 @@ public class Observation {
         _temperature = -1;      // -1 if not used
         _perl = 'x';            // y,n or x if unknown
         _eyes = 'x';            // c,n,u,d or x if unknown
+        _time = new Date();
+    }
+
+    public static void createTable(SQLiteDatabase db, String TABLE_OBSERVATIONS) {
+        String CREATE_TABLE_OBSERVATIONS = "CREATE TABLE \"" +TABLE_OBSERVATIONS + "\" (\"time\" DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+                "\"response\" VARCHAR, \"respiratory\" INTEGER, \"pulse\" INTEGER, \"painscore\" INTEGER, " +
+                "\"o2sats\" FLOAT, \"bp_sis\" INTEGER, \"bp_dis\" INTEGER, \"temperature\" FLOAT, \"perl\"" +
+                " BOOL, \"eyes\" VARCHAR, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
+        if (!checkTableExists("observations",db)) { db.execSQL(CREATE_TABLE_OBSERVATIONS); }
     }
 
     public String toXML() {
         String s;
         s = "<observation>\n";
+        s += "<time>" + Util.dateToDBString(_time) + "</time>\n";
         s += "<response>" + responseConv() + "</response>\n";
         s += "<respiratory>" + respConv() + "</respiratory>\n";
         s += "<pulse>" + pulseConv() + "</pulse>\n";

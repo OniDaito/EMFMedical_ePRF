@@ -1,4 +1,4 @@
-package uk.co.section9.emfmedical;
+package uk.co.section9.emfmedical.data;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * Created by oni on 11/05/2016.
  */
-public class Primary {
+public class Primary extends BaseData {
 
 
     protected String _presenting;
@@ -32,6 +32,15 @@ public class Primary {
         _consciousness = 'x';
         _alcoholdrugs = 'x';
     }
+
+    public static void createTable(SQLiteDatabase db, String TABLE_PRIMARY) {
+        String CREATE_PRIMARY_TABLE = "CREATE TABLE \"" + TABLE_PRIMARY + "\" (\"presenting\" TEXT, \"capacity\" BOOL, " +
+                "\"consent\" BOOL, \"response\" VARCHAR, \"airway\" VARCHAR, \"breathing\" VARCHAR, \"circulation\"" +
+                " VARCHAR, \"external\" BOOL, \"consciousness\" BOOL, \"alcoholdrugs\" BOOL, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
+
+        if (!checkTableExists("primary",db)) {db.execSQL(CREATE_PRIMARY_TABLE); }
+    }
+
 
     public String toXML() {
         String s;

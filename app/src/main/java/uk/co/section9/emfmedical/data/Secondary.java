@@ -1,10 +1,14 @@
+package uk.co.section9.emfmedical.data;
+
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+
+import uk.co.section9.emfmedical.Util;
 
 /**
  * Created by oni on 14/05/2016.
  */
-public class Secondary {
+public class Secondary extends BaseData{
 
     protected char _high_blood_pressure;
     protected char _stroke;
@@ -18,7 +22,7 @@ public class Secondary {
     protected String _medications;
     protected String _history;
 
-    Secondary() {
+    public Secondary() {
         _high_blood_pressure = 'x';
         _stroke = 'x';
         _seizures = 'x';
@@ -33,24 +37,26 @@ public class Secondary {
         _history = "";
     }
 
-    String ynConv(char v) {
-        if (v == 'y') return "yes";
-        if (v == 'n') return "no";
-        if (v == 'x') return "unknown";
-        return "ERROR";
+    public static void createTable(SQLiteDatabase db, String TABLE_SECONDARY) {
+        String CREATE_SECONDARY_TABLE = "CREATE TABLE \"" + TABLE_SECONDARY + "\" (\"high_blood_pressure\" BOOL, \"stroke\" BOOL," +
+                " \"seizures\" BOOL, \"diabetes\" BOOL, \"cardiac\" BOOL, \"asthma\" BOOL, \"respiratory\"" +
+                " BOOL, \"allergies\" TEXT, \"medications\" TEXT, \"history\" TEXT, \"fast\" BOOL, \"id\" TEXT PRIMARY KEY  NOT NULL )";
+
+        if (!checkTableExists("secondary",db)) { db.execSQL(CREATE_SECONDARY_TABLE); }
+
     }
 
     public String toXML() {
         String s;
         s = "<secondary>\n";
-        s += "<high_blood_pressure>" + ynConv(_high_blood_pressure) + "</high_blood_pressure>\n";
-        s += "<stroke>" + ynConv(_stroke) + "</stroke>\n";
-        s += "<seizures>" + ynConv(_seizures) + "</seizures>\n";
-        s += "<diabetes>" + ynConv(_diabetes) + "</diabetes>\n";
-        s += "<cardiac>" + ynConv(_cardiac) + "</cardiac>\n";
-        s += "<asthma>" + ynConv(_asthma) + "</asthma>\n";
-        s += "<respiratory>" + ynConv(_respiratory) + "</respiratory>\n";
-        s += "<fast>" + ynConv(_fast) + "</fast>\n";
+        s += "<high_blood_pressure>" + Util.ynConv(_high_blood_pressure) + "</high_blood_pressure>\n";
+        s += "<stroke>" + Util.ynConv(_stroke) + "</stroke>\n";
+        s += "<seizures>" + Util.ynConv(_seizures) + "</seizures>\n";
+        s += "<diabetes>" + Util.ynConv(_diabetes) + "</diabetes>\n";
+        s += "<cardiac>" + Util.ynConv(_cardiac) + "</cardiac>\n";
+        s += "<asthma>" + Util.ynConv(_asthma) + "</asthma>\n";
+        s += "<respiratory>" + Util.ynConv(_respiratory) + "</respiratory>\n";
+        s += "<fast>" + Util.ynConv(_fast) + "</fast>\n";
         s += "<allergies>" + _allergies + "</allergies>\n";
         s += "<medications>" + _medications + "</medications>\n";
         s += "<history>" +  _history + "</history>\n";

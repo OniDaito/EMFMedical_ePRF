@@ -1,11 +1,5 @@
 package uk.co.section9.emfmedical;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 
@@ -24,6 +18,8 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import uk.co.section9.emfmedical.data.PRF;
+
 
 // The actual PRFDatabase Activity itself
 
@@ -32,7 +28,7 @@ public class PRFActivity extends FragmentActivity  {
 	 
 	private FragmentTabHost _tabhost;
 	private String          _prfID;
-    private PRF             _currentPRF;
+    private PRF _currentPRF;
 	private EMFCrypto       _crypto;
 
     public static String prePopulate;
@@ -81,7 +77,7 @@ public class PRFActivity extends FragmentActivity  {
 		_tabhost.addTab(_tabhost.newTabSpec("medical_history").setIndicator("3.Medical History"),
 				MedicalHistoryActivity.MedicalHistoryFragment.class, null);
 	        
-		_tabhost.addTab(_tabhost.newTabSpec("secondary_survey").setIndicator("4.Secondary Survey"),
+		_tabhost.addTab(_tabhost.newTabSpec("secondary_survey").setIndicator("4.uk.co.section9.emfmedical.data.Secondary Survey"),
 				SecondarySurveyActivity.SecondarySurveyFragment.class, null);
 	        
 		_tabhost.addTab(_tabhost.newTabSpec("observations").setIndicator("5.Observations"),

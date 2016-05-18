@@ -1,15 +1,17 @@
-package uk.co.section9.emfmedical;
+package uk.co.section9.emfmedical.data;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.Date;
 
+import uk.co.section9.emfmedical.Util;
+
 /**
  * Created by oni on 08/05/2016.
  */
 
-public class Incident {
+public class Incident extends BaseData {
     protected Date _time;
     protected String _location;
     protected String _forname;
@@ -50,6 +52,16 @@ public class Incident {
         this._age = age;
         this._gender = gender;
         this._kin = kin;
+    }
+
+
+    public static void createTable(SQLiteDatabase db, String TABLE_INCIDENT) {
+        String CREATE_INCIDENT_TABLE = "CREATE TABLE \"" + TABLE_INCIDENT + "\" (\"time\" DATETIME" +
+                ", \"location\" TEXT, \"forname\" TEXT, \"surname\" TEXT, \"email\" TEXT, " +
+                "\"address\" TEXT, \"postcode\" TEXT, \"dob\" DATETIME, \"age\" INTEGER, \"gender\" VARCHAR, " +
+                "\"kin\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
+
+        if (!checkTableExists("incident",db)) { db.execSQL(CREATE_INCIDENT_TABLE); }
     }
 
     public String toXML() {
