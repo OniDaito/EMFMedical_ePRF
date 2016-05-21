@@ -1,11 +1,14 @@
 package uk.co.section9.emfmedical.data;
 
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.Date;
 import java.util.Vector;
 
+import uk.co.section9.emfmedical.Util;
 import uk.co.section9.emfmedical.data.Discharge;
 import uk.co.section9.emfmedical.data.Incident;
 import uk.co.section9.emfmedical.data.Notes;
@@ -18,9 +21,9 @@ import uk.co.section9.emfmedical.data.Treatment;
 /**
  * Created by oni on 08/05/2016.
  */
-public class PRF extends BaseData {
+public class PRF  {
 
-    protected  String _uuid;
+    protected String _uuid;
     protected Date _createdAt;
     protected Discharge _discharge;
     protected Incident _incident;
@@ -31,6 +34,7 @@ public class PRF extends BaseData {
     protected Serious _serious;
     protected Treatment _treatment;
 
+    protected static String TABLE_NAME = "prfs";
 
     public PRF () {
         _uuid = java.util.UUID.randomUUID().toString();
@@ -62,14 +66,27 @@ public class PRF extends BaseData {
         _incident = new Incident();
 
         // Load from the DB
-
     }
 
-    public static void createTable(SQLiteDatabase db, String TABLE_PRFS) {
-        String CREATE_TABLE_PRFS = "CREATE TABLE \"" + TABLE_PRFS + "\" (\"id\" VARCHAR PRIMARY KEY  NOT NULL , \"created\" DATETIME)";
-        if (!checkTableExists("prfs", db)) {
-            db.execSQL(CREATE_TABLE_PRFS);
+    // These two functions seem odd what with the getWriteable bit - maybe move to a different kind of basedata class maybe?
+    protected static boolean checkTableExists(String table, PRFDatabase db){
+        Cursor cursor = db.getReadableDatabase().query("sqlite_master", new String[]{"name"}, "name=?",
+                new String[]{table}, null, null, null, null);
+        if(cursor != null){
+            return true;
         }
+        return false;
+    }
+
+    public static void createTable(PRFDatabase db) {
+        String CREATE_TABLE_PRFS = "CREATE TABLE \"" + TABLE_NAME + "\" (\"id\" VARCHAR PRIMARY KEY  NOT NULL , \"created\" DATETIME)";
+        if (!checkTableExists("prfs", db)) {
+            db.getWritableDatabase().execSQL(CREATE_TABLE_PRFS);
+        }
+    }
+
+    public static void deleteTable(PRFDatabase db){
+        db.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
     public String toXML() {
@@ -93,6 +110,47 @@ public class PRF extends BaseData {
 
         s += "</xml>";
         return s;
+    }
+
+    public void dbUpdate( PRFDatabase db ){
+        _incident.dbUpdate(db, _uuid);
+        _notes.dbUpdate(db, _uuid);
+
+        for (Observation ob : _observations)
+            ob.dbUpdate(db, _uuid);
+
+        _primary.dbUpdate(db, _uuid);
+        _secondary.dbUpdate(db, _uuid);
+        _serious.dbUpdate(db, _uuid);
+        _treatment.dbUpdate(db, _uuid);
+        _incident.dbUpdate(db, _uuid);
+    }
+
+    public void dbNew(PRFDatabase db) {
+
+        ContentValues values = new ContentValues();
+        values.put("createdat", Util.dateToDBString( _createdAt));
+        values.put("uuid", _uuid);
+        db.getWritableDatabase().insert("prfs", null, values); // Could return value here
+
+        _incident.dbNew(db, _uuid);
+        _notes.dbNew(db, _uuid);
+
+        for (Observation ob : _observations)
+            ob.dbNew(db, _uuid);
+
+        _primary.dbNew(db, _uuid);
+        _secondary.dbNew(db, _uuid);
+        _serious.dbNew(db, _uuid);
+        _treatment.dbNew(db, _uuid);
+        _incident.dbNew(db, _uuid);
+
+        db.getWritableDatabase().close();
+    }
+
+    public void dbRead(PRFDatabase db){
+        // TODO - call the dbRead functions to set all the data elements
+
     }
 
     String id() {

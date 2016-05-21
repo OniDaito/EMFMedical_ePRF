@@ -48,7 +48,7 @@ public class PRFActivity extends FragmentActivity  {
         // Deal with our PRF - either load one if we've passed in an ID
 		_prfID = java.util.UUID.randomUUID().toString();
 
-        if (prf_id.equals("new")) {
+        if (prf_id.equals("new") || prf_id.equals("")) {
             _currentPRF = new PRF(_prfID);
         } else {
             // TODO - graceful fallback on failure needed here

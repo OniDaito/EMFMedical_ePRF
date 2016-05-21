@@ -27,6 +27,8 @@ public class Discharge extends BaseData {
     protected char _refused;
     protected String _seen_by;
 
+    protected static final String TABLE_NAME = "discharge";
+
     public Discharge() {
         _walking_aided = 'x';
         _walking_unaided = 'x';
@@ -45,12 +47,12 @@ public class Discharge extends BaseData {
         _seen_by = "";
     }
 
-    public static void createTable(SQLiteDatabase db, String TABLE_DISCHARGE) {
-        String CREATE_TABLE_DISCHARGE = "CREATE TABLE \"" + TABLE_DISCHARGE + "\" (\"walking_unaided\" BOOL, \"walking_aided\" BOOL, " +
+    public static void createTable(PRFDatabase db) {
+        String CREATE_TABLE_DISCHARGE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"walking_unaided\" BOOL, \"walking_aided\" BOOL, " +
                 "\"other\" TEXT, \"own_transport\" BOOL, \"public_transport\" BOOL, \"ambulance\" BOOL, \"taxi\" BOOL, " +
                 "\"completed\" BOOL, \"hospital\" BOOL, \"review\" BOOL, \"advised\" BOOL, \"time_left\" DATETIME, " +
                 "\"refused\" BOOL, \"seen_by\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("discharge",db)) { db.execSQL(CREATE_TABLE_DISCHARGE); }
+        if (!checkTableExists("discharge",db)) { db.getWritableDatabase().execSQL(CREATE_TABLE_DISCHARGE); }
     }
 
     public String toXML() {
@@ -91,21 +93,6 @@ public class Discharge extends BaseData {
         values.put("refused", new String(""+_refused));
         values.put("seen_by", _seen_by);
     }
-
-    public int dbUpdate(SQLiteDatabase db, String TABLE_DISCHARGE, String id ){
-
-        ContentValues values = new ContentValues();
-        _set_values(values);
-        return db.update(TABLE_DISCHARGE, values, "id = ?",
-                new String[] { String.valueOf(id) });
-    }
-
-    public void dbNew(SQLiteDatabase db, String TABLE_DISCHARGE, String id) {
-        ContentValues values = new ContentValues();
-        _set_values(values);
-        db.insert(TABLE_DISCHARGE, null, values); // Could return value here
-    }
-
 
     private static String charConv(char c){
         if (c == 'x') return "unknown";

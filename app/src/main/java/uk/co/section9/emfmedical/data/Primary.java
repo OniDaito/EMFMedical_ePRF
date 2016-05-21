@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class Primary extends BaseData {
 
-
     protected String _presenting;
     protected char _capacity;
     protected char _consent;
@@ -19,6 +18,8 @@ public class Primary extends BaseData {
     protected char _external;
     protected char _consciousness;
     protected char _alcoholdrugs;
+
+    protected static final String TABLE_NAME = "primary";
 
     public Primary() {
         _presenting = "";
@@ -33,12 +34,12 @@ public class Primary extends BaseData {
         _alcoholdrugs = 'x';
     }
 
-    public static void createTable(SQLiteDatabase db, String TABLE_PRIMARY) {
-        String CREATE_PRIMARY_TABLE = "CREATE TABLE \"" + TABLE_PRIMARY + "\" (\"presenting\" TEXT, \"capacity\" BOOL, " +
+    public static void createTable(PRFDatabase db) {
+        String CREATE_PRIMARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"presenting\" TEXT, \"capacity\" BOOL, " +
                 "\"consent\" BOOL, \"response\" VARCHAR, \"airway\" VARCHAR, \"breathing\" VARCHAR, \"circulation\"" +
                 " VARCHAR, \"external\" BOOL, \"consciousness\" BOOL, \"alcoholdrugs\" BOOL, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
 
-        if (!checkTableExists("primary",db)) {db.execSQL(CREATE_PRIMARY_TABLE); }
+        if (!checkTableExists("primary",db)) {db.getWritableDatabase().execSQL(CREATE_PRIMARY_TABLE); }
     }
 
 
@@ -60,10 +61,7 @@ public class Primary extends BaseData {
         return s;
     }
 
-    public int dbUpdate(SQLiteDatabase db, String TABLE_PRIMARY, String id ){
-
-        ContentValues values = new ContentValues();
-
+    protected void _set_values(ContentValues values){
         values.put("presenting", _presenting);
         values.put("response", responseConv());
         values.put("capacity", ""+_response);
@@ -74,10 +72,8 @@ public class Primary extends BaseData {
         values.put("external", ""+_external);
         values.put("consciousness", ""+_consciousness);
         values.put("alcoholdrugs", ""+_alcoholdrugs);
-
-        return db.update(TABLE_PRIMARY, values, "id = ?",
-                new String[] { String.valueOf(id) });
     }
+
 
     String responseConv() {
         if (_response == 'a') return "alert";

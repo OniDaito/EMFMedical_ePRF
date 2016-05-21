@@ -25,6 +25,8 @@ public class Observation extends BaseData {
     protected char _perl;
     protected char _eyes;
 
+    protected static final String TABLE_NAME = "observations";
+
     public Observation() {
         _response = 'x';        // avpu or x
         _respiratory = -1;      // -1 if not used
@@ -39,12 +41,12 @@ public class Observation extends BaseData {
         _time = new Date();
     }
 
-    public static void createTable(SQLiteDatabase db, String TABLE_OBSERVATIONS) {
-        String CREATE_TABLE_OBSERVATIONS = "CREATE TABLE \"" +TABLE_OBSERVATIONS + "\" (\"time\" DATETIME DEFAULT CURRENT_TIMESTAMP, " +
+    public static void createTable(PRFDatabase db) {
+        String CREATE_TABLE_OBSERVATIONS = "CREATE TABLE \"" +TABLE_NAME + "\" (\"time\" DATETIME DEFAULT CURRENT_TIMESTAMP, " +
                 "\"response\" VARCHAR, \"respiratory\" INTEGER, \"pulse\" INTEGER, \"painscore\" INTEGER, " +
                 "\"o2sats\" FLOAT, \"bp_sis\" INTEGER, \"bp_dis\" INTEGER, \"temperature\" FLOAT, \"perl\"" +
                 " BOOL, \"eyes\" VARCHAR, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("observations",db)) { db.execSQL(CREATE_TABLE_OBSERVATIONS); }
+        if (!checkTableExists("observations",db)) { db.getWritableDatabase().execSQL(CREATE_TABLE_OBSERVATIONS); }
     }
 
     public String toXML() {
@@ -66,10 +68,7 @@ public class Observation extends BaseData {
         return s;
     }
 
-    public int dbUpdate(SQLiteDatabase db, String TABLE_OBSERVATION, String id ){
-
-        ContentValues values = new ContentValues();
-
+    protected void _set_values(ContentValues values) {
         values.put("response", respConv());
         values.put("respiratory", _respiratory);
         values.put("pulse", _pulse);
@@ -80,9 +79,6 @@ public class Observation extends BaseData {
         values.put("perl", perlConv());
         values.put("eyes", eyeConv());
         values.put("temperature", _temperature);
-
-        return db.update(TABLE_OBSERVATION, values, "id = ?",
-                new String[] { String.valueOf(id) });
     }
 
     String respConv(){

@@ -19,6 +19,8 @@ public class Serious extends BaseData {
     protected int _defib_shocks;
     protected char _witnessed_collapse;
 
+    protected static final String TABLE_NAME = "serious";
+
     public Serious() {
         _ambulance_arrived = new Date();
         _ambulance_departed = new Date();
@@ -30,12 +32,12 @@ public class Serious extends BaseData {
 
     }
 
-    public static void createTable(SQLiteDatabase db, String TABLE_SERIOUS) {
-        String CREATE_TABLE_SERIOUS = "CREATE TABLE \"" + TABLE_SERIOUS +"\" (\"ambulance_arrived\" DATETIME, " +
+    public static void createTable(PRFDatabase db) {
+        String CREATE_TABLE_SERIOUS = "CREATE TABLE \"" + TABLE_NAME +"\" (\"ambulance_arrived\" DATETIME, " +
                 "\"ambulance_departed\" DATETIME, \"cpr\" BOOL, \"cpr_started\" DATETIME, " +
                 "\"defib_used\" BOOL, \"defib_shocks\" INTEGER, \"witnessed_collapse\" BOOL," +
                 " \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("serious",db)) { db.execSQL(CREATE_TABLE_SERIOUS); }
+        if (!checkTableExists("serious",db)) { db.getWritableDatabase().execSQL(CREATE_TABLE_SERIOUS); }
     }
 
 
@@ -54,10 +56,7 @@ public class Serious extends BaseData {
         return s;
     }
 
-    public int dbUpdate(SQLiteDatabase db, String TABLE_SERIOUS, String id ){
-
-        ContentValues values = new ContentValues();
-
+    protected void _set_values(ContentValues values){
         values.put("ambulance_arrived", Util.dateToDBString(_ambulance_arrived));
         values.put("ambulance_departed", Util.dateToDBString(_ambulance_departed));
         values.put("cpr", ""+_cpr);
@@ -65,9 +64,6 @@ public class Serious extends BaseData {
         values.put("defib_used", ""+_defib_used);
         values.put("defib_shocks", ""+_defib_shocks);
         values.put("witnessed_collapse", ""+_witnessed_collapse);
-
-        return db.update(TABLE_SERIOUS, values, "id = ?",
-                new String[] { String.valueOf(id) });
     }
 
     public Date get_ambulance_arrived() {

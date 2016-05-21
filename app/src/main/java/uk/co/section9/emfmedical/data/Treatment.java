@@ -20,6 +20,8 @@ public class Treatment extends BaseData {
     protected char _recovery_position;
     protected String _other;
 
+    protected static final String TABLE_NAME = "treatment";
+
     public Treatment() {
         _none = 'x';
         _airway_opened = 'x';
@@ -51,21 +53,17 @@ public class Treatment extends BaseData {
         return s;
     }
 
-    public static void createTable(SQLiteDatabase db, String TABLE_SERIOUS) {
-        String CREATE_TABLE_TREATMENT = "CREATE TABLE \"" + TABLE_SERIOUS + "\" (\"none\" BOOL, \"airway_opened\" BOOL, " +
+    public static void createTable(PRFDatabase db) {
+        String CREATE_TABLE_TREATMENT = "CREATE TABLE \"" + TABLE_NAME + "\" (\"none\" BOOL, \"airway_opened\" BOOL, " +
                 "\"wound_cleaned\" BOOL, \"wound_dressed\" BOOL, \"rice\" BOOL, \"adhesive_dressing\" BOOL, " +
                 "\"sling\" BOOL, \"splint\" BOOL, \"recovery_position\" BOOL, \"other\" TEXT, \"id\"" +
                 " VARCHAR PRIMARY KEY  NOT NULL )";
         if (!checkTableExists("treatment", db)) {
-            db.execSQL(CREATE_TABLE_TREATMENT);
+            db.getWritableDatabase().execSQL(CREATE_TABLE_TREATMENT);
         }
     }
 
-
-    public int dbUpdate(SQLiteDatabase db, String TABLE_TREATMENT, String id ){
-
-        ContentValues values = new ContentValues();
-
+    protected void _set_values(ContentValues values){
         values.put("none", ""+_none);
         values.put("airway_opened", ""+_airway_opened);
         values.put("wound_cleaned", ""+_wound_cleaned);
@@ -76,9 +74,6 @@ public class Treatment extends BaseData {
         values.put("splint", ""+_splint);
         values.put("recovery_position", ""+_recovery_position);
         values.put("other", _other);
-
-        return db.update(TABLE_TREATMENT, values, "id = ?",
-                new String[] { String.valueOf(id) });
     }
 
     public char get_none() {

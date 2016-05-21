@@ -24,6 +24,8 @@ public class Incident extends BaseData {
     protected String _gender;
     protected String _kin;
 
+    protected static final String TABLE_NAME = "incident";
+
     public Incident () {
         _time = new Date();
         _location = "";
@@ -55,13 +57,13 @@ public class Incident extends BaseData {
     }
 
 
-    public static void createTable(SQLiteDatabase db, String TABLE_INCIDENT) {
-        String CREATE_INCIDENT_TABLE = "CREATE TABLE \"" + TABLE_INCIDENT + "\" (\"time\" DATETIME" +
+    public static void createTable(PRFDatabase db) {
+        String CREATE_INCIDENT_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"time\" DATETIME" +
                 ", \"location\" TEXT, \"forname\" TEXT, \"surname\" TEXT, \"email\" TEXT, " +
                 "\"address\" TEXT, \"postcode\" TEXT, \"dob\" DATETIME, \"age\" INTEGER, \"gender\" VARCHAR, " +
                 "\"kin\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
 
-        if (!checkTableExists("incident",db)) { db.execSQL(CREATE_INCIDENT_TABLE); }
+        if (!checkTableExists("incident",db)) { db.getWritableDatabase().execSQL(CREATE_INCIDENT_TABLE); }
     }
 
     public String toXML() {
@@ -83,12 +85,7 @@ public class Incident extends BaseData {
         return s;
     }
 
-    // It doesnt seem quite right to have this  function here instead of in PRFDatabase but given
-    // these classes can change it seems the better move
-    public int dbUpdate( SQLiteDatabase db, String TABLE_INCIDENT, String id ){
-
-        ContentValues values = new ContentValues();
-
+    protected void _set_values(ContentValues values){
         values.put("time", Util.dateToDBString(get_time()));
         values.put("location", get_location());
         values.put("forname", get_forname());
@@ -100,11 +97,10 @@ public class Incident extends BaseData {
         values.put("age", get_age());
         values.put("gender", get_gender());
         values.put("kin", get_kin());
-
-        return db.update(TABLE_INCIDENT, values, "id = ?",
-                new String[] { String.valueOf(id) });
     }
 
+    // It doesnt seem quite right to have this  function here instead of in PRFDatabase but given
+    // these classes can change it seems the better move
 
 
     public Date get_time() {

@@ -22,6 +22,8 @@ public class Secondary extends BaseData{
     protected String _medications;
     protected String _history;
 
+    protected static final String TABLE_NAME = "secondary";
+
     public Secondary() {
         _high_blood_pressure = 'x';
         _stroke = 'x';
@@ -37,12 +39,16 @@ public class Secondary extends BaseData{
         _history = "";
     }
 
-    public static void createTable(SQLiteDatabase db, String TABLE_SECONDARY) {
-        String CREATE_SECONDARY_TABLE = "CREATE TABLE \"" + TABLE_SECONDARY + "\" (\"high_blood_pressure\" BOOL, \"stroke\" BOOL," +
+    public static void createTable(PRFDatabase db) {
+        String CREATE_SECONDARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"high_blood_pressure\" BOOL, \"stroke\" BOOL," +
                 " \"seizures\" BOOL, \"diabetes\" BOOL, \"cardiac\" BOOL, \"asthma\" BOOL, \"respiratory\"" +
                 " BOOL, \"allergies\" TEXT, \"medications\" TEXT, \"history\" TEXT, \"fast\" BOOL, \"id\" TEXT PRIMARY KEY  NOT NULL )";
 
-        if (!checkTableExists("secondary",db)) { db.execSQL(CREATE_SECONDARY_TABLE); }
+        if (!checkTableExists("secondary",db)) { db.getWritableDatabase().execSQL(CREATE_SECONDARY_TABLE); }
+
+    }
+
+    public static void deleteTable(SQLiteDatabase db){
 
     }
 
@@ -65,10 +71,7 @@ public class Secondary extends BaseData{
         return s;
     }
 
-    public int dbUpdate(SQLiteDatabase db, String TABLE_PRIMARY, String id ){
-
-        ContentValues values = new ContentValues();
-
+    protected void _set_values(ContentValues values){
         values.put("high_blood_pressure", ""+_high_blood_pressure);
         values.put("stroke", ""+_stroke);
         values.put("seizures", ""+_seizures);
@@ -80,9 +83,6 @@ public class Secondary extends BaseData{
         values.put("allergies", _allergies);
         values.put("medications", _medications);
         values.put("history", _history);
-
-        return db.update(TABLE_PRIMARY, values, "id = ?",
-                new String[] { String.valueOf(id) });
     }
 
     public char get_high_blood_pressure() {
