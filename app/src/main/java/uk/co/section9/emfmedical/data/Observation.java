@@ -1,6 +1,7 @@
 package uk.co.section9.emfmedical.data;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.ViewDebug;
 
@@ -74,6 +75,7 @@ public class Observation extends BaseData {
 
     public ContentValues getValues () {
         ContentValues values = new ContentValues();
+        values.put("time", Util.dateToDBString(_time));
         values.put("response", respConv());
         values.put("respiratory", _respiratory);
         values.put("pulse", _pulse);
@@ -85,6 +87,22 @@ public class Observation extends BaseData {
         values.put("eyes", eyeConv());
         values.put("temperature", _temperature);
         return values;
+    }
+
+
+    public void setValues(ContentValues values) {
+        _time = Util.dbStringToDate((String) values.get("time"));
+        _response = ((String) values.get("response")).charAt(0);
+        _respiratory = ((String) values.get("respiratory")).charAt(0);
+        _pulse = ((Integer) values.get("pulse"));
+        _painscore = ((Integer) values.get("painscore"));
+        _o2sats = ((Float) values.get("o2sats"));
+        _bp_sis = ((Integer) values.get("bpsis"));
+        _bp_dis = ((Integer) values.get("bpdis"));
+        _perl = ((String) values.get("perl")).charAt(0);
+        _eyes = ((String) values.get("eyes")).charAt(0);
+        _temperature = ((Float) values.get("temperature"));
+
     }
 
     String respConv(){

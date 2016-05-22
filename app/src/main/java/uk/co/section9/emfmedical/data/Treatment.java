@@ -65,7 +65,8 @@ public class Treatment extends BaseData {
         return CREATE_TABLE_TREATMENT;
     }
 
-    protected void _set_values(ContentValues values){
+    public ContentValues getValues () {
+        ContentValues values = new ContentValues();
         values.put("none", ""+_none);
         values.put("airway_opened", ""+_airway_opened);
         values.put("wound_cleaned", ""+_wound_cleaned);
@@ -76,7 +77,22 @@ public class Treatment extends BaseData {
         values.put("splint", ""+_splint);
         values.put("recovery_position", ""+_recovery_position);
         values.put("other", _other);
+        return values;
     }
+
+    public void setValues(ContentValues values) {
+        _none = ((String) values.get("none")).charAt(0);
+        _airway_opened = ((String) values.get("airway_opened")).charAt(0);
+        _wound_cleaned = ((String) values.get("wound_cleaned")).charAt(0);
+        _wound_dressed = ((String) values.get("wound_dressed")).charAt(0);
+        _rice = ((String) values.get("rice")).charAt(0);
+        _adhesive_dressing = ((String) values.get("adhesive_dressing")).charAt(0);
+        _sling = ((String) values.get("sling")).charAt(0);
+        _splint = ((String) values.get("splint")).charAt(0);
+        _recovery_position = ((String) values.get("recovery_position")).charAt(0);
+        _other = ((String) values.get("other"));
+    }
+
 
     public char get_none() {
         return _none;

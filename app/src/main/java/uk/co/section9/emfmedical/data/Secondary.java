@@ -74,7 +74,8 @@ public class Secondary extends BaseData{
         return s;
     }
 
-    protected void _set_values(ContentValues values){
+    public ContentValues getValues () {
+        ContentValues values = new ContentValues();
         values.put("high_blood_pressure", ""+_high_blood_pressure);
         values.put("stroke", ""+_stroke);
         values.put("seizures", ""+_seizures);
@@ -86,6 +87,21 @@ public class Secondary extends BaseData{
         values.put("allergies", _allergies);
         values.put("medications", _medications);
         values.put("history", _history);
+        return values;
+    }
+
+    public void setValues(ContentValues values) {
+        _high_blood_pressure = ((String) values.get("high_blood_pressure")).charAt(0);
+        _stroke = ((String) values.get("stroke")).charAt(0);
+        _seizures = ((String) values.get("seizures")).charAt(0);
+        _diabetes = ((String) values.get("diabetes")).charAt(0);
+        _cardiac = ((String) values.get("cardiac")).charAt(0);
+        _asthma = ((String) values.get("asthma")).charAt(0);
+        _respiratory = ((String) values.get("respiratory")).charAt(0);
+        _fast = ((String) values.get("fast")).charAt(0);
+        _allergies = ((String) values.get("allergies"));
+        _medications = ((String) values.get("medications"));
+        _history = ((String) values.get("history"));
     }
 
     public char get_high_blood_pressure() {

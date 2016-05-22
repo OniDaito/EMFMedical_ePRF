@@ -3,6 +3,8 @@ package uk.co.section9.emfmedical.data;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import uk.co.section9.emfmedical.Util;
+
 /**
  * Created by oni on 11/05/2016.
  */
@@ -76,6 +78,34 @@ public class Primary extends BaseData {
         values.put("alcoholdrugs", ""+_alcoholdrugs);
     }
 
+    public ContentValues getValues () {
+        ContentValues values = new ContentValues();
+        values.put("presenting", _presenting);
+        values.put("response", responseConv());
+        values.put("capacity", ""+_response);
+        values.put("consent", ""+_response);
+        values.put("airway", airwayConv());
+        values.put("breathing", breathingConv());
+        values.put("circulation", circulationConv());
+        values.put("external", ""+_external);
+        values.put("consciousness", ""+_consciousness);
+        values.put("alcoholdrugs", ""+_alcoholdrugs);
+        return values;
+    }
+
+    public void setValues(ContentValues values) {
+        _presenting = ((String) values.get("presenting"));
+        _response = ((String) values.get("response")).charAt(0);
+        _capacity = ((String) values.get("capacity")).charAt(0);
+        _consent = ((String) values.get("consent")).charAt(0);
+        _airway = ((String) values.get("airway")).charAt(0);
+        _breathing = ((String) values.get("breathing")).charAt(0);
+        _circulation = ((String) values.get("circulation")).charAt(0);
+        _external = ((String) values.get("external")).charAt(0);
+        _consciousness = ((String) values.get("consciousness")).charAt(0);
+        _alcoholdrugs = ((String) values.get("alcoholdrugs")).charAt(0);
+
+    }
 
     String responseConv() {
         if (_response == 'a') return "alert";

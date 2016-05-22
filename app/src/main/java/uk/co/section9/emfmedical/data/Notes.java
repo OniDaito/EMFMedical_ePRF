@@ -3,6 +3,8 @@ package uk.co.section9.emfmedical.data;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import uk.co.section9.emfmedical.Util;
+
 /**
  * Created by oni on 11/05/2016.
  */
@@ -31,6 +33,16 @@ public class Notes extends BaseData {
 
     public static String get_table_name() {
         return TABLE_NAME;
+    }
+
+    public ContentValues getValues(){
+        ContentValues values = new ContentValues();
+        values.put("notes", get_notes());
+        return values;
+    }
+
+    public void setValues(ContentValues values) {
+        _notes = ((String) values.get("kin"));
     }
 
     public String get_notes() {

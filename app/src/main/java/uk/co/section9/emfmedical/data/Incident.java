@@ -89,7 +89,8 @@ public class Incident extends BaseData {
         return s;
     }
 
-    protected void _set_values(ContentValues values){
+    public ContentValues getValues(){
+        ContentValues values = new ContentValues();
         values.put("time", Util.dateToDBString(get_time()));
         values.put("location", get_location());
         values.put("forname", get_forname());
@@ -101,6 +102,22 @@ public class Incident extends BaseData {
         values.put("age", get_age());
         values.put("gender", get_gender());
         values.put("kin", get_kin());
+        return values;
+    }
+
+    public void setValues(ContentValues values) {
+        _time = Util.dbStringToDate((String) values.get("time"));
+        _location = ((String) values.get("location"));
+        _forname = ((String) values.get("forname"));
+        _surname = ((String) values.get("surname"));
+        _email = ((String) values.get("email"));
+        _address = ((String) values.get("address"));
+        _postcode = ((String) values.get("postcode"));
+        _dob = Util.dbStringToDate((String) values.get("dob"));
+        _age = ((Integer) values.get("age"));
+        _gender = ((String) values.get("gender"));
+        _kin = ((String) values.get("kin"));
+
     }
 
     // It doesnt seem quite right to have this  function here instead of in PRFDatabase but given
