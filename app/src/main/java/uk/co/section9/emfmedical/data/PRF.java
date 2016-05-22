@@ -4,6 +4,7 @@ package uk.co.section9.emfmedical.data;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import java.util.Date;
 import java.util.Vector;
@@ -21,7 +22,7 @@ import uk.co.section9.emfmedical.data.Treatment;
 /**
  * Created by oni on 08/05/2016.
  */
-public class PRF  {
+public class PRF extends BaseData {
 
     protected String _uuid;
     protected Date _createdAt;
@@ -68,25 +69,10 @@ public class PRF  {
         // Load from the DB
     }
 
-    // These two functions seem odd what with the getWriteable bit - maybe move to a different kind of basedata class maybe?
-    protected static boolean checkTableExists(String table, PRFDatabase db){
-        Cursor cursor = db.getReadableDatabase().query("sqlite_master", new String[]{"name"}, "name=?",
-                new String[]{table}, null, null, null, null);
-        if(cursor != null){
-            return true;
-        }
-        return false;
-    }
 
-    public static void createTable(PRFDatabase db) {
-        String CREATE_TABLE_PRFS = "CREATE TABLE \"" + TABLE_NAME + "\" (\"id\" VARCHAR PRIMARY KEY  NOT NULL , \"created\" DATETIME)";
-        if (!checkTableExists("prfs", db)) {
-            db.getWritableDatabase().execSQL(CREATE_TABLE_PRFS);
-        }
-    }
-
-    public static void deleteTable(PRFDatabase db){
-        db.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+    public static String createTable() {
+        String CREATE_TABLE_PRFS = "CREATE TABLE \"" + TABLE_NAME + "\" (\"id\" VARCHAR PRIMARY KEY  NOT NULL , \"createdat\" DATETIME);";
+        return CREATE_TABLE_PRFS;
     }
 
     public String toXML() {
@@ -112,45 +98,20 @@ public class PRF  {
         return s;
     }
 
-    public void dbUpdate( PRFDatabase db ){
-        _incident.dbUpdate(db, _uuid);
-        _notes.dbUpdate(db, _uuid);
-
-        for (Observation ob : _observations)
-            ob.dbUpdate(db, _uuid);
-
-        _primary.dbUpdate(db, _uuid);
-        _secondary.dbUpdate(db, _uuid);
-        _serious.dbUpdate(db, _uuid);
-        _treatment.dbUpdate(db, _uuid);
-        _incident.dbUpdate(db, _uuid);
-    }
-
-    public void dbNew(PRFDatabase db) {
-
+    public ContentValues getValues(){
         ContentValues values = new ContentValues();
-        values.put("createdat", Util.dateToDBString( _createdAt));
-        values.put("uuid", _uuid);
-        db.getWritableDatabase().insert("prfs", null, values); // Could return value here
-
-        _incident.dbNew(db, _uuid);
-        _notes.dbNew(db, _uuid);
-
-        for (Observation ob : _observations)
-            ob.dbNew(db, _uuid);
-
-        _primary.dbNew(db, _uuid);
-        _secondary.dbNew(db, _uuid);
-        _serious.dbNew(db, _uuid);
-        _treatment.dbNew(db, _uuid);
-        _incident.dbNew(db, _uuid);
-
-        db.getWritableDatabase().close();
+        values.put("createdat", Util.dateToDBString(_createdAt));
+        values.put("id", _uuid);
+        return values;
     }
 
-    public void dbRead(PRFDatabase db){
-        // TODO - call the dbRead functions to set all the data elements
+    protected void setValues( ContentValues values ) {
+        _createdAt = Util.dbStringToDate((String) values.get("createdat"));
+        _uuid = (String)values.get("id");
+    }
 
+    public static String get_table_name() {
+        return TABLE_NAME;
     }
 
     String id() {

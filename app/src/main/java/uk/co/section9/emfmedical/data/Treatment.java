@@ -53,14 +53,16 @@ public class Treatment extends BaseData {
         return s;
     }
 
-    public static void createTable(PRFDatabase db) {
+    public static String get_table_name() {
+        return TABLE_NAME;
+    }
+
+    public static String createTable() {
         String CREATE_TABLE_TREATMENT = "CREATE TABLE \"" + TABLE_NAME + "\" (\"none\" BOOL, \"airway_opened\" BOOL, " +
                 "\"wound_cleaned\" BOOL, \"wound_dressed\" BOOL, \"rice\" BOOL, \"adhesive_dressing\" BOOL, " +
                 "\"sling\" BOOL, \"splint\" BOOL, \"recovery_position\" BOOL, \"other\" TEXT, \"id\"" +
                 " VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("treatment", db)) {
-            db.getWritableDatabase().execSQL(CREATE_TABLE_TREATMENT);
-        }
+        return CREATE_TABLE_TREATMENT;
     }
 
     protected void _set_values(ContentValues values){

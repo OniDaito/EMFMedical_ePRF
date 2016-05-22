@@ -24,9 +24,13 @@ public class Notes extends BaseData {
         return s;
     }
 
-    public static void createTable(PRFDatabase db) {
+    public static String createTable() {
         String CREATE_TABLE_NOTES = "CREATE TABLE \"" + TABLE_NAME + "\" (\"notes\" TEXT, \"id\" VARCHAR PRIMARY KEY NOT NULL )";
-        if (!checkTableExists("notes",db)) { db.getWritableDatabase().execSQL(CREATE_TABLE_NOTES); }
+        return CREATE_TABLE_NOTES;
+    }
+
+    public static String get_table_name() {
+        return TABLE_NAME;
     }
 
     public String get_notes() {

@@ -41,12 +41,16 @@ public class Observation extends BaseData {
         _time = new Date();
     }
 
-    public static void createTable(PRFDatabase db) {
+    public static String createTable() {
         String CREATE_TABLE_OBSERVATIONS = "CREATE TABLE \"" +TABLE_NAME + "\" (\"time\" DATETIME DEFAULT CURRENT_TIMESTAMP, " +
                 "\"response\" VARCHAR, \"respiratory\" INTEGER, \"pulse\" INTEGER, \"painscore\" INTEGER, " +
                 "\"o2sats\" FLOAT, \"bp_sis\" INTEGER, \"bp_dis\" INTEGER, \"temperature\" FLOAT, \"perl\"" +
-                " BOOL, \"eyes\" VARCHAR, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("observations",db)) { db.getWritableDatabase().execSQL(CREATE_TABLE_OBSERVATIONS); }
+                " BOOL, \"eyes\" VARCHAR, \"id\" VARCHAR PRIMARY KEY NOT NULL )";
+        return CREATE_TABLE_OBSERVATIONS;
+    }
+
+    public static String get_table_name() {
+        return TABLE_NAME;
     }
 
     public String toXML() {
@@ -68,7 +72,8 @@ public class Observation extends BaseData {
         return s;
     }
 
-    protected void _set_values(ContentValues values) {
+    public ContentValues getValues () {
+        ContentValues values = new ContentValues();
         values.put("response", respConv());
         values.put("respiratory", _respiratory);
         values.put("pulse", _pulse);
@@ -79,6 +84,7 @@ public class Observation extends BaseData {
         values.put("perl", perlConv());
         values.put("eyes", eyeConv());
         values.put("temperature", _temperature);
+        return values;
     }
 
     String respConv(){

@@ -34,14 +34,16 @@ public class Primary extends BaseData {
         _alcoholdrugs = 'x';
     }
 
-    public static void createTable(PRFDatabase db) {
+    public static String createTable() {
         String CREATE_PRIMARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"presenting\" TEXT, \"capacity\" BOOL, " +
                 "\"consent\" BOOL, \"response\" VARCHAR, \"airway\" VARCHAR, \"breathing\" VARCHAR, \"circulation\"" +
                 " VARCHAR, \"external\" BOOL, \"consciousness\" BOOL, \"alcoholdrugs\" BOOL, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-
-        if (!checkTableExists("primary",db)) {db.getWritableDatabase().execSQL(CREATE_PRIMARY_TABLE); }
+        return CREATE_PRIMARY_TABLE;
     }
 
+    public static String get_table_name() {
+        return TABLE_NAME;
+    }
 
     public String toXML() {
         String s;

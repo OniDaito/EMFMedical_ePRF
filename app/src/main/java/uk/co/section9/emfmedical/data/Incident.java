@@ -57,13 +57,17 @@ public class Incident extends BaseData {
     }
 
 
-    public static void createTable(PRFDatabase db) {
+    public static String createTable() {
         String CREATE_INCIDENT_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"time\" DATETIME" +
                 ", \"location\" TEXT, \"forname\" TEXT, \"surname\" TEXT, \"email\" TEXT, " +
                 "\"address\" TEXT, \"postcode\" TEXT, \"dob\" DATETIME, \"age\" INTEGER, \"gender\" VARCHAR, " +
                 "\"kin\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
 
-        if (!checkTableExists("incident",db)) { db.getWritableDatabase().execSQL(CREATE_INCIDENT_TABLE); }
+        return CREATE_INCIDENT_TABLE;
+    }
+
+    public static String get_table_name() {
+        return TABLE_NAME;
     }
 
     public String toXML() {

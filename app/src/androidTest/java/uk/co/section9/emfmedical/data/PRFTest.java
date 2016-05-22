@@ -22,13 +22,17 @@ public class PRFTest  extends AndroidTestCase {
     @Before
     public void createDatabase(){
         _db = new PRFDatabase(InstrumentationRegistry.getTargetContext());
+        _db.reset();
     }
 
     @Test
     public void createPRF() {
         PRF prf = new PRF();
-        prf.dbNew(_db);
+        _db.newPRF(prf);
         Vector<String> prf_list = _db.listPRFS();
+        if (prf_list.size() == 0 ){
+            assertEquals(false,true);
+        }
         assertEquals(prf_list.get(0).equals(prf.get_uuid()) , true);
     }
 }

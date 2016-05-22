@@ -32,16 +32,19 @@ public class Serious extends BaseData {
 
     }
 
-    public static void createTable(PRFDatabase db) {
+    public static String createTable() {
         String CREATE_TABLE_SERIOUS = "CREATE TABLE \"" + TABLE_NAME +"\" (\"ambulance_arrived\" DATETIME, " +
                 "\"ambulance_departed\" DATETIME, \"cpr\" BOOL, \"cpr_started\" DATETIME, " +
                 "\"defib_used\" BOOL, \"defib_shocks\" INTEGER, \"witnessed_collapse\" BOOL," +
                 " \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("serious",db)) { db.getWritableDatabase().execSQL(CREATE_TABLE_SERIOUS); }
+        return CREATE_TABLE_SERIOUS;
     }
 
+    public static String get_table_name() {
+        return TABLE_NAME;
+    }
 
-        public String toXML() {
+    public String toXML() {
         String s;
         s = "<serious>\n";
         s += "<ambulance_arrived>" + Util.dateToDBString(_ambulance_arrived) + "</ambulance_arrived>\n";

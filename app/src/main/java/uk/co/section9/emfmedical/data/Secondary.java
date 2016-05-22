@@ -39,17 +39,20 @@ public class Secondary extends BaseData{
         _history = "";
     }
 
-    public static void createTable(PRFDatabase db) {
+    public static String createTable() {
         String CREATE_SECONDARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"high_blood_pressure\" BOOL, \"stroke\" BOOL," +
                 " \"seizures\" BOOL, \"diabetes\" BOOL, \"cardiac\" BOOL, \"asthma\" BOOL, \"respiratory\"" +
                 " BOOL, \"allergies\" TEXT, \"medications\" TEXT, \"history\" TEXT, \"fast\" BOOL, \"id\" TEXT PRIMARY KEY  NOT NULL )";
 
-        if (!checkTableExists("secondary",db)) { db.getWritableDatabase().execSQL(CREATE_SECONDARY_TABLE); }
-
+        return CREATE_SECONDARY_TABLE;
     }
 
     public static void deleteTable(SQLiteDatabase db){
 
+    }
+
+    public static String get_table_name() {
+        return TABLE_NAME;
     }
 
     public String toXML() {

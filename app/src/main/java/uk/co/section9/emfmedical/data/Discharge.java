@@ -47,12 +47,16 @@ public class Discharge extends BaseData {
         _seen_by = "";
     }
 
-    public static void createTable(PRFDatabase db) {
+    public static String createTable() {
         String CREATE_TABLE_DISCHARGE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"walking_unaided\" BOOL, \"walking_aided\" BOOL, " +
                 "\"other\" TEXT, \"own_transport\" BOOL, \"public_transport\" BOOL, \"ambulance\" BOOL, \"taxi\" BOOL, " +
                 "\"completed\" BOOL, \"hospital\" BOOL, \"review\" BOOL, \"advised\" BOOL, \"time_left\" DATETIME, " +
                 "\"refused\" BOOL, \"seen_by\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
-        if (!checkTableExists("discharge",db)) { db.getWritableDatabase().execSQL(CREATE_TABLE_DISCHARGE); }
+        return CREATE_TABLE_DISCHARGE;
+    }
+
+    public static String get_table_name() {
+        return TABLE_NAME;
     }
 
     public String toXML() {
@@ -77,7 +81,8 @@ public class Discharge extends BaseData {
         return s;
     }
 
-    public void _set_values(ContentValues values) {
+    public ContentValues getValues() {
+        ContentValues values = new ContentValues();
         values.put("walking_aided", new String(""+_walking_aided));
         values.put("walking_unaided", new String(""+_walking_unaided));
         values.put("other", _other);
@@ -92,6 +97,25 @@ public class Discharge extends BaseData {
         values.put("time_left", Util.dateToDBString(_time_left));
         values.put("refused", new String(""+_refused));
         values.put("seen_by", _seen_by);
+        return values;
+    }
+
+    public void setValues(ContentValues values) {
+        _walking_aided = ((String) values.get("walking_aided")).charAt(0);
+        _walking_unaided = ((String) values.get("walking_unaided")).charAt(0);
+        _other = ((String) values.get("other"));
+        _own_transport = ((String) values.get("own_transport")).charAt(0);
+        _public_transport = ((String) values.get("public_transport")).charAt(0);
+        _ambulance = ((String) values.get("ambulance")).charAt(0);
+        _taxi = ((String) values.get("taxi")).charAt(0);
+        _completed =((String) values.get("completed")).charAt(0);
+        _hospital = ((String) values.get("hospital")).charAt(0);
+        _review = ((String) values.get("review")).charAt(0);
+        _advised =((String) values.get("advised")).charAt(0);
+        _time_left = Util.dbStringToDate((String) values.get("time_left"));
+        _refused = ((String) values.get("refused")).charAt(0);
+        _seen_by = ((String) values.get("seen_by"));
+
     }
 
     private static String charConv(char c){
