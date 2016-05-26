@@ -15,7 +15,7 @@ public class Notes extends BaseData {
     protected static final String TABLE_NAME = "notes";
 
     public Notes() {
-        _notes = "";
+        _notes = new String();
     }
 
     public String toXML() {
@@ -27,7 +27,7 @@ public class Notes extends BaseData {
     }
 
     public static String createTable() {
-        String CREATE_TABLE_NOTES = "CREATE TABLE \"" + TABLE_NAME + "\" (\"notes\" TEXT, \"id\" VARCHAR PRIMARY KEY NOT NULL )";
+        String CREATE_TABLE_NOTES = "CREATE TABLE \"" + TABLE_NAME + "\" (\"notes\" TEXT, \"id\" GUID PRIMARY KEY NOT NULL )";
         return CREATE_TABLE_NOTES;
     }
 
@@ -37,7 +37,8 @@ public class Notes extends BaseData {
 
     public ContentValues getValues(){
         ContentValues values = new ContentValues();
-        values.put("notes", get_notes());
+        if (_notes != "")
+            values.put("notes", get_notes());
         return values;
     }
 

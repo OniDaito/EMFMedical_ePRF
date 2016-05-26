@@ -48,10 +48,10 @@ public class Discharge extends BaseData {
     }
 
     public static String createTable() {
-        String CREATE_TABLE_DISCHARGE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"walking_unaided\" BOOL, \"walking_aided\" BOOL, " +
-                "\"other\" TEXT, \"own_transport\" BOOL, \"public_transport\" BOOL, \"ambulance\" BOOL, \"taxi\" BOOL, " +
-                "\"completed\" BOOL, \"hospital\" BOOL, \"review\" BOOL, \"advised\" BOOL, \"time_left\" DATETIME, " +
-                "\"refused\" BOOL, \"seen_by\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
+        String CREATE_TABLE_DISCHARGE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"walking_unaided\" VARCHAR, \"walking_aided\" VARCHAR, " +
+                "\"other\" TEXT, \"own_transport\" VARCHAR, \"public_transport\" VARCHAR, \"ambulance\" VARCHAR, \"taxi\" VARCHAR, " +
+                "\"completed\" VARCHAR, \"hospital\" VARCHAR, \"review\" VARCHAR, \"advised\" VARCHAR, \"time_left\" DATETIME, " +
+                "\"refused\" VARCHAR, \"seen_by\" TEXT, \"id\" GUID PRIMARY KEY NOT NULL )";
         return CREATE_TABLE_DISCHARGE;
     }
 
@@ -85,7 +85,8 @@ public class Discharge extends BaseData {
         ContentValues values = new ContentValues();
         values.put("walking_aided", new String(""+_walking_aided));
         values.put("walking_unaided", new String(""+_walking_unaided));
-        values.put("other", _other);
+        if (_other != "")
+            values.put("other", _other);
         values.put("own_transport", new String(""+_own_transport));
         values.put("public_transport", new String(""+_public_transport));
         values.put("ambulance", new String(""+_ambulance));
@@ -96,11 +97,13 @@ public class Discharge extends BaseData {
         values.put("advised", new String(""+_advised));
         values.put("time_left", Util.dateToDBString(_time_left));
         values.put("refused", new String(""+_refused));
-        values.put("seen_by", _seen_by);
+        if (_seen_by != "")
+            values.put("seen_by", _seen_by);
         return values;
     }
 
     public void setValues(ContentValues values) {
+
         _walking_aided = ((String) values.get("walking_aided")).charAt(0);
         _walking_unaided = ((String) values.get("walking_unaided")).charAt(0);
         _other = ((String) values.get("other"));

@@ -21,7 +21,7 @@ public class Primary extends BaseData {
     protected char _consciousness;
     protected char _alcoholdrugs;
 
-    protected static final String TABLE_NAME = "primary";
+    protected static final String TABLE_NAME = "primarysurvey";
 
     public Primary() {
         _presenting = "";
@@ -37,9 +37,9 @@ public class Primary extends BaseData {
     }
 
     public static String createTable() {
-        String CREATE_PRIMARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"presenting\" TEXT, \"capacity\" BOOL, " +
-                "\"consent\" BOOL, \"response\" VARCHAR, \"airway\" VARCHAR, \"breathing\" VARCHAR, \"circulation\"" +
-                " VARCHAR, \"external\" BOOL, \"consciousness\" BOOL, \"alcoholdrugs\" BOOL, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
+        String CREATE_PRIMARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"presenting\" TEXT, \"capacity\" VARCHAR, " +
+                "\"consent\" VARCHAR, \"response\" VARCHAR, \"airway\" VARCHAR, \"breathing\" VARCHAR, \"circulation\"" +
+                " VARCHAR, \"external\" VARCHAR, \"consciousness\" VARCHAR, \"alcoholdrugs\" VARCHAR, \"id\" GUID PRIMARY KEY NOT NULL )";
         return CREATE_PRIMARY_TABLE;
     }
 
@@ -65,28 +65,16 @@ public class Primary extends BaseData {
         return s;
     }
 
-    protected void _set_values(ContentValues values){
-        values.put("presenting", _presenting);
-        values.put("response", responseConv());
-        values.put("capacity", ""+_response);
-        values.put("consent", ""+_response);
-        values.put("airway", airwayConv());
-        values.put("breathing", breathingConv());
-        values.put("circulation", circulationConv());
-        values.put("external", ""+_external);
-        values.put("consciousness", ""+_consciousness);
-        values.put("alcoholdrugs", ""+_alcoholdrugs);
-    }
-
     public ContentValues getValues () {
         ContentValues values = new ContentValues();
-        values.put("presenting", _presenting);
-        values.put("response", responseConv());
-        values.put("capacity", ""+_response);
-        values.put("consent", ""+_response);
-        values.put("airway", airwayConv());
-        values.put("breathing", breathingConv());
-        values.put("circulation", circulationConv());
+        if (_presenting != "")
+            values.put("presenting", _presenting);
+        values.put("capacity", ""+_capacity);
+        values.put("consent", ""+_consent);
+        values.put("response", ""+_response);
+        values.put("airway", ""+_airway);
+        values.put("breathing", ""+_breathing);
+        values.put("circulation", ""+_circulation);
         values.put("external", ""+_external);
         values.put("consciousness", ""+_consciousness);
         values.put("alcoholdrugs", ""+_alcoholdrugs);
@@ -104,7 +92,6 @@ public class Primary extends BaseData {
         _external = ((String) values.get("external")).charAt(0);
         _consciousness = ((String) values.get("consciousness")).charAt(0);
         _alcoholdrugs = ((String) values.get("alcoholdrugs")).charAt(0);
-
     }
 
     String responseConv() {

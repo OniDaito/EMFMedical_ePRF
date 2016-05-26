@@ -46,7 +46,7 @@ public class Observation extends BaseData {
         String CREATE_TABLE_OBSERVATIONS = "CREATE TABLE \"" +TABLE_NAME + "\" (\"time\" DATETIME DEFAULT CURRENT_TIMESTAMP, " +
                 "\"response\" VARCHAR, \"respiratory\" INTEGER, \"pulse\" INTEGER, \"painscore\" INTEGER, " +
                 "\"o2sats\" FLOAT, \"bp_sis\" INTEGER, \"bp_dis\" INTEGER, \"temperature\" FLOAT, \"perl\"" +
-                " BOOL, \"eyes\" VARCHAR, \"id\" VARCHAR PRIMARY KEY NOT NULL )";
+                " VARCHAR, \"eyes\" VARCHAR, \"id\" GUID PRIMARY KEY NOT NULL )";
         return CREATE_TABLE_OBSERVATIONS;
     }
 

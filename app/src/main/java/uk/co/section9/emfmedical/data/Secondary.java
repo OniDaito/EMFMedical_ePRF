@@ -22,7 +22,7 @@ public class Secondary extends BaseData{
     protected String _medications;
     protected String _history;
 
-    protected static final String TABLE_NAME = "secondary";
+    protected static final String TABLE_NAME = "secondarysurvey";
 
     public Secondary() {
         _high_blood_pressure = 'x';
@@ -40,9 +40,9 @@ public class Secondary extends BaseData{
     }
 
     public static String createTable() {
-        String CREATE_SECONDARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"high_blood_pressure\" BOOL, \"stroke\" BOOL," +
-                " \"seizures\" BOOL, \"diabetes\" BOOL, \"cardiac\" BOOL, \"asthma\" BOOL, \"respiratory\"" +
-                " BOOL, \"allergies\" TEXT, \"medications\" TEXT, \"history\" TEXT, \"fast\" BOOL, \"id\" TEXT PRIMARY KEY  NOT NULL )";
+        String CREATE_SECONDARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"high_blood_pressure\" VARCHAR, \"stroke\" VARCHAR," +
+                " \"seizures\" VARCHAR, \"diabetes\" VARCHAR, \"cardiac\" VARCHAR, \"asthma\" VARCHAR, \"respiratory\"" +
+                " VARCHAR, \"allergies\" TEXT, \"medications\" TEXT, \"history\" TEXT, \"fast\" VARCHAR, \"id\" GUID PRIMARY KEY  NOT NULL )";
 
         return CREATE_SECONDARY_TABLE;
     }
@@ -84,9 +84,12 @@ public class Secondary extends BaseData{
         values.put("asthma", ""+_asthma);
         values.put("respiratory", ""+_respiratory);
         values.put("fast", ""+_fast);
-        values.put("allergies", _allergies);
-        values.put("medications", _medications);
-        values.put("history", _history);
+        if (_allergies != "")
+            values.put("allergies", _allergies);
+        if (_medications != "")
+            values.put("medications", _medications);
+        if (_history != "")
+            values.put("history", _history);
         return values;
     }
 

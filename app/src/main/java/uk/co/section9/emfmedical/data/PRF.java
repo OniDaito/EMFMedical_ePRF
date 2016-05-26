@@ -71,7 +71,7 @@ public class PRF extends BaseData {
 
 
     public static String createTable() {
-        String CREATE_TABLE_PRFS = "CREATE TABLE \"" + TABLE_NAME + "\" (\"id\" VARCHAR PRIMARY KEY  NOT NULL , \"createdat\" DATETIME);";
+        String CREATE_TABLE_PRFS = "CREATE TABLE \"" + TABLE_NAME + "\" (\"id\" GUID PRIMARY KEY  NOT NULL , \"createdat\" DATETIME);";
         return CREATE_TABLE_PRFS;
     }
 

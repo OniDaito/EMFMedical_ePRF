@@ -61,7 +61,7 @@ public class Treatment extends BaseData {
         String CREATE_TABLE_TREATMENT = "CREATE TABLE \"" + TABLE_NAME + "\" (\"none\" BOOL, \"airway_opened\" BOOL, " +
                 "\"wound_cleaned\" BOOL, \"wound_dressed\" BOOL, \"rice\" BOOL, \"adhesive_dressing\" BOOL, " +
                 "\"sling\" BOOL, \"splint\" BOOL, \"recovery_position\" BOOL, \"other\" TEXT, \"id\"" +
-                " VARCHAR PRIMARY KEY  NOT NULL )";
+                " GUID PRIMARY KEY  NOT NULL )";
         return CREATE_TABLE_TREATMENT;
     }
 
@@ -76,7 +76,8 @@ public class Treatment extends BaseData {
         values.put("sling", ""+_sling);
         values.put("splint", ""+_splint);
         values.put("recovery_position", ""+_recovery_position);
-        values.put("other", _other);
+        if (_other != "")
+            values.put("other", _other);
         return values;
     }
 

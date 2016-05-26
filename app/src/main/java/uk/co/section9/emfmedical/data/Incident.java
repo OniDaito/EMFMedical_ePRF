@@ -2,6 +2,7 @@ package uk.co.section9.emfmedical.data;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.Date;
 
@@ -61,7 +62,7 @@ public class Incident extends BaseData {
         String CREATE_INCIDENT_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"time\" DATETIME" +
                 ", \"location\" TEXT, \"forname\" TEXT, \"surname\" TEXT, \"email\" TEXT, " +
                 "\"address\" TEXT, \"postcode\" TEXT, \"dob\" DATETIME, \"age\" INTEGER, \"gender\" VARCHAR, " +
-                "\"kin\" TEXT, \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
+                "\"kin\" TEXT, \"id\" GUID PRIMARY KEY  NOT NULL )";
 
         return CREATE_INCIDENT_TABLE;
     }
@@ -92,20 +93,30 @@ public class Incident extends BaseData {
     public ContentValues getValues(){
         ContentValues values = new ContentValues();
         values.put("time", Util.dateToDBString(get_time()));
-        values.put("location", get_location());
-        values.put("forname", get_forname());
-        values.put("surname", get_surname());
-        values.put("email", get_email());
-        values.put("address", get_address());
-        values.put("postcode", get_postcode());
+        if (_location != "")
+            values.put("location", get_location());
+        if (_forname != "")
+            values.put("forname", get_forname());
+        if (_surname != "")
+            values.put("surname", get_surname());
+        if (_email != "")
+            values.put("email", get_email());
+        if (_address != "")
+            values.put("address", get_address());
+        if (_postcode != "")
+            values.put("postcode", get_postcode());
+
         values.put("dob", Util.dateToDBString(get_dob()));
-        values.put("age", get_age());
-        values.put("gender", get_gender());
-        values.put("kin", get_kin());
+        values.put("age", Integer.toString(get_age()));
+        if (_gender != "")
+            values.put("gender", get_gender());
+        if (_kin != "")
+            values.put("kin", get_kin());
         return values;
     }
 
     public void setValues(ContentValues values) {
+
         _time = Util.dbStringToDate((String) values.get("time"));
         _location = ((String) values.get("location"));
         _forname = ((String) values.get("forname"));
@@ -114,7 +125,7 @@ public class Incident extends BaseData {
         _address = ((String) values.get("address"));
         _postcode = ((String) values.get("postcode"));
         _dob = Util.dbStringToDate((String) values.get("dob"));
-        _age = ((Integer) values.get("age"));
+        _age =  Integer.parseInt((String)values.get("age"));
         _gender = ((String) values.get("gender"));
         _kin = ((String) values.get("kin"));
 

@@ -34,9 +34,9 @@ public class Serious extends BaseData {
 
     public static String createTable() {
         String CREATE_TABLE_SERIOUS = "CREATE TABLE \"" + TABLE_NAME +"\" (\"ambulance_arrived\" DATETIME, " +
-                "\"ambulance_departed\" DATETIME, \"cpr\" BOOL, \"cpr_started\" DATETIME, " +
-                "\"defib_used\" BOOL, \"defib_shocks\" INTEGER, \"witnessed_collapse\" BOOL," +
-                " \"id\" VARCHAR PRIMARY KEY  NOT NULL )";
+                "\"ambulance_departed\" DATETIME, \"cpr\" VARCHAR, \"cpr_started\" DATETIME, " +
+                "\"defib_used\" VARCHAR, \"defib_shocks\" INTEGER, \"witnessed_collapse\" VARCHAR," +
+                " \"id\" GUID PRIMARY KEY  NOT NULL )";
         return CREATE_TABLE_SERIOUS;
     }
 
