@@ -165,7 +165,6 @@ public class SecondarySurveyActivity extends FragmentActivity {
             datachar = ss.get_asthma();
             if (datachar == 'y') { medical_history_asthma.setChecked(true); }
 
-
             CheckBox medical_history_respiratory = (CheckBox)mainView.findViewById(R.id.medical_history_respiratory);
             datachar = ss.get_respiratory();
             if (datachar == 'y') {medical_history_respiratory.setChecked(true);}

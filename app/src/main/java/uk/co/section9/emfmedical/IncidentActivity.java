@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TimePicker;
 import java.util.Calendar;
 
@@ -35,7 +34,6 @@ public class IncidentActivity  extends PRFFragmentActivity {
 	super.onSaveInstanceState(outState);
 	}
 
-
 	public static class IncidentFragment extends Fragment {
 
 		static View mainView;
@@ -56,17 +54,22 @@ public class IncidentActivity  extends PRFFragmentActivity {
 		}
 
         @Override
-        public void onStop() {
+        public void onPause() {
+            super.onPause();
             setCurrentPRF();
+        }
+
+        @Override
+        public void onStop() {
             super.onStop();
+            setCurrentPRF();
         }
 
         @Override
         public void onDestroy() {
-            setCurrentPRF();
             super.onDestroy();
+            setCurrentPRF();
         }
-
 
 		public static boolean used() {
 		return mUsed;
@@ -79,12 +82,10 @@ public class IncidentActivity  extends PRFFragmentActivity {
 			Incident inc = prf.get_incident();
 
 			TimePicker incident_time = (TimePicker)mainView.findViewById(R.id.incident_time);
-			Date dd = new Date();
 			DatePicker incident_date = (DatePicker)mainView.findViewById(R.id.incident_date);
             Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-            cal.set(incident_date.getYear(), incident_date.getDayOfMonth(),incident_date.getDayOfMonth(),incident_time.getCurrentHour(),incident_time.getCurrentMinute() );
-            dd = cal.getTime();
-
+            cal.set(incident_date.getYear(), incident_date.getMonth(),incident_date.getDayOfMonth(),incident_time.getCurrentHour(),incident_time.getCurrentMinute() );
+            Date dd = cal.getTime();
 			inc.set_time(dd);
 
 			EditText incident_location = (EditText)mainView.findViewById(R.id.incident_location);
@@ -106,11 +107,10 @@ public class IncidentActivity  extends PRFFragmentActivity {
 			inc.set_postcode(""+incident_postcode.getEditableText());
 
 			DatePicker incident_date_of_birth = (DatePicker)mainView.findViewById(R.id.incident_date_of_birth);
-			Date dob = new Date();
 
             cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-            cal.set(incident_date_of_birth.getYear(), incident_date_of_birth.getDayOfMonth(),incident_date_of_birth.getDayOfMonth() );
-            dob = cal.getTime();
+            cal.set(incident_date_of_birth.getYear(), incident_date_of_birth.getMonth(),incident_date_of_birth.getDayOfMonth() );
+            Date dob = cal.getTime();
 			inc.set_dob(dob);
 
 			EditText incident_age = (EditText)mainView.findViewById(R.id.incident_age);
@@ -127,15 +127,16 @@ public class IncidentActivity  extends PRFFragmentActivity {
 		public static void getCurrentPRF(){
 			PRF prf = EMFMedicalApp.getCurrentPRF();
 			Incident inc = prf.get_incident();
+            Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 
 			TimePicker incident_time = (TimePicker)mainView.findViewById(R.id.incident_time);
+
 			Date dd = inc.get_time();
-			incident_time.setCurrentMinute(dd.getMinutes());
-            incident_time.setCurrentHour(dd.getHours());
+            cal.setTime(dd);
+			incident_time.setCurrentMinute(cal.get(Calendar.MINUTE));
+            incident_time.setCurrentHour(cal.get(Calendar.HOUR));
 
 			DatePicker incident_date = (DatePicker)mainView.findViewById(R.id.incident_date);
-
-            Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
             cal.setTime(dd);
 
             incident_date.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));

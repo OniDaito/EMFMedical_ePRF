@@ -22,14 +22,20 @@ public class NotesActivity extends FragmentActivity {
 
         @Override
         public void onStop() {
-            setCurrentPRF();
             super.onStop();
+            setCurrentPRF();
         }
 
         @Override
         public void onDestroy() {
-            setCurrentPRF();
             super.onDestroy();
+            setCurrentPRF();
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            setCurrentPRF();
         }
 
         @Override
@@ -49,7 +55,7 @@ public class NotesActivity extends FragmentActivity {
         public static boolean used() {
             return mUsed;
         }
-
+        
         public static void setCurrentPRF() {
             PRF prf = EMFMedicalApp.getCurrentPRF();
             Notes nn = prf.get_notes();

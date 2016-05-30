@@ -31,15 +31,14 @@ public class Incident extends BaseData {
 
     public Incident () {
         // Assuming GMT - wont work elsewhere of course :S
-        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-        _time = cal.getTime();
+        _time = new Date();
         _location = "";
         _forname = "";
         _surname = "";
         _email = "";
         _address = "";
         _postcode = "";
-        _dob = cal.getTime();
+        _dob = new Date();
         _age = 0;
         _gender = "";
         _kin = "";
@@ -127,8 +126,8 @@ public class Incident extends BaseData {
         return _time;
     }
 
-    public void set_time(Date _time) {
-        this._time = _time;
+    public void set_time(Date tt) {
+        _time = tt;
     }
 
     public String get_location() {

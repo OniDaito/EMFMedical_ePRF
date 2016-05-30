@@ -39,9 +39,8 @@ public class EMFMedicalApp extends Application {
     }
 
     // Create a new PRF from a uuid handed in
-    public static PRF loadPRF(String uuid){
+    public static void loadPRF(String uuid){
         _currentPRF = _db.readPRF(uuid);
-        return _currentPRF;
     }
 
     // Commit the current PRF to the database

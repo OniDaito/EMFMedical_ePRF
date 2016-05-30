@@ -1,6 +1,7 @@
 package uk.co.section9.emfmedical;
 
 import android.content.ContentValues;
+import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,8 +17,8 @@ public class Util {
     public static String dateToDBString(Date d){
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        Date date = new Date();
-        return dateFormat.format(date);
+        String dd = dateFormat.format(d);
+        return dd;
     }
 
     public static Date dbStringToDate(String s) {

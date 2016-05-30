@@ -38,15 +38,22 @@ public class DischargeActivity extends FragmentActivity {
 
         @Override
         public void onStop() {
-            setCurrentPRF();
             super.onStop();
+            setCurrentPRF();
         }
 
         @Override
         public void onDestroy() {
-            setCurrentPRF();
             super.onDestroy();
+            setCurrentPRF();
         }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            setCurrentPRF();
+        }
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,

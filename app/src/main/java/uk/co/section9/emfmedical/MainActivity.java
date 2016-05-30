@@ -3,7 +3,6 @@ package uk.co.section9.emfmedical;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -69,8 +68,8 @@ public class MainActivity extends Activity {
         Context context = getApplicationContext();
 
         // Button option for a full PRF
-        Button button = (Button) findViewById(R.id.main_start_new_prf);
-        button.setOnClickListener(new OnClickListener() {
+        Button newButton = (Button) findViewById(R.id.main_start_new_prf);
+        newButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(_ref, PRFActivity.class);
@@ -82,8 +81,8 @@ public class MainActivity extends Activity {
 
 
         // Button option for a minor wound dressed PRF
-        Button button2 = (Button) findViewById(R.id.main_minor_wound_dressed);
-        button2.setOnClickListener(new OnClickListener() {
+        Button buttonMinor = (Button) findViewById(R.id.main_minor_wound_dressed);
+        buttonMinor.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(_ref, PRFActivity.class);
@@ -105,7 +104,7 @@ public class MainActivity extends Activity {
             final PRF prf = EMFMedicalApp.getPRFByID(s);
             prfButton.setText(prf.get_incident().get_forname());
 
-            button.setOnClickListener(new OnClickListener() {
+            prfButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
                     Intent intent = new Intent(_ref, PRFActivity.class);

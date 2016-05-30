@@ -135,7 +135,7 @@ public class SeriousActivity extends FragmentActivity {
                 ss.set_ambulance_arrived(dd);
 
                 TimePicker ambulance_departed = (TimePicker)mainView.findViewById(R.id.ambulance_departed);
-                cal.set(Calendar.HOUR,ambulance_departed.getCurrentHour());
+                cal.set(Calendar.HOUR, ambulance_departed.getCurrentHour());
                 cal.set(Calendar.MINUTE, ambulance_departed.getCurrentMinute());
                 Date de = cal.getTime();
                 ss.set_ambulance_departed(de);

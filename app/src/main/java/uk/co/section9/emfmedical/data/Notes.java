@@ -43,7 +43,7 @@ public class Notes extends BaseData {
     }
 
     public void setValues(ContentValues values) {
-        _notes = ((String) values.get("kin"));
+        _notes = ((String) values.get("notes"));
     }
 
     public String get_notes() {
