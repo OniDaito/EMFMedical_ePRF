@@ -24,7 +24,7 @@
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Handling on Departure"
+                    android:text="Outcome"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#ffffff"
                     android:textSize="32dp"
@@ -50,41 +50,9 @@
                     android:text="Walking Aided" />
             </TableRow>
 
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
 
-                <CheckBox
-                    android:id="@+id/outcome_stretcher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Stretcher" />
 
-                <CheckBox
-                    android:id="@+id/outcome_longboard"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Long Board" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <CheckBox
-                    android:id="@+id/outcome_carry_chair"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Carry chair" />
-
-                <CheckBox
-                    android:id="@+id/outcome_orthopaedic_stretcher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Orthopaedic Stretcher" />
-            </TableRow>
+       `
 
             <TableRow
                 android:id="@+id/tableRow4"
@@ -146,10 +114,16 @@
                     android:text="Public Transport" />
 
                 <CheckBox
-                    android:id="@+id/outcome_nhs_ambulance"
+                    android:id="@+id/outcome_ambulance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NHS Ambulance" />
+                    android:text="Ambulance" />
+
+                <CheckBox
+                    android:id="@+id/outcome_taxi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Taxi" />
             </TableRow>
         </TableLayout>
 
@@ -209,6 +183,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Review Later" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Receiving Centre"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/outcome_receiving_centre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
 
             </TableRow>
 

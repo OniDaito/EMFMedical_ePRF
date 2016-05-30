@@ -20,7 +20,8 @@ public class Secondary extends BaseData{
     protected char _fast;
     protected String _allergies;
     protected String _medications;
-    protected String _history;
+    protected String _medical_history;
+    protected String _history_presenting_complaint;
 
     protected static final String TABLE_NAME = "secondarysurvey";
 
@@ -36,13 +37,14 @@ public class Secondary extends BaseData{
 
         _allergies = "";
         _medications = "";
-        _history = "";
+        _medical_history = "";
+        _history_presenting_complaint = "";
     }
 
     public static String createTable() {
         String CREATE_SECONDARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"high_blood_pressure\" VARCHAR, \"stroke\" VARCHAR," +
                 " \"seizures\" VARCHAR, \"diabetes\" VARCHAR, \"cardiac\" VARCHAR, \"asthma\" VARCHAR, \"respiratory\"" +
-                " VARCHAR, \"allergies\" TEXT, \"medications\" TEXT, \"history\" TEXT, \"fast\" VARCHAR, \"id\" GUID PRIMARY KEY  NOT NULL )";
+                " VARCHAR, \"allergies\" TEXT, \"medications\" TEXT, \"medical_history\" TEXT, \"history_presenting_complaint\" TEXT, \"fast\" VARCHAR, \"id\" GUID PRIMARY KEY  NOT NULL )";
 
         return CREATE_SECONDARY_TABLE;
     }
@@ -68,7 +70,8 @@ public class Secondary extends BaseData{
         s += "<fast>" + Util.ynConv(_fast) + "</fast>\n";
         s += "<allergies>" + _allergies + "</allergies>\n";
         s += "<medications>" + _medications + "</medications>\n";
-        s += "<history>" +  _history + "</history>\n";
+        s += "<medical_history>" +  _medical_history + "</medical_history>\n";
+        s += "<history_presenting_complaint>" +  _history_presenting_complaint + "</history_presenting_complaint>\n";
         s += "</secondary>\n";
 
         return s;
@@ -88,8 +91,10 @@ public class Secondary extends BaseData{
             values.put("allergies", _allergies);
         if (_medications != "")
             values.put("medications", _medications);
-        if (_history != "")
-            values.put("history", _history);
+        if (_medical_history != "")
+            values.put("medical_history", _medical_history);
+        if (_history_presenting_complaint != "")
+            values.put("history_presenting_complaint", _history_presenting_complaint);
         return values;
     }
 
@@ -104,7 +109,8 @@ public class Secondary extends BaseData{
         _fast = ((String) values.get("fast")).charAt(0);
         _allergies = ((String) values.get("allergies"));
         _medications = ((String) values.get("medications"));
-        _history = ((String) values.get("history"));
+        _medical_history = ((String) values.get("medical_history"));
+        _history_presenting_complaint = ((String) values.get("_history_presenting_complaint"));
     }
 
     public char get_high_blood_pressure() {
@@ -195,12 +201,20 @@ public class Secondary extends BaseData{
         this._medications = _medications;
     }
 
-    public String get_history() {
-        return _history;
+    public String get_medical_history() {
+        return _medical_history;
     }
 
-    public void set_history(String _history) {
-        this._history = _history;
+    public void set_medical_history(String _history) {
+        this._medical_history = _history;
+    }
+
+    public String get_history_presenting_complaint() {
+        return _history_presenting_complaint;
+    }
+
+    public void set_history_presenting_complaint(String _history) {
+        this._history_presenting_complaint = _history;
     }
 
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:id="@+id/scrollView1"
@@ -11,29 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
 
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Approximate Time of Arrest"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <TimePicker
-                    android:id="@+id/resuscitation_approximate_time_of_arrest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                
-            </TableRow>
-        </TableLayout>
         
     <TableLayout
         
@@ -44,9 +21,19 @@
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:background="#000000" >
 
-
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resusitation"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textSize="32dp"
+                android:textStyle="bold"
+                android:typeface="normal" />
         </TableRow>
 
         <TableRow
@@ -54,8 +41,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Witnessed collapse"
@@ -84,58 +79,19 @@
             </RadioGroup>
         </TableRow>
 
+
+
         <TableRow
-            android:id="@+id/tableRow2"
+            android:id="@+id/tableRow12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/rteras"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bystander CPR In Progress"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:width="30dp" />
-
-            <RadioGroup
-                android:id="@+id/resuscitation_bystander_cpr_in_progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:width="20dp" >
-
-                <RadioButton
-                    android:id="@+id/resuscitation_bystander_cpr_in_progress_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/resuscitation_bystander_cpr_in_progress_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No" />
-            </RadioGroup>
-
-            <TimePicker
-                android:id="@+id/resuscitation_bystander_cpr_in_progress_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CPR Started"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:width="10dp" />
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
 
             <RadioGroup
                 android:id="@+id/resuscitation_cpr_started"
@@ -158,54 +114,33 @@
                     android:text="No" />
             </RadioGroup>
 
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time CPR Started"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
             <TimePicker
                 android:id="@+id/resuscitation_cpr_started_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow2"
+            android:id="@+id/tableRow6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CPR Continued during Transfer"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:width="30dp" />
-
-            <RadioGroup
-                android:id="@+id/resuscitation_cpr_continued_during_transfer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-               android:width="10dp" >
-
-                <RadioButton
-                    android:id="@+id/resuscitation_cpr_continued_during_transfer_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:text="Yes" />
-
-                <RadioButton
-                    android:id="@+id/resuscitation_cpr_continued_during_transfer_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="No" />
-            </RadioGroup>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Defibrillator used"
@@ -231,16 +166,39 @@
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
+
         </TableRow>
-
-     
-
         <TableRow
-            android:id="@+id/tableRow2"
+            android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Shocks"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/resuscitation_number_of_shocks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" >
+
+                <requestFocus />
+            </EditText>
+
+        </TableRow>
+     
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -253,63 +211,123 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" 
                 android:width="10dp">
-
-                <RadioButton
+                RadioButton
                     android:id="@+id/resuscitation_return_of_normal_breathing_yes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
                     android:text="Yes" />
 
-                <RadioButton
+                RadioButton
                     android:id="@+id/resuscitation_return_of_normal_breathing_no"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
 
-            <TimePicker
-                android:id="@+id/resuscitation_return_of_normal_breathing_time"
+
+        </TableRow>
+
+
+
+
+        <TableRow
+            android:id="@+id/tableRow16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#000000" >
+
+            <TextView
+                android:id="@+id/textView16"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Ambulance"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#ffffff"
+                android:textSize="32dp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+
+
+
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow2"
+            android:id="@+id/tableRow15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ambulance Called"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RadioGroup
+                android:id="@+id/ambulance_called"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:width="10dp">
+
+                <RadioButton
+                    android:id="@+id/ambulance_called_yes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/ambulance_called_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No" />
+            </RadioGroup>
         </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time Ambulance Arrived"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TimePicker
+                android:id="@+id/ambulance_arrived"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time Ambulance Departed"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TimePicker
+                android:id="@+id/ambulance_departed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </TableRow>
+
+
     </TableLayout>
     
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
 
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Number of Shocks"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <EditText
-                    android:id="@+id/resuscitation_number_of_shocks"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" >
-
-                    <requestFocus />
-                </EditText>
-
-            </TableRow>
-
-        </TableLayout>
 
 	 
     

@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import uk.co.section9.emfmedical.data.Notes;
+import uk.co.section9.emfmedical.data.PRF;
+
 // Tab for any further notes
 
 public class NotesActivity extends FragmentActivity {
@@ -36,14 +39,14 @@ public class NotesActivity extends FragmentActivity {
 		    }
 	        
 	        
-	        public static String getData() {
-	        	String data = new String();
+	        public static void setCurrentPRF() {
+
+				PRF prf = EMFMedicalApp.getCurrentPRF();
+				Notes nn = prf.get_notes();
 
 	        	EditText notes_notes = (EditText)mainView.findViewById(R.id.notes_notes);
-	        	data += "notes_notes: " + notes_notes.getEditableText() + "\n";
-	        
-	        	return data;
-	        }
+	        	nn.set_notes(""+notes_notes);
+			}
 	    }
 	
 }

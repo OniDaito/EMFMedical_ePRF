@@ -14,6 +14,7 @@ public class Serious extends BaseData {
     protected Date _ambulance_arrived;
     protected Date _ambulance_departed;
     protected char _cpr;
+    protected char _ambulance_called;
     protected Date _cpr_started;
     protected char _defib_used;
     protected int _defib_shocks;
@@ -34,7 +35,7 @@ public class Serious extends BaseData {
 
     public static String createTable() {
         String CREATE_TABLE_SERIOUS = "CREATE TABLE \"" + TABLE_NAME +"\" (\"ambulance_arrived\" DATETIME, " +
-                "\"ambulance_departed\" DATETIME, \"cpr\" VARCHAR, \"cpr_started\" DATETIME, " +
+                "\"ambulance_departed\" DATETIME, \"ambulance_called\" VARCHAR, \"cpr\" VARCHAR, \"cpr_started\" DATETIME, " +
                 "\"defib_used\" VARCHAR, \"defib_shocks\" INTEGER, \"witnessed_collapse\" VARCHAR," +
                 " \"id\" GUID PRIMARY KEY  NOT NULL )";
         return CREATE_TABLE_SERIOUS;
@@ -47,6 +48,7 @@ public class Serious extends BaseData {
     public String toXML() {
         String s;
         s = "<serious>\n";
+        s += "<ambulance_called>" + Util.ynConv(_ambulance_called) + "</ambulance_called>\n";
         s += "<ambulance_arrived>" + Util.dateToDBString(_ambulance_arrived) + "</ambulance_arrived>\n";
         s += "<ambulance_departed>" + Util.dateToDBString(_ambulance_departed) + "</ambulance_departed>\n";
         s += "<cpr>" + Util.ynConv(_cpr) + "</cpr>\n";
@@ -61,6 +63,7 @@ public class Serious extends BaseData {
 
     public ContentValues getValues () {
         ContentValues values = new ContentValues();
+        values.put("ambulance_called", ""+_ambulance_called);
         values.put("ambulance_arrived", Util.dateToDBString(_ambulance_arrived));
         values.put("ambulance_departed", Util.dateToDBString(_ambulance_departed));
         values.put("cpr", ""+_cpr);
@@ -73,13 +76,13 @@ public class Serious extends BaseData {
 
     public void setValues(ContentValues values) {
         _ambulance_arrived = Util.dbStringToDate((String) values.get("ambulance_arrived"));
+        _ambulance_called = ((String) values.get("ambulance_called")).charAt(0);
         _ambulance_departed = Util.dbStringToDate((String) values.get("ambulance_departed"));
         _cpr = ((String) values.get("cpr")).charAt(0);
         _cpr_started = Util.dbStringToDate((String) values.get("cpr_started"));
         _defib_used = ((String) values.get("defib_used")).charAt(0);
         _defib_shocks = ((String) values.get("defib_shocks")).charAt(0);
         _witnessed_collapse = ((String) values.get("witnessed_collapse")).charAt(0);
-
     }
 
     public Date get_ambulance_arrived() {
@@ -88,6 +91,15 @@ public class Serious extends BaseData {
 
     public void set_ambulance_arrived(Date _ambulance_arrived) {
         this._ambulance_arrived = _ambulance_arrived;
+    }
+
+    public char get_ambulance_called() {
+        return _ambulance_called;
+    }
+
+    public void set_ambulance_called(char _ambulance_called) {
+        if (_ambulance_called == 'y' || _ambulance_called == 'n' || _ambulance_called == 'x' )
+            this._ambulance_called = _ambulance_called;
     }
 
     public Date get_ambulance_departed() {

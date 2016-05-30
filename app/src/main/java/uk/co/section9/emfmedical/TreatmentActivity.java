@@ -11,11 +11,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import uk.co.section9.emfmedical.data.PRF;
+import uk.co.section9.emfmedical.data.Treatment;
+
 // Treatment Administered
 
 public class TreatmentActivity extends FragmentActivity {
-	
-	
+
 	 public static class TreatmentFragment extends Fragment {
 	     
 		 	static View mainView;
@@ -24,122 +26,68 @@ public class TreatmentActivity extends FragmentActivity {
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	            super.onCreate(savedInstanceState);
-	           
 	        }
 	        
 	        public static boolean used() {
 		    	return mUsed;
 		    }
-	        
-	        // If minor wound, set a few things for us
-	        
-	        public static void populateMinorWound() {
-	        	CheckBox treatment_wound_dressed = (CheckBox)mainView.findViewById(R.id.treatment_wound_dressed);
-	        	treatment_wound_dressed.setChecked(true);
-	        	CheckBox treatment_wound_cleansed = (CheckBox)mainView.findViewById(R.id.treatment_wound_cleansed);
-	        	treatment_wound_cleansed.setChecked(true);
 
-	        }
-	        
-	
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
 	            mainView = inflater.inflate(R.layout.treatment, container, false);
 	            mUsed = true;
-	            
-	            if (PRFActivity.prePopulate.equalsIgnoreCase("MinorWoundDressed")){
-	        		populateMinorWound();
-	        	}
-	            
+
 	            return mainView;
 	        }
 	        
 	        
-	        public static String getData() {
-	        	String data = new String();
-	        	
+	        public static void setCurrentPRF() {
+				PRF prf = EMFMedicalApp.getCurrentPRF();
+				Treatment tt = prf.get_treatment();
+
 	        	EditText treatment_other = (EditText)mainView.findViewById(R.id.treatment_other);
-	        	data += "treatment_other: " + treatment_other.getEditableText() + "\n";
+	        	tt.set_other("" + treatment_other.getEditableText());
 	        	
 	        	CheckBox treatment_none = (CheckBox)mainView.findViewById(R.id.treatment_none);
 	        	if (treatment_none.isChecked()){
-	        		data += "treatment_none: yes\n";
+                    tt.set_none('y');
 	        	}
-	        	
-	        	CheckBox treatment_airway_opened = (CheckBox)mainView.findViewById(R.id.treatment_airway_opened);
-	        	if (treatment_airway_opened.isChecked()){
-	        		data += "treatment_airway_opened: yes\n";
-	        	}
-	        	
-	        	CheckBox treatment_airway_suctioned = (CheckBox)mainView.findViewById(R.id.treatment_airway_suctioned);
-	        	if (treatment_airway_suctioned.isChecked()){
-	        		data += "treatment_airway_suctioned: yes\n";
-	        	}
-	        	
+
 	        	CheckBox treatment_wound_cleansed = (CheckBox)mainView.findViewById(R.id.treatment_wound_cleansed);
 	        	if (treatment_wound_cleansed.isChecked()){
-	        		data += "treatment_wound_cleansed: yes\n";
+                    tt.set_wound_cleaned('y');
 	        	}
 	        	
 	        	CheckBox treatment_recovery_position = (CheckBox)mainView.findViewById(R.id.treatment_recovery_position);
 	        	if (treatment_recovery_position.isChecked()){
-	        		data += "treatment_recovery_position: yes\n";
+                    tt.set_recovery_position('y');
 	        	}
 	        	
 	        	CheckBox treatment_adhesive_dressing = (CheckBox)mainView.findViewById(R.id.treatment_adhesive_dressing);
 	        	if (treatment_adhesive_dressing.isChecked()){
-	        		data += "treatment_adhesive_dressing: yes\n";
+	        		tt.set_adhesive_dressing('y');
 	        	}
 	        	
 	        	CheckBox treatment_wound_dressed = (CheckBox)mainView.findViewById(R.id.treatment_wound_dressed);
 	        	if (treatment_wound_dressed.isChecked()){
-	        		data += "treatment_wound_dressed: yes\n";
+                    tt.set_wound_dressed('y');
 	        	}
-	        	
-	        	CheckBox treatment_cervical_spine_control = (CheckBox)mainView.findViewById(R.id.treatment_cervical_spine_control);
-	        	if (treatment_cervical_spine_control.isChecked()){
-	        		data += "treatment_cervical_spine_control: yes\n";
-	        	}
-	        	
+
 	        	CheckBox treatment_rice = (CheckBox)mainView.findViewById(R.id.treatment_rice);
 	        	if (treatment_rice.isChecked()){
-	        		data += "treatment_rice: yes\n";
+	        		tt.set_rice('y');
 	        	}
-	        	
 	        	
 	        	CheckBox treatment_sling = (CheckBox)mainView.findViewById(R.id.treatment_sling);
 	        	if (treatment_sling.isChecked()){
-	        		data += "treatment_sling: yes\n";
+	        		tt.set_sling('y');
 	        	}
 	        	
 	        	CheckBox treatment_splint = (CheckBox)mainView.findViewById(R.id.treatment_splint);
 	        	if (treatment_splint.isChecked()){
-	        		data += "treatment_splint: yes\n";
+	        		tt.set_splint('y');
 	        	}
-	        	
-	        	CheckBox treatment_aspirin = (CheckBox)mainView.findViewById(R.id.treatment_aspirin);
-	        	if (treatment_aspirin.isChecked()){
-	        		data += "treatment_aspirin: yes\n";
-	        	}
-	        	
-	        	
-	        	CheckBox treatment_ibuprofen = (CheckBox)mainView.findViewById(R.id.treatment_ibuprofen);
-	        	if (treatment_ibuprofen.isChecked()){
-	        		data += "treatment_ibuprofen: yes\n";
-	        	}
-	        	
-	        	CheckBox treatment_loratadine = (CheckBox)mainView.findViewById(R.id.treatment_loratadine);
-	        	if (treatment_loratadine.isChecked()){
-	        		data += "treatment_loratadine: yes\n";
-	        	}
-	        	
-	        	CheckBox treatment_paraceatomol = (CheckBox)mainView.findViewById(R.id.treatment_paraceatomol);
-	        	if (treatment_paraceatomol.isChecked()){
-	        		data += "treatment_paraceatomol: yes\n";
-	        	}
-	        	
-	        	return data;
 	        	
 	        }
 	        

@@ -45,8 +45,7 @@ public class ResponseActivity extends FragmentActivity {
 	        	
 	        	TimePicker response_time_received = (TimePicker)mainView.findViewById(R.id.response_time_received);
 	        	data += "response_time_received: " + response_time_received.getCurrentHour() + ":" + response_time_received.getCurrentMinute() + "\n";
-	        	
-	        	
+
 	        	TimePicker response_time_arrived = (TimePicker)mainView.findViewById(R.id.response_time_arrived);
 	        	data += "response_time_arrived: " + response_time_arrived.getCurrentHour() + ":" + response_time_arrived.getCurrentMinute() + "\n";
 	        	

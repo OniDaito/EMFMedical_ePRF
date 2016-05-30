@@ -26,6 +26,7 @@ public class Discharge extends BaseData {
     protected Date _time_left;
     protected char _refused;
     protected String _seen_by;
+    protected String _receiving_centre;
 
     protected static final String TABLE_NAME = "discharge";
 
@@ -45,12 +46,13 @@ public class Discharge extends BaseData {
         _time_left.setDate(0);
         _refused = 'x';
         _seen_by = "";
+        _receiving_centre = "";
     }
 
     public static String createTable() {
         String CREATE_TABLE_DISCHARGE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"walking_unaided\" VARCHAR, \"walking_aided\" VARCHAR, " +
                 "\"other\" TEXT, \"own_transport\" VARCHAR, \"public_transport\" VARCHAR, \"ambulance\" VARCHAR, \"taxi\" VARCHAR, " +
-                "\"completed\" VARCHAR, \"hospital\" VARCHAR, \"review\" VARCHAR, \"advised\" VARCHAR, \"time_left\" DATETIME, " +
+                "\"completed\" VARCHAR, \"hospital\" VARCHAR,  \"receiving_centre\" VARCHAR, \"review\" VARCHAR, \"advised\" VARCHAR, \"time_left\" DATETIME, " +
                 "\"refused\" VARCHAR, \"seen_by\" TEXT, \"id\" GUID PRIMARY KEY NOT NULL )";
         return CREATE_TABLE_DISCHARGE;
     }
@@ -71,6 +73,7 @@ public class Discharge extends BaseData {
         s += "<taxi>" + charConv(get_taxi()) + "</taxi>\n";
         s += "<completed>" + charConv(get_completed()) + "</completed>\n";
         s += "<hospital>" + charConv(get_hospital()) + "</hospital>\n";
+        s += "<receiving_centre>" + _receiving_centre + "</receiving_centre>\n";
         s += "<review>" + charConv(get_review()) + "</review>\n";
         s += "<advised>" + charConv(get_advised()) + "</advised>\n";
         s += "<time_left>" + get_time_left().toString() + "</time_left>\n";
@@ -94,6 +97,7 @@ public class Discharge extends BaseData {
         values.put("completed", new String(""+_completed));
         values.put("hospital", new String(""+_hospital));
         values.put("review", new String(""+_review));
+        values.put("receiving_centre", _receiving_centre);
         values.put("advised", new String(""+_advised));
         values.put("time_left", Util.dateToDBString(_time_left));
         values.put("refused", new String(""+_refused));
@@ -114,6 +118,7 @@ public class Discharge extends BaseData {
         _completed =((String) values.get("completed")).charAt(0);
         _hospital = ((String) values.get("hospital")).charAt(0);
         _review = ((String) values.get("review")).charAt(0);
+        _receiving_centre = ((String) values.get("receiving_centre"));
         _advised =((String) values.get("advised")).charAt(0);
         _time_left = Util.dbStringToDate((String) values.get("time_left"));
         _refused = ((String) values.get("refused")).charAt(0);
@@ -169,6 +174,14 @@ public class Discharge extends BaseData {
     public void set_own_transport(char _own_transport) {
         if (_own_transport == 'x' || _own_transport == 'y' || _own_transport == 'n')
             this._own_transport = _own_transport;
+    }
+
+    public String get_receiving_centre() {
+        return _receiving_centre;
+    }
+
+    public void set_receiving_centre(String _receiving_centre) {
+        this._receiving_centre = _receiving_centre;
     }
 
     public char get_public_transport() {

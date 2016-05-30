@@ -18,8 +18,6 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import uk.co.section9.emfmedical.data.PRF;
-
 
 // The actual PRFDatabase Activity itself
 
@@ -27,10 +25,6 @@ import uk.co.section9.emfmedical.data.PRF;
 public class PRFActivity extends FragmentActivity  {
 	 
 	private FragmentTabHost _tabhost;
-	private String          _prfID;
-    private PRF _currentPRF;
-	private EMFCrypto       _crypto;
-
     public static String prePopulate;
     private static EMFMedicalApp _app;
 
@@ -46,17 +40,15 @@ public class PRFActivity extends FragmentActivity  {
 
         _app = (EMFMedicalApp) getApplication();
         // Deal with our PRF - either load one if we've passed in an ID
-		_prfID = java.util.UUID.randomUUID().toString();
+        // TODO - oncreate might have to call a saved state PRF - not sure - held in the app?
 
         if (prf_id.equals("new") || prf_id.equals("")) {
-            _currentPRF = new PRF(_prfID);
+            EMFMedicalApp.newPRF();
         } else {
             // TODO - graceful fallback on failure needed here
-            _currentPRF = _app.getDatabase().readPRF(_prfID);
+            EMFMedicalApp.newPRF(prf_id);
         }
 
-	    _crypto = new EMFCrypto();
-		_crypto.init(getBaseContext());
 
         // Create the view and add all the tabs
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -74,34 +66,28 @@ public class PRFActivity extends FragmentActivity  {
 	    _tabhost.addTab(_tabhost.newTabSpec("primary_survey").setIndicator("2.Primary Survey"),
 	    		PrimarySurveyActivity.PrimarySurveyFragment.class, null);
 	        
-		_tabhost.addTab(_tabhost.newTabSpec("medical_history").setIndicator("3.Medical History"),
-				MedicalHistoryActivity.MedicalHistoryFragment.class, null);
-	        
-		_tabhost.addTab(_tabhost.newTabSpec("secondary_survey").setIndicator("4.uk.co.section9.emfmedical.data.Secondary Survey"),
+		_tabhost.addTab(_tabhost.newTabSpec("History").setIndicator("3.History"),
 				SecondarySurveyActivity.SecondarySurveyFragment.class, null);
-	        
-		_tabhost.addTab(_tabhost.newTabSpec("observations").setIndicator("5.Observations"),
+
+		_tabhost.addTab(_tabhost.newTabSpec("observations").setIndicator("4.Observations"),
 				ObservationsActivity.ObservationsFragment.class, null);
 	        
-		_tabhost.addTab(_tabhost.newTabSpec("treatment").setIndicator("6.Treatment"),
+		_tabhost.addTab(_tabhost.newTabSpec("treatment").setIndicator("5.Treatment"),
 				TreatmentActivity.TreatmentFragment.class, null);
 	        
-		_tabhost.addTab(_tabhost.newTabSpec("resuscitation").setIndicator("7.Resuscitation"),
-				ResuscitationActivity.ResuscitationFragment.class, null);
-	        
-		_tabhost.addTab(_tabhost.newTabSpec("ambulance").setIndicator("8.Ambulance"),
-				ResponseActivity.ResponseFragment.class, null);
+		_tabhost.addTab(_tabhost.newTabSpec("resuscitation").setIndicator("6.Serious"),
+                SeriousActivity.SeriousFragment.class, null);
 
-        _tabhost.addTab(_tabhost.newTabSpec("notes").setIndicator("9.Notes"),
+        _tabhost.addTab(_tabhost.newTabSpec("notes").setIndicator("7.Notes"),
                 NotesActivity.NotesFragment.class, null);
 
-        _tabhost.addTab(_tabhost.newTabSpec("outcome").setIndicator("10.Outcome"),
-                OutcomeActivity.OutcomeFragment.class, null);
+        _tabhost.addTab(_tabhost.newTabSpec("outcome").setIndicator("8.Outcome"),
+                DischargeActivity.OutcomeFragment.class, null);
 
-        _tabhost.addTab(_tabhost.newTabSpec("sign").setIndicator("11.Sign"),
+        _tabhost.addTab(_tabhost.newTabSpec("sign").setIndicator("9.Sign"),
                 SignActivity.SignFragment.class, null);
 
-        _tabhost.addTab(_tabhost.newTabSpec("refused").setIndicator("11.Refused"),
+        _tabhost.addTab(_tabhost.newTabSpec("refused").setIndicator("9.Refused"),
                 RefusedActivity.RefusedFragment.class, null);  	   // Setup the cancel button
 
         Button button = (Button) findViewById(R.id.prf_activity_cancel);
@@ -156,7 +142,6 @@ public class PRFActivity extends FragmentActivity  {
         } else {
             prePopulate = "None";
         }
-	        
     }
 	 
 
@@ -165,17 +150,25 @@ public class PRFActivity extends FragmentActivity  {
     public void onBackPressed() {
     }
 
+    // Set the database but also quit and go back to the main screen
+    public void postponeForm() {
+        EMFMedicalApp.newPRF();
+        finish();
+    }
 
     // Form is completed! Grab all data and encrypt
     public void completeForm(){
+
+        EMFMedicalApp.completePRF();
+
 /*
         String total_data = new String();
         if (IncidentActivity.IncidentFragment.used())
             total_data += IncidentActivity.IncidentFragment.getData();
         if (PrimarySurveyActivity.PrimarySurveyFragment.used())
             total_data += PrimarySurveyActivity.PrimarySurveyFragment.getData();
-        if (MedicalHistoryActivity.MedicalHistoryFragment.used())
-            total_data += MedicalHistoryActivity.MedicalHistoryFragment.getData();
+        if (SecondarySurveyActivity.MedicalHistoryFragment.used())
+            total_data += SecondarySurveyActivity.MedicalHistoryFragment.getData();
 
         if (SecondarySurveyActivity.SecondarySurveyFragment.used())
             total_data += SecondarySurveyActivity.SecondarySurveyFragment.getData();
@@ -183,14 +176,14 @@ public class PRFActivity extends FragmentActivity  {
             total_data += ObservationsActivity.ObservationsFragment.getData();
         if (TreatmentActivity.TreatmentFragment.used())
             total_data += TreatmentActivity.TreatmentFragment.getData();
-        if (ResuscitationActivity.ResuscitationFragment.used())
-            total_data += ResuscitationActivity.ResuscitationFragment.getData();
+        if (SeriousActivity.SeriousFragment.used())
+            total_data += SeriousActivity.SeriousFragment.getData();
         if ( ResponseActivity.ResponseFragment.used())
             total_data += ResponseActivity.ResponseFragment.getData();
         if (NotesActivity.NotesFragment.used())
          total_data += NotesActivity.NotesFragment.getData();
-        if (OutcomeActivity.OutcomeFragment.used())
-            total_data += OutcomeActivity.OutcomeFragment.getData();
+        if (DischargeActivity.OutcomeFragment.used())
+            total_data += DischargeActivity.OutcomeFragment.getData();
         if (SignActivity.SignFragment.used())
             total_data += SignActivity.SignFragment.getData();
 
@@ -250,8 +243,6 @@ public class PRFActivity extends FragmentActivity  {
         }
 
         System.out.println("Completed Form: " + filename);*/
-
-        System.out.println(_currentPRF.toXML());
 
         finish();
 

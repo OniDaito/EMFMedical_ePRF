@@ -81,10 +81,10 @@
                 android:id="@+id/incident_location"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/textView1"
-                android:inputType="text" >
+                android:inputType="text"
+                android:layout_marginLeft="101dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/textView1">
 
             </EditText>
             
@@ -99,14 +99,14 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal" >
 
-                    <RadioButton
+                    RadioButton
                         android:id="@+id/incident_alerted_called"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="false"
                         android:text="Called to Scene" />
 
-                    <RadioButton
+                    RadioButton
                         android:id="@+id/incident_alerted_self"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -117,41 +117,8 @@
             </RelativeLayout>
         </TableRow>
 
-     
-
-
         <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-            
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Family Name"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="24dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/incident_family_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="26dp"
-                android:layout_toRightOf="@id/textView3"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            </RelativeLayout>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow6"
+            android:id="@+id/tableRow3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
             
@@ -176,6 +143,37 @@
                 android:layout_toRightOf="@id/textView4"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Family Name"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/incident_family_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/textView3"
+                    android:layout_marginLeft="51dp" />
 
             </RelativeLayout>
         </TableRow>
@@ -260,7 +258,7 @@
                 android:textSize="24dp"
                 android:textStyle="bold" />
 
-            <EditText
+                <EditText
                 android:id="@+id/incident_postcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -340,26 +338,15 @@
                     android:textSize="24dp"
                     android:textStyle="bold" />
 
-                <RadioGroup
+                <EditText
                     android:id="@+id/incident_gender"
-                    android:layout_width="wrap_content"
+                    android:layout_width="280dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
                     android:layout_toRightOf="@id/textView9"
-                    android:orientation="horizontal" >
-
-                    <RadioButton
-                        android:id="@+id/incident_gender_male"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:text="Male" />
-
-                    <RadioButton
-                        android:id="@+id/incident_gender_female"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Female" />
-                </RadioGroup>
+                    android:ems="10"
+                    />
             </RelativeLayout>
 
         </TableRow>

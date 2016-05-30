@@ -56,7 +56,7 @@ public class PRFTest extends AndroidTestCase {
         Vector<String> prf_list0 = _db.listPRFS();
         _db.deletePRF(_prf);
         Vector<String> prf_list1 = _db.listPRFS();
-        
+
         assertEquals(prf_list0.size() == 1, true);
         assertEquals(prf_list1.size() == 0, true);
     }

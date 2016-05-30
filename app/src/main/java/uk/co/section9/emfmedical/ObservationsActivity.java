@@ -1,6 +1,10 @@
 package uk.co.section9.emfmedical;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Vector;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -10,12 +14,17 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import uk.co.section9.emfmedical.data.Observation;
+import uk.co.section9.emfmedical.data.PRF;
 
 // Observations main tab
 
@@ -56,104 +65,87 @@ public class ObservationsActivity extends FragmentActivity {
 		    	return mUsed;
 		    }
 		    
-		    public static String getData(){
-		    	String data = new String();
+		    public static void setCurrentPRF(){
 		    	int idx = 0;
+
+                PRF prf = EMFMedicalApp.getCurrentPRF();
+                Vector<Observation> obs = prf.get_observations();
+
 		    	for(View v: obsViews){
-		    		
+
+                    Observation ob = obs.elementAt(idx);
+
 		    		TimePicker observation_time = (TimePicker)v.findViewById(R.id.observation_time);
-		        	data += "observation_time_" + idx + " : " + observation_time.getCurrentHour() + ":" + observation_time.getCurrentMinute() + "\n";
-		    		
+                    Date dd = new Date();
+                    dd.setHours(observation_time.getCurrentHour());
+                    dd.setMinutes(observation_time.getCurrentMinute());
+                    ob.set_time(dd);
+
 		        	Spinner observation_response = (Spinner)v.findViewById(R.id.observation_response);
-		        	if ( observation_response.getSelectedItem() != null)
-		        		data += "observation_response_" + idx + " : " +observation_response.getSelectedItem() + "\n";
+		        	if ( observation_response.getSelectedItem() != null) {
+                        if (observation_response.getSelectedItem().toString() == "Alert")
+                            ob.set_response('a');
+                        else if (observation_response.getSelectedItem().toString() == "Voice")
+                            ob.set_response('v');
+                        else if (observation_response.getSelectedItem().toString() == "Pain")
+                            ob.set_response('p');
+                        else if (observation_response.getSelectedItem().toString() == "Unresponsive")
+                            ob.set_response('u');
+                    }
 		    		
 		        	EditText observation_respiratory_rate = (EditText)v.findViewById(R.id.observation_respiratory_rate);
-		        	data += "observation_respiratory_rate_" + idx + " : " + observation_respiratory_rate.getEditableText() + "\n";
-		    		
-		        	EditText observation_pule_rate = (EditText)v.findViewById(R.id.observation_pule_rate);
-		        	data += "observation_pule_rate_" + idx + " : " + observation_pule_rate.getEditableText() + "\n";
-		        	
-		        	RadioButton observation_pain_score_0 = (RadioButton)v.findViewById(R.id.observation_pain_score_0);
-		        	RadioButton observation_pain_score_1 = (RadioButton)v.findViewById(R.id.observation_pain_score_1);
-		        	RadioButton observation_pain_score_2 = (RadioButton)v.findViewById(R.id.observation_pain_score_2);
-		        	RadioButton observation_pain_score_3 = (RadioButton)v.findViewById(R.id.observation_pain_score_3);
-		        	
-		        	if (observation_pain_score_0.isChecked()){
-		        		data += "observation_pain_score_" + idx +" : 0\n";
-		        	}
-		        	if (observation_pain_score_1.isChecked()){
-		        		data += "observation_pain_score_" + idx +" : 1\n";
-		        	}
-		        	if (observation_pain_score_2.isChecked()){
-		        		data += "observation_pain_score_" + idx +" : 2\n";
-		        	}
-		        	if (observation_pain_score_3.isChecked()){
-		        		data += "observation_pain_score_" + idx +" : 3\n";
-		        	}
+                    ob.set_respiratory(""+observation_respiratory_rate.getEditableText());
+
+		        	EditText observation_pulse_rate = (EditText)v.findViewById(R.id.observation_pulse_rate);
+                    ob.set_pulse(""+observation_pulse_rate.getEditableText());
+
+                    SeekBar observation_pain_score = (SeekBar) v.findViewById(R.id.observation_painscore);
+		            ob.set_painscore(observation_pain_score.getProgress());
 		        	
 		        	EditText observation_o2_saturation = (EditText)v.findViewById(R.id.observation_o2_saturation);
-		        	data += "observation_o2_saturation_" + idx + " : " + observation_o2_saturation.getEditableText() + "\n";
-		    		
-		        	EditText observation_oxygen = (EditText)v.findViewById(R.id.observation_oxygen);
-		        	data += "observation_oxygen_" + idx + " : " + observation_oxygen.getEditableText() + "\n";
-		    		
-		        	EditText observation_entonox = (EditText)v.findViewById(R.id.observation_entonox);
-		        	data += "observation_entonox_" + idx + " : " + observation_entonox.getEditableText() + "\n";
-		        	
+                    ob.set_o2sats(Float.parseFloat(""+observation_o2_saturation.getEditableText()));
+
 		        	EditText observation_blood_pressure_systolic = (EditText)v.findViewById(R.id.observation_blood_pressure_systolic);
-		        	data += "observation_blood_pressure_systolic_" + idx + " : " + observation_blood_pressure_systolic.getEditableText() + "\n";
-		        	
+                    ob.set_bp_sis(Integer.getInteger(""+observation_blood_pressure_systolic.getEditableText()));
+
 		        	EditText observation_blood_pressure_dystolic = (EditText)v.findViewById(R.id.observation_blood_pressure_dystolic);
-		        	data += "observation_blood_pressure_dystolic_" + idx + " : " + observation_blood_pressure_dystolic.getEditableText() + "\n";
-		        	
-		        	
+                    ob.set_bp_dis(Integer.getInteger(""+observation_blood_pressure_dystolic.getEditableText()));
+
 		        	EditText observation_temperature = (EditText)v.findViewById(R.id.observation_temperature);
-		        	data += "observation_temperature_" + idx + " : " + observation_temperature.getEditableText() + "\n";
-		        	
-		        	EditText observation_blood_sugar = (EditText)v.findViewById(R.id.observation_blood_sugar);
-		        	data += "observation_blood_sugar_" + idx + " : " + observation_blood_sugar.getEditableText() + "\n";
-		        	
-		        	CheckBox observation_pupils_reactive_left_yes = (CheckBox)v.findViewById(R.id.observation_pupils_reactive_left_yes);
-		        	
-		        	if (observation_pupils_reactive_left_yes.isChecked()){
-		        		data += "observation_pupils_reactive_left" + idx +" : yes\n";
-		        	} 
-		        	
-		        	CheckBox observation_pupils_reactive_left_no = (CheckBox)v.findViewById(R.id.observation_pupils_reactive_left_no);
-		        	
-		        	if (observation_pupils_reactive_left_no.isChecked()){
-		        		data += "observation_pupils_reactive_left_no" + idx +" : no\n";
-		        	} 
-		        	
-		        	
-		        	CheckBox observation_pupils_reactive_right_yes = (CheckBox)v.findViewById(R.id.observation_pupils_reactive_right_yes);
-		        	
-		        	if (observation_pupils_reactive_right_yes.isChecked()){
-		        		data += "observation_pupils_reactive_right" + idx +" : yes\n";
-		        	} 
-		        	
-		        	CheckBox observation_pupils_reactive_right_no = (CheckBox)v.findViewById(R.id.observation_pupils_reactive_right_no);
-		        	
-		        	if (observation_pupils_reactive_right_no.isChecked()){
-		        		data += "observation_pupils_reactive_right_no" + idx +" : no\n";
-		        	} 
-		        	
-		        	Spinner observation_pupil_size_left = (Spinner)v.findViewById(R.id.observation_pupil_size_left);
-		        	if ( observation_pupil_size_left.getSelectedItem() != null)
-		        		data += "observation_pupil_size_left_" + idx + " : " +observation_pupil_size_left.getSelectedItem() + "\n";
-		        	
-		        	
-		        	Spinner observation_pupil_size_right = (Spinner)v.findViewById(R.id.observation_pupil_size_right);
-		        	if ( observation_pupil_size_right.getSelectedItem() != null)
-		        		data += "observation_pupil_size_right_" + idx + " : " +observation_pupil_size_right.getSelectedItem() + "\n";
-		        	
+                    ob.set_temperature(Float.parseFloat(""+observation_temperature));
+
+                    RadioButton observation_perl_yes = (RadioButton)v.findViewById(R.id.observation_perl_yes);
+                    RadioButton observation_perl_no = (RadioButton)v.findViewById(R.id.observation_perl_no);
+
+                    if (observation_perl_yes.isChecked()){
+                        ob.set_perl('y');
+                    }
+                    if (observation_perl_no.isChecked()){
+                        ob.set_perl('n');
+                    }
+
+                    RadioButton observation_eye_normal = (RadioButton)v.findViewById(R.id.observation_eye_normal);
+                    RadioButton observation_eye_constricted = (RadioButton)v.findViewById(R.id.observation_eye_constricted);
+                    RadioButton observation_eye_unequal = (RadioButton)v.findViewById(R.id.observation_eye_unequal);
+                    RadioButton observation_eye_dilated = (RadioButton)v.findViewById(R.id.observation_eye_dilated);
+
+                    if (observation_eye_normal.isChecked()){
+                        ob.set_eyes('n');
+                    }
+                    if (observation_eye_constricted.isChecked()){
+                        ob.set_perl('c');
+                    }
+                    if (observation_eye_unequal.isChecked()){
+                        ob.set_perl('u');
+                    }
+                    if (observation_eye_dilated.isChecked()){
+                        ob.set_perl('d');
+                    }
+
 		    		idx++;
 		    	}
-		    	
-		    	return data;
-		    }
-	        
+            }
+
 		    
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -183,8 +175,7 @@ public class ObservationsActivity extends FragmentActivity {
         				View obs = tinflater.inflate(R.layout.observation_actual, tgroup, false);
         				obsLinearLayout.addView(obs);
         				
-        				
-        				
+
         				// Reverse Order
 						ArrayList<View> views = new ArrayList<View>();
 						for(int x = 0; x < obsLinearLayout.getChildCount(); x++) {
@@ -197,11 +188,32 @@ public class ObservationsActivity extends FragmentActivity {
         			
 						// Also add to the master list of obs
 						obsViews.add(obs);
-						
 						TextView tv = (TextView) obs.findViewById(R.id.observation_actual_heading);
         				tv.append(" " + obsViews.size());
-						
-						// Reverse the order
+
+                        // Setup bits of the new obs
+                        TimePicker observation_time = (TimePicker)obs.findViewById(R.id.observation_time);
+                        observation_time.setIs24HourView(true);
+                        observation_time.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+
+                        // Painscore seek bar changer add
+                        final TextView tp = (TextView) obs.findViewById(R.id.observation_painscore_value);
+                        class PainScoreListener implements SeekBar.OnSeekBarChangeListener {
+
+                            public void onProgressChanged(SeekBar seekBar, int progress,
+                                                          boolean fromUser) {
+                                tp.setText(""+progress);
+                            }
+
+                            public void onStartTrackingTouch(SeekBar seekBar) {}
+                            public void onStopTrackingTouch(SeekBar seekBar) {}
+
+                        }
+
+                        SeekBar painseekbar=(SeekBar) obs.findViewById(R.id.observation_painscore);
+                        painseekbar.setOnSeekBarChangeListener(new PainScoreListener());
+
+                        // Reverse the order
 						views = new ArrayList<View>();
 						for(int x = 0; x < obsViews.size(); x++) {
 						    views.add(obsViews.get(x));

@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import uk.co.section9.emfmedical.data.PRF;
+import uk.co.section9.emfmedical.data.Primary;
+
 
 // Primary Survey Tab
 
@@ -22,76 +25,47 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        @Override
 	        public void onCreate(Bundle savedInstanceState) {
 	        	super.onCreate(savedInstanceState);
-	        
 	        }
-
 	        public static boolean used() {
 	        	return mUsed;
 	        }
 	        
-	        // Setup some basic things for minor wound treatment
-	
-	        public static void populateMinorWound() {
-	        	RadioButton primary_survey_capacity_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_capacity_yes);
-	        	primary_survey_capacity_yes.setChecked(true);
-	        	
-	        	RadioButton primary_survey_consent_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_consent_yes);
-	        	primary_survey_consent_yes.setChecked(true);
-	        	
-	        	RadioButton primary_survey_response_alert = (RadioButton)mainView.findViewById(R.id.primary_survey_response_alert);
-	        	primary_survey_response_alert.setChecked(true);
-	        	
-	        	RadioButton primary_survey_airway_clear = (RadioButton)mainView.findViewById(R.id.primary_survey_airway_clear);
-	        	primary_survey_airway_clear.setChecked(true);
-	        	
-	        	RadioButton primary_survey_breathing_normal = (RadioButton)mainView.findViewById(R.id.primary_survey_breathing_normal);
-	        	primary_survey_breathing_normal.setChecked(true);
-	        	
-	        	RadioButton primary_survey_circulation_normal = (RadioButton)mainView.findViewById(R.id.primary_survey_circulation_normal);
-	        	primary_survey_circulation_normal.setChecked(true);
-	        	
-	        	
-	         	RadioButton primary_survey_consiousness_no = (RadioButton)mainView.findViewById(R.id.primary_survey_consiousness_no);
-	         	primary_survey_consiousness_no.setChecked(true);
 
-	        }
-	        
 	        @Override
 	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                Bundle savedInstanceState) {
 	            mainView = inflater.inflate(R.layout.primary_survey, container, false);
 	            mUsed = true;
-	            
-	            if (PRFActivity.prePopulate.equalsIgnoreCase("MinorWoundDressed")){
-	        		populateMinorWound();
-	        	}
 	            return mainView;
 	        }
-	        
-	        public static String getData() {
-	        	String data = new String();
+
+
+	        public static void setCurrentPRF() {
+
+				PRF prf = EMFMedicalApp.getCurrentPRF();
+				Primary pp = prf.get_primary();
 	        	
 	        	EditText primary_survey_problem = (EditText)mainView.findViewById(R.id.primary_survey_problem);
-	        	data += "primary_survey_problem: " + primary_survey_problem.getEditableText() + "\n";
+				pp.set_presenting(""+primary_survey_problem.getEditableText());
 	        	
 	        	RadioButton primary_survey_capacity_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_capacity_yes);
 	        	RadioButton primary_survey_capacity_no = (RadioButton)mainView.findViewById(R.id.primary_survey_capacity_no);
 	        	
 	        	if (primary_survey_capacity_yes.isChecked()){
-	        		data += "primary_survey_capacity: yes\n";
+					pp.set_capacity('y');
 	        	}
 	        	if (primary_survey_capacity_no.isChecked()){
-	        		data += "primary_survey_capacity: no\n";
+					pp.set_capacity('n');
 	        	}
 	        	
 	        	RadioButton primary_survey_consent_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_consent_yes);
 	        	RadioButton primary_survey_consent_no = (RadioButton)mainView.findViewById(R.id.primary_survey_consent_no);
 	        	
 	        	if (primary_survey_consent_yes.isChecked()){
-	        		data += "primary_survey_consent: yes\n";
+					pp.set_consent('y');
 	        	}
 	        	if (primary_survey_consent_no.isChecked()){
-	        		data += "primary_survey_consent: no\n";
+					pp.set_consent('n');
 	        	}
 	        	
 	        	RadioButton primary_survey_response_alert = (RadioButton)mainView.findViewById(R.id.primary_survey_response_alert);
@@ -100,16 +74,16 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        	RadioButton primary_survey_response_none = (RadioButton)mainView.findViewById(R.id.primary_survey_response_none);
 	        	
 	        	if (primary_survey_response_alert.isChecked()){
-	        		data += "primary_survey_response: alert\n";
+					pp.set_consciousness('a');
 	        	}
 	        	if (primary_survey_response_voice.isChecked()){
-	        		data += "primary_survey_response: voice\n";
+					pp.set_consciousness('v');
 	        	}
 	        	if (primary_survey_response_pain.isChecked()){
-	        		data += "primary_survey_response: pain\n";
+					pp.set_consciousness('p');
 	        	}
 	        	if (primary_survey_response_none.isChecked()){
-	        		data += "primary_survey_response: none\n";
+					pp.set_consciousness('u');
 	        	}
 	        	
 	        	
@@ -117,28 +91,32 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        	RadioButton primary_survey_airway_obstructed = (RadioButton)mainView.findViewById(R.id.primary_survey_airway_obstructed);
 	        	
 	        	if (primary_survey_airway_clear.isChecked()){
-	        		data += "primary_survey_airway: clear\n";
+					pp.set_airway('y');
 	        	}
 	        	if (primary_survey_airway_obstructed.isChecked()){
-	        		data += "primary_survey_airway: obstructed\n";
+					pp.set_airway('n');
 	        	}
 	        	
 	        	RadioButton primary_survey_breathing_normal = (RadioButton)mainView.findViewById(R.id.primary_survey_breathing_normal);
 	        	RadioButton primary_survey_breathing_shallow = (RadioButton)mainView.findViewById(R.id.primary_survey_breathing_shallow);
 	        	RadioButton primary_survey_breathing_agonal = (RadioButton)mainView.findViewById(R.id.primary_survey_breathing_agonal);
 	        	RadioButton primary_survey_breathing_absent = (RadioButton)mainView.findViewById(R.id.primary_survey_breathing_absent);
-	        	
+                RadioButton primary_survey_breathing_rapid = (RadioButton)mainView.findViewById(R.id.primary_survey_breathing_rapid);
+
 	        	if (primary_survey_breathing_normal.isChecked()){
-	        		data += "primary_survey_breathing: normal\n";
+					pp.set_breathing('n');
 	        	}
+				if (primary_survey_breathing_rapid.isChecked()){
+					pp.set_breathing('r');
+				}
 	        	if (primary_survey_breathing_shallow.isChecked()){
-	        		data += "primary_survey_breathing: shallow\n";
+					pp.set_breathing('s');
 	        	}
 	        	if (primary_survey_breathing_agonal.isChecked()){
-	        		data += "primary_survey_breathing: agonal\n";
+					pp.set_breathing('a');
 	        	}
 	        	if (primary_survey_breathing_absent.isChecked()){
-	        		data += "primary_survey_breathing: absent\n";
+					pp.set_breathing('b');
 	        	}
 	        	
 	        	RadioButton primary_survey_circulation_normal = (RadioButton)mainView.findViewById(R.id.primary_survey_circulation_normal);
@@ -147,42 +125,48 @@ public class PrimarySurveyActivity extends FragmentActivity {
 	        	RadioButton primary_survey_circulation_cyanosed = (RadioButton)mainView.findViewById(R.id.primary_survey_circulation_cyanosed);
 	        	
 	        	if (primary_survey_circulation_normal.isChecked()){
-	        		data += "primary_survey_circulation: normal\n";
+	        		pp.set_circulation('n');
 	        	}
 	        	if (primary_survey_circulation_pale.isChecked()){
-	        		data += "primary_survey_circulation: pale\n";
+                    pp.set_circulation('p');
 	        	}
 	        	if (primary_survey_circulation_flushed.isChecked()){
-	        		data += "primary_survey_circulation: flushed\n";
+                    pp.set_circulation('f');
 	        	}
 	        	if (primary_survey_circulation_cyanosed.isChecked()){
-	        		data += "primary_survey_circulation: cyanosed\n";
+                    pp.set_circulation('c');
 	        	}
 	        	
 	        	RadioButton primary_survey_external_bleeding_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_external_bleeding_yes);
 	        	RadioButton primary_survey_external_bleeding_no = (RadioButton)mainView.findViewById(R.id.primary_survey_external_bleeding_no);
 	        	
 	        	if (primary_survey_external_bleeding_yes.isChecked()){
-	        		data += "primary_survey_external_bleeding: yes\n";
+	        		pp.set_external('y');
 	        	}
 	        	if (primary_survey_external_bleeding_no.isChecked()){
-	        		data += "primary_survey_external_bleeding: no\n";
+                    pp.set_external('n');
 	        	}
-	        	
-	        	
+
 	         	RadioButton primary_survey_consiousness_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_consiousness_yes);
 	        	RadioButton primary_survey_consiousness_no = (RadioButton)mainView.findViewById(R.id.primary_survey_consiousness_no);
 	        	
 	        	if (primary_survey_consiousness_yes.isChecked()){
-	        		data += "primary_survey_consiousness: yes\n";
+                    pp.set_consciousness('y');
 	        	}
 	        	if (primary_survey_consiousness_no.isChecked()){
-	        		data += "primary_survey_consiousness: no\n";
+                    pp.set_consciousness('n');
 	        	}
-	        	
-	        	return data;
+
+                RadioButton primary_survey_alcoholdrugs_yes = (RadioButton)mainView.findViewById(R.id.primary_survey_alcoholdrugs_yes);
+                RadioButton primary_survey_alcoholdrugs_no = (RadioButton)mainView.findViewById(R.id.primary_survey_alcoholdrugs_no);
+
+                if (primary_survey_alcoholdrugs_yes.isChecked()){
+                    pp.set_alcoholdrugs('y');
+                }
+                if (primary_survey_alcoholdrugs_no.isChecked()){
+                    pp.set_alcoholdrugs('n');
+                }
 	        }
 	    }
-
 
 }

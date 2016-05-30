@@ -16,8 +16,8 @@ public class Observation extends BaseData {
 
     protected Date _time;
     protected char _response;
-    protected int _respiratory;
-    protected int _pulse;
+    protected String _respiratory;
+    protected String _pulse;
     protected int _painscore;
     protected float _o2sats;
     protected int _bp_sis;
@@ -30,8 +30,8 @@ public class Observation extends BaseData {
 
     public Observation() {
         _response = 'x';        // avpu or x
-        _respiratory = -1;      // -1 if not used
-        _pulse = -1;            // -1 if not used
+        _respiratory = "";      // -1 if not used
+        _pulse = "";            // -1 if not used
         _painscore = -1;        // -1 or 1 to 10
         _o2sats = -1;           // -1 if not used
         _bp_sis = -1;           // -1 if not used
@@ -44,7 +44,7 @@ public class Observation extends BaseData {
 
     public static String createTable() {
         String CREATE_TABLE_OBSERVATIONS = "CREATE TABLE \"" +TABLE_NAME + "\" (\"time\" DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                "\"response\" VARCHAR, \"respiratory\" INTEGER, \"pulse\" INTEGER, \"painscore\" INTEGER, " +
+                "\"response\" VARCHAR, \"respiratory\" TEXT, \"pulse\" TEXT, \"painscore\" INTEGER, " +
                 "\"o2sats\" FLOAT, \"bp_sis\" INTEGER, \"bp_dis\" INTEGER, \"temperature\" FLOAT, \"perl\"" +
                 " VARCHAR, \"eyes\" VARCHAR, \"id\" GUID PRIMARY KEY NOT NULL )";
         return CREATE_TABLE_OBSERVATIONS;
@@ -59,8 +59,8 @@ public class Observation extends BaseData {
         s = "<observation>\n";
         s += "<time>" + Util.dateToDBString(_time) + "</time>\n";
         s += "<response>" + responseConv() + "</response>\n";
-        s += "<respiratory>" + respConv() + "</respiratory>\n";
-        s += "<pulse>" + pulseConv() + "</pulse>\n";
+        s += "<respiratory>" + _respiratory + "</respiratory>\n";
+        s += "<pulse>" + _pulse + "</pulse>\n";
         s += "<painscore>" + painConv() + "</painscore>\n";
         s += "<o2sats>" + o2Conv() + "</o2sats>\n";
         s += "<temperature>" + tempConv() + "</temperature>\n";
@@ -76,7 +76,7 @@ public class Observation extends BaseData {
     public ContentValues getValues () {
         ContentValues values = new ContentValues();
         values.put("time", Util.dateToDBString(_time));
-        values.put("response", respConv());
+        values.put("response", ""+_response);
         values.put("respiratory", _respiratory);
         values.put("pulse", _pulse);
         values.put("painscore", _painscore);
@@ -93,8 +93,8 @@ public class Observation extends BaseData {
     public void setValues(ContentValues values) {
         _time = Util.dbStringToDate((String) values.get("time"));
         _response = ((String) values.get("response")).charAt(0);
-        _respiratory = ((String) values.get("respiratory")).charAt(0);
-        _pulse = ((Integer) values.get("pulse"));
+        _respiratory = ((String) values.get("respiratory"));
+        _pulse = ((String) values.get("pulse"));
         _painscore = ((Integer) values.get("painscore"));
         _o2sats = ((Float) values.get("o2sats"));
         _bp_sis = ((Integer) values.get("bpsis"));
@@ -103,16 +103,6 @@ public class Observation extends BaseData {
         _eyes = ((String) values.get("eyes")).charAt(0);
         _temperature = ((Float) values.get("temperature"));
 
-    }
-
-    String respConv(){
-        if (_respiratory != 1) return new Integer(_respiratory).toString();
-        return "unknown";
-    }
-
-    String pulseConv(){
-        if (_pulse != 1) return new Integer(_pulse).toString();
-        return "unknown";
     }
 
     String painConv(){
@@ -182,19 +172,19 @@ public class Observation extends BaseData {
             this._response = _response;
     }
 
-    public int get_respiratory() {
+    public String get_respiratory() {
         return _respiratory;
     }
 
-    public void set_respiratory(int _respiratory) {
+    public void set_respiratory(String _respiratory) {
         this._respiratory = _respiratory;
     }
 
-    public int get_pulse() {
+    public String get_pulse() {
         return _pulse;
     }
 
-    public void set_pulse(int _pulse) {
+    public void set_pulse(String _pulse) {
         this._pulse = _pulse;
     }
 

@@ -27,7 +27,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Problem &amp; Primary Survey"
+                android:text="Primary Survey"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="#ffffff"
                 android:textSize="32dp"
@@ -49,7 +49,7 @@
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="The Problem"
+                    android:text="Presenting\nComplaint"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -108,7 +108,7 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
+            android:id="@+id/tableRow4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
     
@@ -119,7 +119,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Does the patient have Consent?"
+                android:text="Does the patient have consent?"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <RadioGroup
@@ -157,7 +157,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 android:text="Response"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -223,7 +223,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Airway"
-                android:textSize="24dp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 />
@@ -269,7 +269,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Breathing"
-                   android:textSize="24dp"
+                   android:textSize="18dp"
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
@@ -303,11 +303,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Agonal" />
-                  <RadioButton
+
+                <RadioButton
+                    android:id="@+id/primary_survey_breathing_rapid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rapid"
+                    android:checked="false" />
+
+                <RadioButton
                     android:id="@+id/primary_survey_breathing_absent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Absent" />
+
             </RadioGroup>
         </TableRow>
 
@@ -321,7 +330,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Circulation"
-                   android:textSize="24dp"
+                   android:textSize="18dp"
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
@@ -381,7 +390,7 @@
                 android:layout_height="wrap_content"
                 android:text="Signs of external bleeding"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="24dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
             <RadioGroup
@@ -421,7 +430,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Loss of consciousness"
-                   android:textSize="24dp"
+                   android:textSize="18dp"
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -445,6 +454,46 @@
                     android:layout_height="wrap_content"
                     android:text="No" />
             </RadioGroup>
+            </RelativeLayout>
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alcohol / Drugs Suspected"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <RadioGroup
+                    android:id="@+id/primary_survey_alcoholdrugs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView14"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/primary_survey_alcoholdrugs_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/primary_survey_alcoholdrugs_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" />
+                </RadioGroup>
             </RelativeLayout>
         </TableRow>
     </TableLayout>

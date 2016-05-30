@@ -15,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import uk.co.section9.emfmedical.data.Discharge;
+import uk.co.section9.emfmedical.data.PRF;
+
 
 // Finished? Then you need to sign the form
 
@@ -67,7 +70,12 @@ public class SignActivity extends FragmentActivity {
 						.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,int id) {
 								// if this button is clicked, close
-								// current activity
+								// current activity - Also set the seenby in the current PRF
+								PRF prf = EMFMedicalApp.getCurrentPRF();
+								Discharge ds = prf.get_discharge();
+								EditText sign_name = (EditText)mainView.findViewById(R.id.sign_name);
+								ds.set_seen_by(""+ sign_name.getEditableText() );
+
 								ma.completeForm();
 							}
 						  })
@@ -94,13 +102,11 @@ public class SignActivity extends FragmentActivity {
         }
         
         
-        public static String getData() {
-        	String data = new String();
-        	
-        	EditText sign_name = (EditText)mainView.findViewById(R.id.sign_name);
-        	data += "sign_name: " + sign_name.getEditableText() + "\n";
-        	
-        	return data;
-        }
+        public static void setCurrentPRF() {
+			PRF prf = EMFMedicalApp.getCurrentPRF();
+			Discharge ds = prf.get_discharge();
+			EditText sign_name = (EditText)mainView.findViewById(R.id.sign_name);
+			ds.set_seen_by(""+ sign_name.getEditableText() );
+		}
     }
 }
