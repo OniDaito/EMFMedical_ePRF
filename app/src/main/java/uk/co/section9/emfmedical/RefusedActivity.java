@@ -38,6 +38,18 @@ public class RefusedActivity extends FragmentActivity {
         }
 
         @Override
+        public void onStop() {
+            setCurrentPRF();
+            super.onStop();
+        }
+
+        @Override
+        public void onDestroy() {
+            setCurrentPRF();
+            super.onDestroy();
+        }
+
+        @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
             mainView = inflater.inflate(R.layout.refused, container, false);

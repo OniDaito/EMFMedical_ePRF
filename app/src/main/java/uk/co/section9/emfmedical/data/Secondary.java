@@ -99,14 +99,14 @@ public class Secondary extends BaseData{
     }
 
     public void setValues(ContentValues values) {
-        _high_blood_pressure = ((String) values.get("high_blood_pressure")).charAt(0);
-        _stroke = ((String) values.get("stroke")).charAt(0);
-        _seizures = ((String) values.get("seizures")).charAt(0);
-        _diabetes = ((String) values.get("diabetes")).charAt(0);
-        _cardiac = ((String) values.get("cardiac")).charAt(0);
-        _asthma = ((String) values.get("asthma")).charAt(0);
-        _respiratory = ((String) values.get("respiratory")).charAt(0);
-        _fast = ((String) values.get("fast")).charAt(0);
+        if(Util.isValidCharValue(values,"high_blood_pressure")) { _high_blood_pressure = ((String) values.get("high_blood_pressure")).charAt(0); }
+        if(Util.isValidCharValue(values,"stroke")) { _stroke = ((String) values.get("stroke")).charAt(0); }
+        if(Util.isValidCharValue(values,"seizures")) { _seizures = ((String) values.get("seizures")).charAt(0); }
+        if(Util.isValidCharValue(values,"diabetes")) { _diabetes = ((String) values.get("diabetes")).charAt(0); }
+        if(Util.isValidCharValue(values,"cardiac")) { _cardiac = ((String) values.get("cardiac")).charAt(0); }
+        if(Util.isValidCharValue(values,"asthma")) { _asthma = ((String) values.get("asthma")).charAt(0); }
+        if(Util.isValidCharValue(values,"respiratory")) { _respiratory = ((String) values.get("respiratory")).charAt(0); }
+        if(Util.isValidCharValue(values,"fast")) { _fast = ((String) values.get("fast")).charAt(0); }
         _allergies = ((String) values.get("allergies"));
         _medications = ((String) values.get("medications"));
         _medical_history = ((String) values.get("medical_history"));

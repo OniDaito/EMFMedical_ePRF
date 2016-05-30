@@ -32,7 +32,7 @@ ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:
 	tools:overrideLibrary
 		ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:11:3-47
 application
-ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:13:5-41:19
+ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:13:5-41:16
 	android:label
 		ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:17:9-41
 	android:allowBackup

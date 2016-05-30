@@ -74,15 +74,16 @@ public class Serious extends BaseData {
         return values;
     }
 
+    // TODO - probably should use the setter and getter here
     public void setValues(ContentValues values) {
         _ambulance_arrived = Util.dbStringToDate((String) values.get("ambulance_arrived"));
-        _ambulance_called = ((String) values.get("ambulance_called")).charAt(0);
+        if (Util.isValidCharValue(values,"ambulance_called")){ _ambulance_called = ((String) values.get("ambulance_called")).charAt(0);}
         _ambulance_departed = Util.dbStringToDate((String) values.get("ambulance_departed"));
-        _cpr = ((String) values.get("cpr")).charAt(0);
+        if (Util.isValidCharValue(values,"cpr")){_cpr = ((String) values.get("cpr")).charAt(0);}
         _cpr_started = Util.dbStringToDate((String) values.get("cpr_started"));
-        _defib_used = ((String) values.get("defib_used")).charAt(0);
-        _defib_shocks = ((String) values.get("defib_shocks")).charAt(0);
-        _witnessed_collapse = ((String) values.get("witnessed_collapse")).charAt(0);
+        if (Util.isValidCharValue(values,"defib_used")){_defib_used = ((String) values.get("defib_used")).charAt(0);}
+        if (Util.isValidCharValue(values,"defib_shocks")){_defib_shocks = ((String) values.get("defib_shocks")).charAt(0);}
+        if (Util.isValidCharValue(values,"witnessed_collapse")){ _witnessed_collapse = ((String) values.get("witnessed_collapse")).charAt(0);}
     }
 
     public Date get_ambulance_arrived() {

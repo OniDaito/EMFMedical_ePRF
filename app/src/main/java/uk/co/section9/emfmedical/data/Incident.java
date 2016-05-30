@@ -4,7 +4,9 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import uk.co.section9.emfmedical.Util;
 
@@ -28,33 +30,19 @@ public class Incident extends BaseData {
     protected static final String TABLE_NAME = "incident";
 
     public Incident () {
-        _time = new Date();
+        // Assuming GMT - wont work elsewhere of course :S
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        _time = cal.getTime();
         _location = "";
         _forname = "";
         _surname = "";
         _email = "";
         _address = "";
         _postcode = "";
-        _dob = new Date();
+        _dob = cal.getTime();
         _age = 0;
         _gender = "";
         _kin = "";
-    }
-
-    public Incident (Date time, String location, String forname, String surname, String email,
-                     String address, String postcode, Date dob, int age, String gender, String kin) {
-
-        this._time = time;
-        this._location = location;
-        this._forname = forname;
-        this._surname = surname;
-        this._email = email;
-        this._address = address;
-        this._postcode = postcode;
-        this._dob = dob;
-        this._age = age;
-        this._gender = gender;
-        this._kin = kin;
     }
 
 

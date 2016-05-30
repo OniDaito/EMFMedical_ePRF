@@ -3,6 +3,8 @@ package uk.co.section9.emfmedical;
 import android.app.Application;
 import android.util.Log;
 
+import java.util.Vector;
+
 import uk.co.section9.emfmedical.data.PRF;
 import uk.co.section9.emfmedical.data.PRFDatabase;
 
@@ -37,9 +39,25 @@ public class EMFMedicalApp extends Application {
     }
 
     // Create a new PRF from a uuid handed in
-    public static PRF newPRF(String uuid){
+    public static PRF loadPRF(String uuid){
         _currentPRF = _db.readPRF(uuid);
         return _currentPRF;
+    }
+
+    // Commit the current PRF to the database
+    public static void commitPRF() {
+        Vector<String> prfs = _db.listPRFS();
+        for (String id : prfs){
+            if (id.equals( _currentPRF.get_uuid())){
+                _db.updatePRF(_currentPRF);
+                return;
+            }
+        }
+        _db.writePRF(_currentPRF);
+    }
+
+    public static PRF getPRFByID(String uuid) {
+        return _db.readPRF(uuid);
     }
 
     // Return the current PRF
@@ -54,5 +72,10 @@ public class EMFMedicalApp extends Application {
 
     public static PRFDatabase getDatabase() {
         return _db;
+    }
+
+    public static Vector<String> getAllPRFIDs() {
+        Vector<String> ids = _db.listPRFS();
+        return  ids;
     }
 }

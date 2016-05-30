@@ -15,38 +15,54 @@ import uk.co.section9.emfmedical.data.PRF;
 
 public class NotesActivity extends FragmentActivity {
 
-	 public static class NotesFragment extends Fragment {
-	     		 
-		 	static View mainView;
-		 	static boolean mUsed = false;
-		 
-	        @Override
-	        public void onCreate(Bundle savedInstanceState) {
-	            super.onCreate(savedInstanceState);
-	        }
+    public static class NotesFragment extends Fragment {
 
-	
-	        @Override
-	        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-	                Bundle savedInstanceState) {
-	        	mainView = inflater.inflate(R.layout.notes, container, false);
-	        	mUsed = true; 
-	            return mainView;
-	        }
-	        
-	        public static boolean used() {
-		    	return mUsed;
-		    }
-	        
-	        
-	        public static void setCurrentPRF() {
+        static View mainView;
+        static boolean mUsed = false;
 
-				PRF prf = EMFMedicalApp.getCurrentPRF();
-				Notes nn = prf.get_notes();
+        @Override
+        public void onStop() {
+            setCurrentPRF();
+            super.onStop();
+        }
 
-	        	EditText notes_notes = (EditText)mainView.findViewById(R.id.notes_notes);
-	        	nn.set_notes(""+notes_notes);
-			}
-	    }
+        @Override
+        public void onDestroy() {
+            setCurrentPRF();
+            super.onDestroy();
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                Bundle savedInstanceState) {
+            mainView = inflater.inflate(R.layout.notes, container, false);
+            mUsed = true;
+            getCurrentPRF();
+            return mainView;
+        }
+
+        public static boolean used() {
+            return mUsed;
+        }
+
+        public static void setCurrentPRF() {
+            PRF prf = EMFMedicalApp.getCurrentPRF();
+            Notes nn = prf.get_notes();
+            EditText notes_notes = (EditText)mainView.findViewById(R.id.notes_notes);
+            nn.set_notes(""+notes_notes);
+        }
+
+        public static void getCurrentPRF() {
+            PRF prf = EMFMedicalApp.getCurrentPRF();
+            Notes nn = prf.get_notes();
+            EditText notes_notes = (EditText)mainView.findViewById(R.id.notes_notes);
+            notes_notes.setText(nn.get_notes());
+        }
+    }
 	
 }

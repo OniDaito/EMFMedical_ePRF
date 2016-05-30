@@ -83,15 +83,15 @@ public class Primary extends BaseData {
 
     public void setValues(ContentValues values) {
         _presenting = ((String) values.get("presenting"));
-        _response = ((String) values.get("response")).charAt(0);
-        _capacity = ((String) values.get("capacity")).charAt(0);
-        _consent = ((String) values.get("consent")).charAt(0);
-        _airway = ((String) values.get("airway")).charAt(0);
-        _breathing = ((String) values.get("breathing")).charAt(0);
-        _circulation = ((String) values.get("circulation")).charAt(0);
-        _external = ((String) values.get("external")).charAt(0);
-        _consciousness = ((String) values.get("consciousness")).charAt(0);
-        _alcoholdrugs = ((String) values.get("alcoholdrugs")).charAt(0);
+        if(Util.isValidCharValue(values,"response")) { _response = ((String) values.get("response")).charAt(0); }
+        if(Util.isValidCharValue(values,"capacity")) { _capacity = ((String) values.get("capacity")).charAt(0); }
+        if(Util.isValidCharValue(values,"consent")) { _consent = ((String) values.get("consent")).charAt(0); }
+        if(Util.isValidCharValue(values,"airway")) { _airway = ((String) values.get("airway")).charAt(0); }
+        if(Util.isValidCharValue(values,"breathing")) { _breathing = ((String) values.get("breathing")).charAt(0); }
+        if(Util.isValidCharValue(values,"circulation")) { _circulation = ((String) values.get("circulation")).charAt(0); }
+        if(Util.isValidCharValue(values,"external")) { _external = ((String) values.get("external")).charAt(0); }
+        if(Util.isValidCharValue(values,"consciousness")) { _consciousness = ((String) values.get("consciousness")).charAt(0); }
+        if(Util.isValidCharValue(values,"alcoholdrugs")) { _alcoholdrugs = ((String) values.get("alcoholdrugs")).charAt(0); }
     }
 
     String responseConv() {

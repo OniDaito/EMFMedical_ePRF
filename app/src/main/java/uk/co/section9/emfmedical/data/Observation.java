@@ -92,15 +92,15 @@ public class Observation extends BaseData {
 
     public void setValues(ContentValues values) {
         _time = Util.dbStringToDate((String) values.get("time"));
-        _response = ((String) values.get("response")).charAt(0);
+        if(Util.isValidCharValue(values,"response")) { _response = ((String) values.get("response")).charAt(0); }
         _respiratory = ((String) values.get("respiratory"));
         _pulse = ((String) values.get("pulse"));
         _painscore = ((Integer) values.get("painscore"));
         _o2sats = ((Float) values.get("o2sats"));
         _bp_sis = ((Integer) values.get("bpsis"));
         _bp_dis = ((Integer) values.get("bpdis"));
-        _perl = ((String) values.get("perl")).charAt(0);
-        _eyes = ((String) values.get("eyes")).charAt(0);
+        if(Util.isValidCharValue(values,"perl")) { _perl = ((String) values.get("perl")).charAt(0); }
+        if(Util.isValidCharValue(values,"eyes")) { _eyes = ((String) values.get("eyes")).charAt(0); }
         _temperature = ((Float) values.get("temperature"));
 
     }

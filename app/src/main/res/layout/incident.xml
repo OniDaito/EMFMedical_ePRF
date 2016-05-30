@@ -142,7 +142,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_toRightOf="@id/textView4"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:capitalize="words" />
 
             </RelativeLayout>
         </TableRow>
@@ -173,7 +174,8 @@
                     android:inputType="textPersonName"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/textView3"
-                    android:layout_marginLeft="51dp" />
+                    android:layout_marginLeft="51dp"
+                    android:capitalize="words" />
 
             </RelativeLayout>
         </TableRow>

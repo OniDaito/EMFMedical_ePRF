@@ -30,7 +30,7 @@
     
     </RelativeLayout>
 
-    <RelativeLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -44,20 +44,40 @@
             android:text="Start New PRF"
             android:textSize="32sp" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
-
         <Button
             android:id="@+id/main_minor_wound_dressed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Minor Wound Dressed"
-             android:paddingBottom="20dp"
+            android:paddingBottom="20dp"
             android:textSize="32sp" />
+
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/main_prf_list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Existing Reports"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="32sp" />
+
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
 
     
         <TextView
@@ -68,7 +88,8 @@
             android:layout_below="@+id/main_minor_wound_dressed"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="18sp" />
-    
+
+
     </RelativeLayout>
 
 </LinearLayout>

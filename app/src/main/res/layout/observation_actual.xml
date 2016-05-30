@@ -205,8 +205,8 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/observation_o2_saturation_label"
                     android:ems="10"
-                    android:inputType="number"
-                    android:width="80dp" />
+                    android:width="80dp"
+                    android:inputType="numberDecimal" />
 
             </RelativeLayout>
 

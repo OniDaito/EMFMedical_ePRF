@@ -108,20 +108,20 @@ public class Discharge extends BaseData {
 
     public void setValues(ContentValues values) {
 
-        _walking_aided = ((String) values.get("walking_aided")).charAt(0);
-        _walking_unaided = ((String) values.get("walking_unaided")).charAt(0);
+        if(Util.isValidCharValue(values,"walking_aided")) { _walking_aided = ((String) values.get("walking_aided")).charAt(0);}
+        if(Util.isValidCharValue(values,"walking_aided")) { _walking_unaided = ((String) values.get("walking_unaided")).charAt(0);}
         _other = ((String) values.get("other"));
-        _own_transport = ((String) values.get("own_transport")).charAt(0);
-        _public_transport = ((String) values.get("public_transport")).charAt(0);
-        _ambulance = ((String) values.get("ambulance")).charAt(0);
-        _taxi = ((String) values.get("taxi")).charAt(0);
-        _completed =((String) values.get("completed")).charAt(0);
-        _hospital = ((String) values.get("hospital")).charAt(0);
-        _review = ((String) values.get("review")).charAt(0);
+        if(Util.isValidCharValue(values,"walking_aided")) { _own_transport = ((String) values.get("own_transport")).charAt(0);}
+        if(Util.isValidCharValue(values,"walking_aided")) { _public_transport = ((String) values.get("public_transport")).charAt(0);}
+        if(Util.isValidCharValue(values,"walking_aided")) { _ambulance = ((String) values.get("ambulance")).charAt(0);}
+        if(Util.isValidCharValue(values,"walking_aided")) { _taxi = ((String) values.get("taxi")).charAt(0);}
+        if(Util.isValidCharValue(values,"walking_aided")) { _completed =((String) values.get("completed")).charAt(0);}
+        if(Util.isValidCharValue(values,"walking_aided")) { _hospital = ((String) values.get("hospital")).charAt(0);}
+        if(Util.isValidCharValue(values,"walking_aided")) { _review = ((String) values.get("review")).charAt(0);}
         _receiving_centre = ((String) values.get("receiving_centre"));
-        _advised =((String) values.get("advised")).charAt(0);
+        if(Util.isValidCharValue(values,"walking_aided")) { _advised =((String) values.get("advised")).charAt(0);}
         _time_left = Util.dbStringToDate((String) values.get("time_left"));
-        _refused = ((String) values.get("refused")).charAt(0);
+        if(Util.isValidCharValue(values,"walking_aided")) { _refused = ((String) values.get("refused")).charAt(0);}
         _seen_by = ((String) values.get("seen_by"));
 
     }

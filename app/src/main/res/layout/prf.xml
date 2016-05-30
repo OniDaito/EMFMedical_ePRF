@@ -23,24 +23,26 @@ android:layout_height="?android:attr/listPreferredItemHeight"
                 android:textSize="32dp"
                 android:textStyle="bold"
                 android:typeface="normal" />
-         
+
+
+			 <Button
+				 android:id="@+id/prf_activity_save"
+				 android:layout_width="wrap_content"
+				 android:layout_height="match_parent"
+				 android:text="Save"
+				 android:layout_toRightOf="@+id/textView11"
+				 android:textSize="18sp" />
+
           <Button
         android:id="@+id/prf_activity_cancel"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Cancel"
-         android:layout_toLeftOf="@+id/imageView1"
+         android:layout_toRightOf="@+id/prf_activity_save"
         android:textSize="18sp" />
-         
-                  <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-           android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-         android:layout_gravity="right"
-     
-        android:src="@drawable/emf_logo_small" />
+
+
+
 </RelativeLayout>
 		
         

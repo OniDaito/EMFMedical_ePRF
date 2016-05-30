@@ -1,5 +1,7 @@
 package uk.co.section9.emfmedical;
 
+import android.content.ContentValues;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,5 +42,14 @@ public class Util {
         if (v == 'n') return "no";
         if (v == 'x') return "unknown";
         return "ERROR";
+    }
+
+    public static boolean isValidCharValue(ContentValues v, String key){
+        if (v.containsKey(key)) {
+            if ( ((String)v.get(key)).length() > 0){
+                return true;
+            }
+        }
+        return false;
     }
 }
