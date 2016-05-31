@@ -356,8 +356,6 @@ public class PRFActivity extends FragmentActivity  {
         int keyCode = event.getKeyCode();
 
         // 92 & 93 are on the left. 95 and 96 are the two on the right
-
-
         switch (keyCode) {
         case KeyEvent.KEYCODE_PAGE_UP:
         case KeyEvent.KEYCODE_PAGE_DOWN:{
@@ -377,6 +375,10 @@ public class PRFActivity extends FragmentActivity  {
                 _tabhost.setCurrentTab(ctab+1);
                 return true;
             }
+        }
+
+        case KeyEvent.KEYCODE_BACK: {
+            postponeForm();
         }
 
         default:

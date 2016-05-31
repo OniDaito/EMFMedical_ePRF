@@ -86,16 +86,16 @@ public class PrimarySurveyActivity extends FragmentActivity {
             RadioButton primary_survey_response_none = (RadioButton)mainView.findViewById(R.id.primary_survey_response_none);
 
             if (primary_survey_response_alert.isChecked()){
-                pp.set_consciousness('a');
+                pp.set_response('a');
             }
             if (primary_survey_response_voice.isChecked()){
-                pp.set_consciousness('v');
+                pp.set_response('v');
             }
             if (primary_survey_response_pain.isChecked()){
-                pp.set_consciousness('p');
+                pp.set_response('p');
             }
             if (primary_survey_response_none.isChecked()){
-                pp.set_consciousness('u');
+                pp.set_response('u');
             }
 
 
@@ -103,10 +103,10 @@ public class PrimarySurveyActivity extends FragmentActivity {
             RadioButton primary_survey_airway_obstructed = (RadioButton)mainView.findViewById(R.id.primary_survey_airway_obstructed);
 
             if (primary_survey_airway_clear.isChecked()){
-                pp.set_airway('y');
+                pp.set_airway('c');
             }
             if (primary_survey_airway_obstructed.isChecked()){
-                pp.set_airway('n');
+                pp.set_airway('o');
             }
 
             RadioButton primary_survey_breathing_normal = (RadioButton)mainView.findViewById(R.id.primary_survey_breathing_normal);

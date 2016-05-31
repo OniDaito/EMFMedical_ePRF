@@ -110,6 +110,10 @@ public class PRF extends BaseData {
         _uuid = (String)values.get("id");
     }
 
+    public void addObservation(Observation ob){
+        _observations.add(ob);
+    }
+
     public static String get_table_name() {
         return TABLE_NAME;
     }

@@ -1,9 +1,6 @@
 package uk.co.section9.emfmedical.data;
 
 import android.content.ContentValues;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.view.ViewDebug;
 
 import java.util.Date;
 
@@ -21,6 +18,10 @@ public class Observation extends BaseData {
     protected int _painscore;
     protected float _o2sats;
     protected int _bp_sis;
+
+
+
+    protected int _oborder;
     protected int _bp_dis;
     protected float _temperature;
     protected char _perl;
@@ -32,6 +33,7 @@ public class Observation extends BaseData {
         _response = 'x';        // avpu or x
         _respiratory = "";      // -1 if not used
         _pulse = "";            // -1 if not used
+        _oborder = 0;
         _painscore = -1;        // -1 or 1 to 10
         _o2sats = -1;           // -1 if not used
         _bp_sis = -1;           // -1 if not used
@@ -46,7 +48,7 @@ public class Observation extends BaseData {
         String CREATE_TABLE_OBSERVATIONS = "CREATE TABLE \"" +TABLE_NAME + "\" (\"time\" DATETIME DEFAULT CURRENT_TIMESTAMP, " +
                 "\"response\" VARCHAR, \"respiratory\" TEXT, \"pulse\" TEXT, \"painscore\" INTEGER, " +
                 "\"o2sats\" FLOAT, \"bp_sis\" INTEGER, \"bp_dis\" INTEGER, \"temperature\" FLOAT, \"perl\"" +
-                " VARCHAR, \"eyes\" VARCHAR, \"id\" GUID PRIMARY KEY NOT NULL )";
+                " VARCHAR, \"eyes\" VARCHAR, \"oborder\" INTEGER, \"id\" GUID NOT NULL )";
         return CREATE_TABLE_OBSERVATIONS;
     }
 
@@ -77,15 +79,18 @@ public class Observation extends BaseData {
         ContentValues values = new ContentValues();
         values.put("time", Util.dateToDBString(_time));
         values.put("response", ""+_response);
-        values.put("respiratory", _respiratory);
-        values.put("pulse", _pulse);
-        values.put("painscore", _painscore);
-        values.put("o2sats", _o2sats);
-        values.put("bpsis", _bp_sis);
-        values.put("bpdis", _bp_dis);
-        values.put("perl", perlConv());
-        values.put("eyes", eyeConv());
-        values.put("temperature", _temperature);
+        if (!_respiratory.equals(""))
+         values.put("respiratory", _respiratory);
+        if (!_pulse.equals(""))
+            values.put("pulse", _pulse);
+        values.put("painscore",Integer.toString(_painscore));
+        values.put("o2sats", Float.toString(_o2sats));
+        values.put("bp_sis",  Integer.toString(_bp_sis));
+        values.put("bp_dis",  Integer.toString(_bp_dis));
+        values.put("perl", ""+_perl);
+        values.put("oborder", Integer.toString(_oborder));
+        values.put("eyes", ""+_eyes);
+        values.put("temperature", Float.toString(_temperature));
         return values;
     }
 
@@ -95,13 +100,14 @@ public class Observation extends BaseData {
         if(Util.isValidCharValue(values,"response")) { _response = ((String) values.get("response")).charAt(0); }
         _respiratory = ((String) values.get("respiratory"));
         _pulse = ((String) values.get("pulse"));
-        _painscore = ((Integer) values.get("painscore"));
-        _o2sats = ((Float) values.get("o2sats"));
-        _bp_sis = ((Integer) values.get("bpsis"));
-        _bp_dis = ((Integer) values.get("bpdis"));
+        _painscore = (Integer.parseInt((String)values.get("painscore")));
+        _o2sats = ( Float.parseFloat( (String) values.get("o2sats")));
+        _bp_sis = (Integer.parseInt((String) values.get("bp_sis")));
+        _bp_dis = (Integer.parseInt((String) values.get("bp_dis")));
+        _oborder = (Integer.parseInt((String)values.get("oborder")));
         if(Util.isValidCharValue(values,"perl")) { _perl = ((String) values.get("perl")).charAt(0); }
         if(Util.isValidCharValue(values,"eyes")) { _eyes = ((String) values.get("eyes")).charAt(0); }
-        _temperature = ((Float) values.get("temperature"));
+        _temperature = Float.parseFloat((String) values.get("temperature"));
 
     }
 
@@ -233,7 +239,7 @@ public class Observation extends BaseData {
     }
 
     public void set_perl(char _perl) {
-        if (_perl == 'y' || _perl == 'v' || _perl == 'x')
+        if (_perl == 'y' || _perl == 'n' || _perl == 'x')
             this._perl = _perl;
     }
 
@@ -244,5 +250,13 @@ public class Observation extends BaseData {
     public void set_eyes(char _eyes) {
         if (_eyes == 'c' || _eyes == 'n' || _eyes == 'u' || _eyes == 'd' || _eyes == 'x')
             this._eyes = _eyes;
+    }
+
+    public int get_oborder() {
+        return _oborder;
+    }
+
+    public void set_oborder(int _oborder) {
+        this._oborder = _oborder;
     }
 }

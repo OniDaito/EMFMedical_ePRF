@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.Vector;
-import java.util.zip.Inflater;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,8 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -52,18 +49,26 @@ public class ObservationsActivity extends FragmentActivity {
             mUsed = true;
         }
 
+        // TODO - we are removing all the views but I suspect we only need to do that
+        // if we are quitting. Shouldnt do it if we are just popping back and forth between forms
         @Override
         public void onPause() {
+            setCurrentPRF();
             super.onPause();
             for(View v: obsViews){
                 obsLinearLayout.removeView(v);
             }
+            obsViews.clear();
         }
 
         @Override
         public void onStop() {
             setCurrentPRF();
             super.onStop();
+            for(View v: obsViews){
+                obsLinearLayout.removeView(v);
+            }
+            obsViews.clear();
         }
 
         @Override
@@ -84,18 +89,22 @@ return mUsed;
             int idx = 0;
 
             PRF prf = EMFMedicalApp.getCurrentPRF();
-            Vector<Observation> obs = prf.get_observations();
+            Vector<Observation> obs = prf.get_observations(); // This vec is probably temporary
 
             for(View v: obsViews){
 
                 // Check if we need to add an new Observation
                 if (idx >= obs.size()){
-                    obs.add(new Observation());
+                    Observation ob = new Observation();
+                    obs.add(ob);
                 }
 
                 Observation ob = obs.elementAt(idx);
+                ob.set_oborder(idx);
 
                 TimePicker observation_time = (TimePicker)v.findViewById(R.id.observation_time);
+                observation_time.setIs24HourView(true);
+                observation_time.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
                 Date dd = new Date();
                 Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
                 cal.set(Calendar.HOUR,observation_time.getCurrentHour());
@@ -105,14 +114,14 @@ return mUsed;
 
                 Spinner observation_response = (Spinner)v.findViewById(R.id.observation_response);
                 if ( observation_response.getSelectedItem() != null) {
-                if (observation_response.getSelectedItem().toString() == "Alert")
-                    ob.set_response('a');
-                else if (observation_response.getSelectedItem().toString() == "Voice")
-                    ob.set_response('v');
-                else if (observation_response.getSelectedItem().toString() == "Pain")
-                    ob.set_response('p');
-                else if (observation_response.getSelectedItem().toString() == "Unresponsive")
-                    ob.set_response('u');
+                    if (observation_response.getSelectedItem().toString().equals("Alert"))
+                        ob.set_response('a');
+                    else if (observation_response.getSelectedItem().toString().equals("Voice"))
+                        ob.set_response('v');
+                    else if (observation_response.getSelectedItem().toString().equals("Pain"))
+                        ob.set_response('p');
+                    else if (observation_response.getSelectedItem().toString().equals("Unresponsive"))
+                        ob.set_response('u');
                 }
 
                 EditText observation_respiratory_rate = (EditText)v.findViewById(R.id.observation_respiratory_rate);
@@ -132,13 +141,18 @@ return mUsed;
                 }
 
                 EditText observation_blood_pressure_systolic = (EditText)v.findViewById(R.id.observation_blood_pressure_systolic);
-                if (Integer.getInteger(""+ observation_blood_pressure_systolic.getEditableText()) != null) {
-                    ob.set_bp_sis(Integer.getInteger("" + observation_blood_pressure_systolic.getEditableText()));
+
+                try {
+                    ob.set_bp_sis(Integer.parseInt("" + observation_blood_pressure_systolic.getEditableText()));
+                }catch(java.lang.NumberFormatException e) {
+                    // Simply pass as its probably blank :S Not the best solution at present
                 }
 
                 EditText observation_blood_pressure_dystolic = (EditText)v.findViewById(R.id.observation_blood_pressure_dystolic);
-                if (Integer.getInteger(""+ observation_blood_pressure_dystolic.getEditableText()) != null) {
-                    ob.set_bp_dis(Integer.getInteger("" + observation_blood_pressure_dystolic.getEditableText()));
+                try {
+                    ob.set_bp_dis(Integer.parseInt("" + observation_blood_pressure_dystolic.getEditableText()));
+                }catch(java.lang.NumberFormatException e) {
+                    // Simply pass as its probably blank :S Not the best solution at present
                 }
 
                 EditText observation_temperature = (EditText)v.findViewById(R.id.observation_temperature);
@@ -167,13 +181,13 @@ return mUsed;
                     ob.set_eyes('n');
                 }
                 if (observation_eye_constricted.isChecked()){
-                    ob.set_perl('c');
+                    ob.set_eyes('c');
                 }
                 if (observation_eye_unequal.isChecked()){
-                    ob.set_perl('u');
+                    ob.set_eyes('u');
                 }
                 if (observation_eye_dilated.isChecked()){
-                    ob.set_perl('d');
+                    ob.set_eyes('d');
                 }
 
                 idx++;
@@ -186,14 +200,18 @@ return mUsed;
             PRF prf = EMFMedicalApp.getCurrentPRF();
             Vector<Observation> obs = prf.get_observations();
 
+            // One hopes the order of the obs is at least remembered :S Perhaps that wont work on
+            // db recall
+
             // Assume the views have not been created (which of course they wouldnt be)
+            // TODO - we do now have the order saved in the DB - should use that
             // TODO - this should be a method internally
             for (int i=obs.size()-1; i >=0; i--) {
                 View obsview = tinflater.inflate(R.layout.observation_actual, tgroup, false);
                 obsLinearLayout.addView(obsview);
                 obsViews.add(obsview);
                 TextView tv = (TextView) obsview.findViewById(R.id.observation_actual_heading);
-                tv.append(" " + obsViews.size());
+                tv.append(" " + (obs.size()-i+1));
 
                 TimePicker observation_time = (TimePicker)obsview.findViewById(R.id.observation_time);
                 observation_time.setIs24HourView(true);
@@ -225,6 +243,8 @@ return mUsed;
                 TimePicker observation_time = (TimePicker) v.findViewById(R.id.observation_time);
                 Date dd = ob.get_time();
                 Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+                observation_time.setIs24HourView(true);
+                observation_time.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
                 cal.setTime(dd);
                 observation_time.setCurrentHour(cal.get(Calendar.HOUR));
                 observation_time.setCurrentMinute(cal.get(Calendar.MINUTE));
@@ -265,10 +285,10 @@ return mUsed;
                 observation_o2_saturation.setText(String.valueOf(ob.get_o2sats()));
 
                 EditText observation_blood_pressure_systolic = (EditText) v.findViewById(R.id.observation_blood_pressure_systolic);
-                observation_blood_pressure_systolic.setText(ob.get_bp_sis());
+                observation_blood_pressure_systolic.setText(String.valueOf(ob.get_bp_sis()));
 
                 EditText observation_blood_pressure_dystolic = (EditText) v.findViewById(R.id.observation_blood_pressure_dystolic);
-                observation_blood_pressure_dystolic.setText(ob.get_bp_dis());
+                observation_blood_pressure_dystolic.setText(String.valueOf(ob.get_bp_dis()));
 
                 EditText observation_temperature = (EditText) v.findViewById(R.id.observation_temperature);
                 observation_temperature.setText(String.valueOf(ob.get_temperature()));
@@ -328,8 +348,6 @@ return mUsed;
             tinflater = inflater;
             tgroup = container;
 
-            getCurrentPRF();
-
             Button button = (Button) mainView.findViewById(R.id.button_add_observation);
             obsLinearLayout = (LinearLayout) mainView.findViewById(R.id.layout_observations);
 
@@ -339,6 +357,8 @@ return mUsed;
                     obsLinearLayout.addView(v);
                 }
             }
+
+            getCurrentPRF();
 
             // When button is clicked, create a new Obs form
 

@@ -114,7 +114,13 @@ public class IncidentActivity  extends PRFFragmentActivity {
 			inc.set_dob(dob);
 
 			EditText incident_age = (EditText)mainView.findViewById(R.id.incident_age);
-            if (Integer.getInteger(""+ incident_age.getEditableText()) != null) { inc.set_age(Integer.getInteger(""+ incident_age.getEditableText())); }
+
+            try  {
+                inc.set_age( Integer.parseInt((incident_age.getText().toString())));
+            } catch (NumberFormatException e ){
+                // Just pass for now - not great
+            }
+
 
 			EditText incident_gender = (EditText)mainView.findViewById(R.id.incident_gender);
 			inc.set_gender(""+incident_gender.getEditableText());

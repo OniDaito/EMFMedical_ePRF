@@ -110,7 +110,7 @@ public class Secondary extends BaseData{
         _allergies = ((String) values.get("allergies"));
         _medications = ((String) values.get("medications"));
         _medical_history = ((String) values.get("medical_history"));
-        _history_presenting_complaint = ((String) values.get("_history_presenting_complaint"));
+        _history_presenting_complaint = ((String) values.get("history_presenting_complaint"));
     }
 
     public char get_high_blood_pressure() {

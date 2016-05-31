@@ -80,17 +80,17 @@ public class Incident extends BaseData {
     public ContentValues getValues(){
         ContentValues values = new ContentValues();
         values.put("time", Util.dateToDBString(get_time()));
-        if (_location != "")
+        if (!_location.equals("")) // TODO - potentially could use a better cx here? Prolly a Util Func
             values.put("location", get_location());
-        if (_forname != "")
+        if (!_forname.equals(""))
             values.put("forname", get_forname());
-        if (_surname != "")
+        if (!_surname.equals(""))
             values.put("surname", get_surname());
-        if (_email != "")
+        if (!_email.equals(""))
             values.put("email", get_email());
-        if (_address != "")
+        if (!_address.equals(""))
             values.put("address", get_address());
-        if (_postcode != "")
+        if (!_postcode.equals(""))
             values.put("postcode", get_postcode());
 
         values.put("dob", Util.dateToDBString(get_dob()));
@@ -112,7 +112,7 @@ public class Incident extends BaseData {
         _address = ((String) values.get("address"));
         _postcode = ((String) values.get("postcode"));
         _dob = Util.dbStringToDate((String) values.get("dob"));
-        _age =  Integer.parseInt((String)values.get("age"));
+        _age =  Integer.parseInt((String)values.get("age")); // TODO - need a catch
         _gender = ((String) values.get("gender"));
         _kin = ((String) values.get("kin"));
 

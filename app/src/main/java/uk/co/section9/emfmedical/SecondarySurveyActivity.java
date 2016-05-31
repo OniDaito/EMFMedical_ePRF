@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 
 import uk.co.section9.emfmedical.data.PRF;
-import uk.co.section9.emfmedical.data.Primary;
 import uk.co.section9.emfmedical.data.Secondary;
 
 // Secondary Survey tab - Perhaps not the best name
@@ -157,7 +156,7 @@ public class SecondarySurveyActivity extends FragmentActivity {
             datachar = ss.get_fast();
 
             if (datachar == 'y') { medical_history_fast_yes.setChecked(true);}
-            else if (datachar == 'n') {medical_history_fast_no.setChecked(false);}
+            else if (datachar == 'n') {medical_history_fast_no.setChecked(true);}
 
             CheckBox medical_history_asthma = (CheckBox)mainView.findViewById(R.id.medical_history_asthma);
             medical_history_asthma.setChecked(false);

@@ -183,8 +183,8 @@ public class SeriousActivity extends FragmentActivity {
             TimePicker resuscitation_cpr_started_time = (TimePicker)mainView.findViewById(R.id.resuscitation_cpr_started_time);
             Date dd = ss.get_cpr_started();
             cal.setTime(dd);
-            resuscitation_cpr_started_time.setCurrentMinute(cal.get(Calendar.HOUR));
-            resuscitation_cpr_started_time.setCurrentHour(cal.get(Calendar.MINUTE));
+            resuscitation_cpr_started_time.setCurrentMinute(cal.get(Calendar.MINUTE));
+            resuscitation_cpr_started_time.setCurrentHour(cal.get(Calendar.HOUR));
 
             RadioButton resuscitation_defibrillator_used_yes = (RadioButton)mainView.findViewById(R.id.resuscitation_defibrillator_used_yes);
             RadioButton resuscitation_defibrillator_used_no = (RadioButton)mainView.findViewById(R.id.resuscitation_defibrillator_used_no);
@@ -215,8 +215,8 @@ public class SeriousActivity extends FragmentActivity {
             TimePicker ambulance_departed = (TimePicker)mainView.findViewById(R.id.ambulance_departed);
             dd = ss.get_ambulance_departed();
             cal.setTime(dd);
-            ambulance_departed.setCurrentMinute(cal.get(Calendar.HOUR));
-            ambulance_departed.setCurrentHour(cal.get(Calendar.MINUTE));
+            ambulance_departed.setCurrentMinute(cal.get(Calendar.MINUTE));
+            ambulance_departed.setCurrentHour(cal.get(Calendar.HOUR));
 
         }
     }

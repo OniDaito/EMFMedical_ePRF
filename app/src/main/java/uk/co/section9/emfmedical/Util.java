@@ -53,4 +53,14 @@ public class Util {
         }
         return false;
     }
+
+    // TODO - not sure why this fails :S
+    public static boolean isValidStringValue(ContentValues v, String key){
+        if (v.containsKey(key)) {
+            if ( ((String)v.get(key)).length() > 0 ){
+                return true;
+            }
+        }
+        return false;
+    }
 }

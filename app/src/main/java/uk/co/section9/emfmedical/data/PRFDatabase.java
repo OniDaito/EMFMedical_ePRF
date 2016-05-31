@@ -3,20 +3,11 @@ package uk.co.section9.emfmedical.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.io.ObjectStreamException;
-import java.security.SecurityPermission;
-import java.util.Date;
 import java.util.Vector;
-
-import javax.crypto.SealedObject;
-
-import uk.co.section9.emfmedical.Util;
-import uk.co.section9.emfmedical.data.PRF;
 
 /**
  * Created by oni on 01/05/2016.
@@ -97,7 +88,7 @@ public class PRFDatabase extends SQLiteOpenHelper {
         Vector<Observation> obs = prf.get_observations();
         for (Observation ob : obs) {
             values = ob.getValues();
-            db.update(Observation.get_table_name(), values, "id = ?", new String[]{prf.get_uuid()});
+            db.update(Observation.get_table_name(), values, "id = ? and order = ?", new String[]{prf.get_uuid(), String.valueOf(ob.get_oborder())});
         }
 
         values = prf.get_primary().getValues();
@@ -137,6 +128,7 @@ public class PRFDatabase extends SQLiteOpenHelper {
         for (Observation ob : obs) {
             values = ob.getValues();
             values.put("id", prf.get_uuid());
+            Log.d("OUTPUT", "ADDING ob " + prf.get_uuid());
             db.insert(Observation.get_table_name(), null, values);
         }
 
@@ -226,7 +218,7 @@ public class PRFDatabase extends SQLiteOpenHelper {
             values = _readRow(Observation.get_table_name(), uuid, i);
             Observation ob = new Observation();
             ob.setValues(values);
-            prf.get_observations().add(ob);
+            prf.addObservation(ob);
         }
 
         values = _readRow(Primary.get_table_name(), uuid, 0);
