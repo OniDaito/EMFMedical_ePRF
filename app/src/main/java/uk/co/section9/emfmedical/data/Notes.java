@@ -37,8 +37,7 @@ public class Notes extends BaseData {
 
     public ContentValues getValues(){
         ContentValues values = new ContentValues();
-        if (_notes != "")
-            values.put("notes", get_notes());
+        values.put("notes", get_notes());
         return values;
     }
 

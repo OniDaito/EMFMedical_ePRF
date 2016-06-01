@@ -22,7 +22,8 @@ import uk.co.section9.emfmedical.data.Serious;
 // Resuscitation Tab
 
 public class SeriousActivity extends FragmentActivity {
-    public static class SeriousFragment extends Fragment {
+
+    public static class SeriousFragment extends PRFFragment {
 
         static View mainView;
         static boolean mUsed = false;
@@ -44,6 +45,12 @@ public class SeriousActivity extends FragmentActivity {
             super.onDestroy();
         }
 
+        @Override
+        public void onPause() {
+            setCurrentPRF();
+            super.onPause();
+        }
+
         public static boolean used() {
         return mUsed;
         }
@@ -58,7 +65,6 @@ public class SeriousActivity extends FragmentActivity {
             TimePicker tt = (TimePicker)mainView.findViewById(R.id.resuscitation_cpr_started_time);
             tt.setIs24HourView(true);
             tt.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-
 
             tt = (TimePicker)mainView.findViewById(R.id.ambulance_arrived);
             tt.setIs24HourView(true);
@@ -97,7 +103,7 @@ public class SeriousActivity extends FragmentActivity {
                 ss.set_cpr('y');
 
                 TimePicker resuscitation_cpr_started_time = (TimePicker)mainView.findViewById(R.id.resuscitation_cpr_started_time);
-                cal.set(Calendar.HOUR,resuscitation_cpr_started_time.getCurrentHour());
+                cal.set(Calendar.HOUR_OF_DAY,resuscitation_cpr_started_time.getCurrentHour());
                 cal.set(Calendar.MINUTE,resuscitation_cpr_started_time.getCurrentMinute());
                 Date dd = cal.getTime();
                 ss.set_cpr_started(dd);
@@ -112,11 +118,11 @@ public class SeriousActivity extends FragmentActivity {
 
             if (resuscitation_defibrillator_used_yes.isChecked()){
                 ss.set_defib_used('y');
-                EditText resuscitation_number_of_shocks = (EditText)mainView.findViewById(R.id.resuscitation_number_of_shocks);
-                if (Integer.getInteger(""+ resuscitation_number_of_shocks.getEditableText()) != null) {
-                    ss.set_defib_shocks(Integer.getInteger("" + resuscitation_number_of_shocks.getEditableText()));
-                }
             }
+
+            EditText resuscitation_number_of_shocks = (EditText)mainView.findViewById(R.id.resuscitation_number_of_shocks);
+            ss.set_defib_shocks(Integer.parseInt("" + resuscitation_number_of_shocks.getEditableText()));
+
 
             if (resuscitation_defibrillator_used_no.isChecked()){
                 ss.set_defib_used('n');
@@ -127,23 +133,23 @@ public class SeriousActivity extends FragmentActivity {
 
             if (ambulance_called_yes.isChecked()){
                 ss.set_ambulance_called('y');
-
-                TimePicker ambulance_arrived = (TimePicker)mainView.findViewById(R.id.ambulance_arrived);
-                cal.set(Calendar.HOUR,ambulance_arrived.getCurrentHour());
-                cal.set(Calendar.MINUTE, ambulance_arrived.getCurrentMinute());
-                Date dd = cal.getTime();
-                ss.set_ambulance_arrived(dd);
-
-                TimePicker ambulance_departed = (TimePicker)mainView.findViewById(R.id.ambulance_departed);
-                cal.set(Calendar.HOUR, ambulance_departed.getCurrentHour());
-                cal.set(Calendar.MINUTE, ambulance_departed.getCurrentMinute());
-                Date de = cal.getTime();
-                ss.set_ambulance_departed(de);
             }
 
             if (ambulance_called_no.isChecked()){
                 ss.set_ambulance_called('n');
             }
+
+            TimePicker ambulance_arrived = (TimePicker)mainView.findViewById(R.id.ambulance_arrived);
+            cal.set(Calendar.HOUR_OF_DAY,ambulance_arrived.getCurrentHour());
+            cal.set(Calendar.MINUTE, ambulance_arrived.getCurrentMinute());
+            Date dd = cal.getTime();
+            ss.set_ambulance_arrived(dd);
+
+            TimePicker ambulance_departed = (TimePicker)mainView.findViewById(R.id.ambulance_departed);
+            cal.set(Calendar.HOUR_OF_DAY, ambulance_departed.getCurrentHour());
+            cal.set(Calendar.MINUTE, ambulance_departed.getCurrentMinute());
+            Date de = cal.getTime();
+            ss.set_ambulance_departed(de);
         }
 
         public static void getCurrentPRF() {
@@ -177,14 +183,18 @@ public class SeriousActivity extends FragmentActivity {
                 resuscitation_cpr_started_no.setChecked(true);
             }
 
+            EditText resuscitation_number_of_shocks = (EditText)mainView.findViewById(R.id.resuscitation_number_of_shocks);
+            resuscitation_number_of_shocks.setText(String.valueOf(ss.get_defib_shocks()));
+
             Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-
-
             TimePicker resuscitation_cpr_started_time = (TimePicker)mainView.findViewById(R.id.resuscitation_cpr_started_time);
+            resuscitation_cpr_started_time.setIs24HourView(true);
             Date dd = ss.get_cpr_started();
             cal.setTime(dd);
             resuscitation_cpr_started_time.setCurrentMinute(cal.get(Calendar.MINUTE));
-            resuscitation_cpr_started_time.setCurrentHour(cal.get(Calendar.HOUR));
+            resuscitation_cpr_started_time.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
+
+
 
             RadioButton resuscitation_defibrillator_used_yes = (RadioButton)mainView.findViewById(R.id.resuscitation_defibrillator_used_yes);
             RadioButton resuscitation_defibrillator_used_no = (RadioButton)mainView.findViewById(R.id.resuscitation_defibrillator_used_no);
@@ -207,16 +217,18 @@ public class SeriousActivity extends FragmentActivity {
             else if (datachar == 'n') { ambulance_called_no.setChecked(true); }
 
             TimePicker ambulance_arrived = (TimePicker)mainView.findViewById(R.id.ambulance_arrived);
+            ambulance_arrived.setIs24HourView(true);
             dd = ss.get_ambulance_arrived();
             cal.setTime(dd);
-            ambulance_arrived.setCurrentHour(cal.get(Calendar.HOUR));
+            ambulance_arrived.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
             ambulance_arrived.setCurrentMinute(cal.get(Calendar.MINUTE));
 
             TimePicker ambulance_departed = (TimePicker)mainView.findViewById(R.id.ambulance_departed);
+            ambulance_departed.setIs24HourView(true);
             dd = ss.get_ambulance_departed();
             cal.setTime(dd);
             ambulance_departed.setCurrentMinute(cal.get(Calendar.MINUTE));
-            ambulance_departed.setCurrentHour(cal.get(Calendar.HOUR));
+            ambulance_departed.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
 
         }
     }

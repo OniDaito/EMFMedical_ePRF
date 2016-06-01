@@ -15,27 +15,27 @@ import uk.co.section9.emfmedical.data.PRF;
 
 public class NotesActivity extends FragmentActivity {
 
-    public static class NotesFragment extends Fragment {
+    public static class NotesFragment extends PRFFragment {
 
         static View mainView;
         static boolean mUsed = false;
 
         @Override
         public void onStop() {
-            super.onStop();
             setCurrentPRF();
+            super.onStop();
         }
 
         @Override
         public void onDestroy() {
-            super.onDestroy();
             setCurrentPRF();
+            super.onDestroy();
         }
 
         @Override
         public void onPause() {
-            super.onPause();
             setCurrentPRF();
+            super.onPause();
         }
 
         @Override
@@ -60,7 +60,7 @@ public class NotesActivity extends FragmentActivity {
             PRF prf = EMFMedicalApp.getCurrentPRF();
             Notes nn = prf.get_notes();
             EditText notes_notes = (EditText)mainView.findViewById(R.id.notes_notes);
-            nn.set_notes(""+notes_notes);
+            nn.set_notes(""+notes_notes.getText());
         }
 
         public static void getCurrentPRF() {

@@ -1,19 +1,12 @@
 package uk.co.section9.emfmedical;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
-import java.security.Key;
 import java.security.KeyFactory;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PublicKey;
@@ -26,10 +19,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 
 // Basic RSA Encryption with block_size byte blocks to keep our data safe
 
@@ -42,8 +32,8 @@ public class EMFCrypto{
 	public void init(Context ctx) {
 				
 		// reads the public key stored in a file
-	
 		// http://stackoverflow.com/questions/11532989/android-decrypt-rsa-text-using-a-public-key-stored-in-a-file
+
 	    BufferedReader br;
 		try {
 			
@@ -67,9 +57,7 @@ public class EMFCrypto{
 		    for (String aLine: lines)
 		        sb.append(aLine);
 		    String keyString = sb.toString();
-		    //Log.d("log", "keyString:"+keyString);
-	
-		   
+
 		    // converts the String to a PublicKey instance
 		    byte[] keyBytes;
 			try {

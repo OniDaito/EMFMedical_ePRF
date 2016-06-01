@@ -43,7 +43,6 @@ public class Discharge extends BaseData {
         _review = 'x';
         _advised = 'x';
         _time_left = new Date();
-        _time_left.setDate(0);
         _refused = 'x';
         _seen_by = "";
         _receiving_centre = "";

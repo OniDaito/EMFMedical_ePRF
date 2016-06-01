@@ -67,6 +67,7 @@ public class EMFMedicalApp extends Application {
     // Write out the existing current prf to encrypted format
     public static void completePRF() {
         Log.d("OUTPUT",_currentPRF.toXML());
+        _db.deletePRF(_currentPRF);
     }
 
     public static PRFDatabase getDatabase() {

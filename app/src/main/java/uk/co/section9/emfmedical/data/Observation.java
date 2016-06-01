@@ -18,9 +18,6 @@ public class Observation extends BaseData {
     protected int _painscore;
     protected float _o2sats;
     protected int _bp_sis;
-
-
-
     protected int _oborder;
     protected int _bp_dis;
     protected float _temperature;

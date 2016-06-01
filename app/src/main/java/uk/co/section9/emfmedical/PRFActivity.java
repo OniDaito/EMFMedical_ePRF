@@ -6,8 +6,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +20,8 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import uk.co.section9.emfmedical.data.Incident;
+
 
 // The actual PRFDatabase Activity itself
 
@@ -25,9 +29,7 @@ import android.widget.Button;
 public class PRFActivity extends FragmentActivity  {
 	 
 	private FragmentTabHost _tabhost;
-    public static String prePopulate;
     private static EMFMedicalApp _app;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,6 @@ public class PRFActivity extends FragmentActivity  {
         } else {
             // TODO - graceful fallback on failure needed here
             EMFMedicalApp.loadPRF(prf_id);
-            // Pre-populate fields somehow :S Probably this will ber automatic
-
         }
 
 
@@ -69,7 +69,7 @@ public class PRFActivity extends FragmentActivity  {
 	    _tabhost.addTab(_tabhost.newTabSpec("primary_survey").setIndicator("2.Primary Survey"),
 	    		PrimarySurveyActivity.PrimarySurveyFragment.class, null);
 	        
-		_tabhost.addTab(_tabhost.newTabSpec("History").setIndicator("3.History"),
+		_tabhost.addTab(_tabhost.newTabSpec("history").setIndicator("3.History"),
 				SecondarySurveyActivity.SecondarySurveyFragment.class, null);
 
 		_tabhost.addTab(_tabhost.newTabSpec("observations").setIndicator("4.Observations"),
@@ -78,7 +78,7 @@ public class PRFActivity extends FragmentActivity  {
 		_tabhost.addTab(_tabhost.newTabSpec("treatment").setIndicator("5.Treatment"),
 				TreatmentActivity.TreatmentFragment.class, null);
 	        
-		_tabhost.addTab(_tabhost.newTabSpec("resuscitation").setIndicator("6.Serious"),
+		_tabhost.addTab(_tabhost.newTabSpec("serious").setIndicator("6.Serious"),
                 SeriousActivity.SeriousFragment.class, null);
 
         _tabhost.addTab(_tabhost.newTabSpec("notes").setIndicator("7.Notes"),
@@ -151,8 +151,8 @@ public class PRFActivity extends FragmentActivity  {
 
                 // set dialog message
                 alertDialogBuilder
-                        .setMessage("This will save the PRF to temporary storage and return you to the main menu. Continue?")
                         .setCancelable(false)
+                        .setMessage("This will postpone the Patient Report Form, saving to a temporary database.")
                         .setPositiveButton("Yes",new DialogInterface.OnClickListener()
                         {
 
@@ -189,18 +189,33 @@ public class PRFActivity extends FragmentActivity  {
     }
 
 
-    // Make the back button do nothing at this point
+    // Make the back button do nothing at this point - could possibly hid the keyboard?
     @Override
     public void onBackPressed() {
     }
 
     // Set the database but also quit and go back to the main screen
     public void postponeForm() {
-        // Finish destroys the form but that means we write to memory so finish happens first
-        finish();
+
+        // We need to find which fragment is active and call it' set method
+        String tag = _tabhost.getCurrentTabTag();
+
+        if (tag.equals("incident")) { IncidentActivity.IncidentFragment.setCurrentPRF(); }
+        else if (tag.equals("outcome")) { DischargeActivity.OutcomeFragment.setCurrentPRF(); }
+        else if (tag.equals("notes")) { NotesActivity.NotesFragment.setCurrentPRF(); }
+        else if (tag.equals("primary_survey")) { PrimarySurveyActivity.PrimarySurveyFragment.setCurrentPRF(); }
+        else if (tag.equals("observations")) { ObservationsActivity.ObservationsFragment.setCurrentPRF(); }
+        else if (tag.equals("refused")) { RefusedActivity.RefusedFragment.setCurrentPRF(); }
+        else if (tag.equals("history")) { SecondarySurveyActivity.SecondarySurveyFragment.setCurrentPRF(); }
+        else if (tag.equals("serious")) { SeriousActivity.SeriousFragment.setCurrentPRF(); }
+        else if (tag.equals("sign")) { SignActivity.SignFragment.setCurrentPRF(); }
+        else if (tag.equals("treatment")) { TreatmentActivity.TreatmentFragment.setCurrentPRF(); }
 
         // We need to decide here if we are updating or starting anew
         EMFMedicalApp.commitPRF();
+
+        // Finish destroys the form but that means we write to memory so finish happens first
+        finish();
     }
 
     // Form is completed! Grab all data and encrypt
@@ -295,7 +310,6 @@ public class PRFActivity extends FragmentActivity  {
 
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -305,15 +319,11 @@ public class PRFActivity extends FragmentActivity  {
     @Override
     public void onPause() {
         super.onPause();
-
-
     }
 
     @Override
     public void onDestroy() {
         // Write out any PRFDatabase that isnt't already written?
-
-
         super.onDestroy();
 
     }
@@ -337,15 +347,12 @@ public class PRFActivity extends FragmentActivity  {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         return false;
     }
 
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         return super.onKeyDown(keyCode, event);
     }
 

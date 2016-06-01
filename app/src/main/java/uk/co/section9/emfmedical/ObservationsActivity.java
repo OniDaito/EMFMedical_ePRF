@@ -29,7 +29,7 @@ import uk.co.section9.emfmedical.data.PRF;
 
 public class ObservationsActivity extends FragmentActivity {
 
-    public static class ObservationsFragment extends Fragment {
+    public static class ObservationsFragment extends PRFFragment {
 
         View mainView;
         static LinearLayout obsLinearLayout;
@@ -50,7 +50,7 @@ public class ObservationsActivity extends FragmentActivity {
         }
 
         // TODO - we are removing all the views but I suspect we only need to do that
-        // if we are quitting. Shouldnt do it if we are just popping back and forth between forms
+        // if we are quitting. Shouldn't do it if we are just popping back and forth between forms
         @Override
         public void onPause() {
             setCurrentPRF();
@@ -104,12 +104,10 @@ return mUsed;
 
                 TimePicker observation_time = (TimePicker)v.findViewById(R.id.observation_time);
                 observation_time.setIs24HourView(true);
-                observation_time.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-                Date dd = new Date();
                 Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-                cal.set(Calendar.HOUR,observation_time.getCurrentHour());
+                cal.set(Calendar.HOUR_OF_DAY,observation_time.getCurrentHour());
                 cal.set(Calendar.MINUTE,observation_time.getCurrentMinute());
-                dd = cal.getTime();
+                Date dd = cal.getTime();
                 ob.set_time(dd);
 
                 Spinner observation_response = (Spinner)v.findViewById(R.id.observation_response);
@@ -199,10 +197,8 @@ return mUsed;
 
             PRF prf = EMFMedicalApp.getCurrentPRF();
             Vector<Observation> obs = prf.get_observations();
-
             // One hopes the order of the obs is at least remembered :S Perhaps that wont work on
             // db recall
-
             // Assume the views have not been created (which of course they wouldnt be)
             // TODO - we do now have the order saved in the DB - should use that
             // TODO - this should be a method internally
@@ -211,7 +207,7 @@ return mUsed;
                 obsLinearLayout.addView(obsview);
                 obsViews.add(obsview);
                 TextView tv = (TextView) obsview.findViewById(R.id.observation_actual_heading);
-                tv.append(" " + (obs.size()-i+1));
+                tv.append(" " + (obs.get(i).get_oborder()));
 
                 TimePicker observation_time = (TimePicker)obsview.findViewById(R.id.observation_time);
                 observation_time.setIs24HourView(true);
@@ -228,7 +224,6 @@ return mUsed;
 
                     public void onStartTrackingTouch(SeekBar seekBar) {}
                     public void onStopTrackingTouch(SeekBar seekBar) {}
-
                 }
 
                 SeekBar painseekbar=(SeekBar) obsview.findViewById(R.id.observation_painscore);
@@ -241,12 +236,11 @@ return mUsed;
                 Observation ob = obs.elementAt(idx);
 
                 TimePicker observation_time = (TimePicker) v.findViewById(R.id.observation_time);
+                observation_time.setIs24HourView(true);
                 Date dd = ob.get_time();
                 Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-                observation_time.setIs24HourView(true);
-                observation_time.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
                 cal.setTime(dd);
-                observation_time.setCurrentHour(cal.get(Calendar.HOUR));
+                observation_time.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
                 observation_time.setCurrentMinute(cal.get(Calendar.MINUTE));
 
                 Spinner observation_response = (Spinner) v.findViewById(R.id.observation_response);
@@ -270,7 +264,6 @@ return mUsed;
                         break;
                     }
                 }
-
 
                 EditText observation_respiratory_rate = (EditText) v.findViewById(R.id.observation_respiratory_rate);
                 observation_respiratory_rate.setText(ob.get_respiratory());
@@ -322,15 +315,19 @@ return mUsed;
                 switch (datachar){
                     case 'n' : {
                         observation_eye_normal.setChecked(true);
+                        break;
                     }
                     case 'c' : {
                         observation_eye_constricted.setChecked(true);
+                        break;
                     }
                     case 'u' : {
                         observation_eye_unequal.setChecked(true);
+                        break;
                     }
                     case 'd' : {
                         observation_eye_dilated.setChecked(true);
+                        break;
                     }
                 }
 
@@ -382,7 +379,7 @@ return mUsed;
                     // Also add to the master list of obs
                     obsViews.add(obs);
                     TextView tv = (TextView) obs.findViewById(R.id.observation_actual_heading);
-                    tv.append(" " + obsViews.size());
+                    tv.append(" " + (obsViews.size()-1)); // In theory,this should match the upcoming oborder value
 
                     // Setup bits of the new obs
                     TimePicker observation_time = (TimePicker)obs.findViewById(R.id.observation_time);

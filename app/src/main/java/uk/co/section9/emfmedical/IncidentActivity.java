@@ -22,7 +22,7 @@ import uk.co.section9.emfmedical.data.PRF;
 
 // Incident Tab - the first tab to be completed
 
-public class IncidentActivity  extends PRFFragmentActivity {
+public class IncidentActivity  extends FragmentActivity {
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class IncidentActivity  extends PRFFragmentActivity {
 	super.onSaveInstanceState(outState);
 	}
 
-	public static class IncidentFragment extends Fragment {
+	public static class IncidentFragment extends PRFFragment {
 
 		static View mainView;
 		static boolean mUsed = false;
@@ -43,10 +43,6 @@ public class IncidentActivity  extends PRFFragmentActivity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			mainView = inflater.inflate(R.layout.incident, container, false);
 			mUsed = true;
-
-			TimePicker incident_time = (TimePicker)mainView.findViewById(R.id.incident_time);
-			incident_time.setIs24HourView(true);
-			incident_time.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
 
             getCurrentPRF();
 
@@ -82,9 +78,15 @@ public class IncidentActivity  extends PRFFragmentActivity {
 			Incident inc = prf.get_incident();
 
 			TimePicker incident_time = (TimePicker)mainView.findViewById(R.id.incident_time);
+            incident_time.setIs24HourView(true);
 			DatePicker incident_date = (DatePicker)mainView.findViewById(R.id.incident_date);
             Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-            cal.set(incident_date.getYear(), incident_date.getMonth(),incident_date.getDayOfMonth(),incident_time.getCurrentHour(),incident_time.getCurrentMinute() );
+            cal.set( Calendar.YEAR, incident_date.getYear());
+            cal.set( Calendar.MONTH, incident_date.getMonth());
+            cal.set( Calendar.DATE, incident_date.getDayOfMonth());
+            cal.set( Calendar.MINUTE, incident_time.getCurrentMinute());
+            cal.set( Calendar.HOUR_OF_DAY, incident_time.getCurrentHour());
+
             Date dd = cal.getTime();
 			inc.set_time(dd);
 
@@ -109,7 +111,10 @@ public class IncidentActivity  extends PRFFragmentActivity {
 			DatePicker incident_date_of_birth = (DatePicker)mainView.findViewById(R.id.incident_date_of_birth);
 
             cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-            cal.set(incident_date_of_birth.getYear(), incident_date_of_birth.getMonth(),incident_date_of_birth.getDayOfMonth() );
+
+            cal.set( Calendar.YEAR, incident_date_of_birth.getYear());
+            cal.set( Calendar.MONTH, incident_date_of_birth.getMonth());
+            cal.set( Calendar.DATE, incident_date_of_birth.getDayOfMonth());
             Date dob = cal.getTime();
 			inc.set_dob(dob);
 
@@ -120,7 +125,6 @@ public class IncidentActivity  extends PRFFragmentActivity {
             } catch (NumberFormatException e ){
                 // Just pass for now - not great
             }
-
 
 			EditText incident_gender = (EditText)mainView.findViewById(R.id.incident_gender);
 			inc.set_gender(""+incident_gender.getEditableText());
@@ -136,13 +140,14 @@ public class IncidentActivity  extends PRFFragmentActivity {
             Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 
 			TimePicker incident_time = (TimePicker)mainView.findViewById(R.id.incident_time);
-
+            incident_time.setIs24HourView(true);
 			Date dd = inc.get_time();
-            cal.setTime(dd);
+            cal.set(Calendar.HOUR_OF_DAY, dd.getHours());
+            cal.set(Calendar.MINUTE, dd.getMinutes());
 			incident_time.setCurrentMinute(cal.get(Calendar.MINUTE));
-            incident_time.setCurrentHour(cal.get(Calendar.HOUR));
+            incident_time.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
 
-			DatePicker incident_date = (DatePicker)mainView.findViewById(R.id.incident_date);
+            DatePicker incident_date = (DatePicker)mainView.findViewById(R.id.incident_date);
             cal.setTime(dd);
 
             incident_date.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));

@@ -22,7 +22,8 @@ import uk.co.section9.emfmedical.data.PRF;
 
 public class DischargeActivity extends FragmentActivity {
 
-    public static class OutcomeFragment extends Fragment {
+
+    public static class OutcomeFragment extends PRFFragment {
 
         public static View mainView;
         static boolean mUsed = false;
@@ -38,20 +39,19 @@ public class DischargeActivity extends FragmentActivity {
 
         @Override
         public void onStop() {
-            super.onStop();
             setCurrentPRF();
+            super.onStop();
         }
-
         @Override
         public void onDestroy() {
-            super.onDestroy();
             setCurrentPRF();
+            super.onDestroy();
         }
 
         @Override
         public void onPause() {
-            super.onPause();
             setCurrentPRF();
+            super.onPause();
         }
 
 
@@ -61,9 +61,6 @@ public class DischargeActivity extends FragmentActivity {
             mainView = inflater.inflate(R.layout.outcome, container, false);
             mUsed = true;
 
-            TimePicker tt = (TimePicker)mainView.findViewById(R.id.outcome_time_left_first_aid);
-            tt.setIs24HourView(true);
-            tt.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
             getCurrentPRF();
             return mainView;
         }
@@ -105,6 +102,11 @@ public class DischargeActivity extends FragmentActivity {
                 ds.set_completed('y');
             }
 
+            CheckBox outcome_taxi = (CheckBox)mainView.findViewById(R.id.outcome_taxi);
+            if (outcome_taxi.isChecked()){
+                ds.set_taxi('y');
+            }
+
             CheckBox outcome_advised_to_seek = (CheckBox)mainView.findViewById(R.id.outcome_advised_to_seek);
             if (outcome_advised_to_seek.isChecked()){
                 ds.set_advised('y');
@@ -121,15 +123,14 @@ public class DischargeActivity extends FragmentActivity {
             }
 
             EditText outcome_receiving_centre = (EditText)mainView.findViewById(R.id.outcome_receiving_centre);
-            ds.set_other(""+outcome_receiving_centre.getEditableText());
+            ds.set_receiving_centre(""+outcome_receiving_centre.getEditableText());
 
             TimePicker outcome_time_left_first_aid = (TimePicker)mainView.findViewById(R.id.outcome_time_left_first_aid);
-
-            Date dd = new Date();
+            outcome_time_left_first_aid.setIs24HourView(true);
             Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-            cal.set(Calendar.HOUR, outcome_time_left_first_aid.getCurrentHour());
+            cal.set(Calendar.HOUR_OF_DAY, outcome_time_left_first_aid.getCurrentHour());
             cal.set(Calendar.MINUTE, outcome_time_left_first_aid.getCurrentMinute() );
-            dd = cal.getTime();
+            Date dd = cal.getTime();
             ds.set_time_left(dd);
         }
 
@@ -164,10 +165,10 @@ public class DischargeActivity extends FragmentActivity {
             }
 
             CheckBox outcome_public_transport = (CheckBox)mainView.findViewById(R.id.outcome_public_transport);
-            if (ds.get_own_transport() == 'y'){
-                outcome_own_transport.setChecked(true);
+            if (ds.get_public_transport() == 'y'){
+                outcome_public_transport.setChecked(true);
             } else {
-                outcome_own_transport.setChecked(false);
+                outcome_public_transport.setChecked(false);
             }
 
             CheckBox outcome_ambulance = (CheckBox)mainView.findViewById(R.id.outcome_ambulance);
@@ -175,6 +176,13 @@ public class DischargeActivity extends FragmentActivity {
                 outcome_ambulance.setChecked(true);
             } else {
                 outcome_ambulance.setChecked(false);
+            }
+
+            CheckBox outcome_taxi = (CheckBox)mainView.findViewById(R.id.outcome_taxi);
+            if (ds.get_taxi() == 'y'){
+                outcome_taxi.setChecked(true);
+            } else {
+                outcome_taxi.setChecked(false);
             }
 
             CheckBox outcome_treatment_completed = (CheckBox)mainView.findViewById(R.id.outcome_treatment_completed);
@@ -209,11 +217,11 @@ public class DischargeActivity extends FragmentActivity {
             outcome_receiving_centre.setText(ds.get_receiving_centre());
 
             TimePicker outcome_time_left_first_aid = (TimePicker)mainView.findViewById(R.id.outcome_time_left_first_aid);
-
+            outcome_time_left_first_aid.setIs24HourView(true);
             Date dd = ds.get_time_left();
             Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
             cal.setTime(dd);
-            outcome_time_left_first_aid.setCurrentHour(cal.get(Calendar.HOUR));
+            outcome_time_left_first_aid.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
             outcome_time_left_first_aid.setCurrentMinute(cal.get(Calendar.MINUTE));
 
         }

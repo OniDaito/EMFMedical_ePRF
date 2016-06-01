@@ -18,7 +18,7 @@ import uk.co.section9.emfmedical.data.Treatment;
 
 public class TreatmentActivity extends FragmentActivity {
 
-    public static class TreatmentFragment extends Fragment {
+    public static class TreatmentFragment extends PRFFragment {
 
         static View mainView;
         static boolean mUsed = false;

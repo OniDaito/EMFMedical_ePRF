@@ -17,7 +17,7 @@ import uk.co.section9.emfmedical.data.Primary;
 
 public class PrimarySurveyActivity extends FragmentActivity {
 
-    public static class PrimarySurveyFragment extends Fragment {
+    public static class PrimarySurveyFragment extends PRFFragment {
 
         static View mainView;
         static boolean mUsed = false;

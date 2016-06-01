@@ -19,7 +19,7 @@ import uk.co.section9.emfmedical.data.PRF;
 
 public class SignActivity extends FragmentActivity {
 
-    public static class SignFragment extends Fragment {
+    public static class SignFragment extends PRFFragment {
 
         static View mainView;
         static boolean mUsed = false;

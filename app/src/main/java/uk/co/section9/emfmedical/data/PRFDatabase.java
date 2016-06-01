@@ -88,7 +88,7 @@ public class PRFDatabase extends SQLiteOpenHelper {
         Vector<Observation> obs = prf.get_observations();
         for (Observation ob : obs) {
             values = ob.getValues();
-            db.update(Observation.get_table_name(), values, "id = ? and order = ?", new String[]{prf.get_uuid(), String.valueOf(ob.get_oborder())});
+            db.update(Observation.get_table_name(), values, "id = ? and oborder = ?", new String[]{prf.get_uuid(), String.valueOf(ob.get_oborder())});
         }
 
         values = prf.get_primary().getValues();
@@ -128,7 +128,6 @@ public class PRFDatabase extends SQLiteOpenHelper {
         for (Observation ob : obs) {
             values = ob.getValues();
             values.put("id", prf.get_uuid());
-            Log.d("OUTPUT", "ADDING ob " + prf.get_uuid());
             db.insert(Observation.get_table_name(), null, values);
         }
 
@@ -182,13 +181,11 @@ public class PRFDatabase extends SQLiteOpenHelper {
         int result = 0;
         ContentValues values = new ContentValues();
         Cursor cursor = getReadableDatabase().rawQuery("select * from \"" + tablename + "\" where id = \"" + uuid + "\"", null);
-
         cursor.moveToPosition(rownumber);
 
         for (int i = 0; i < cursor.getColumnCount(); i++){
             values.put(cursor.getColumnName(i),cursor.getString(i));
         }
-
 
         cursor.close();
         return values;
@@ -292,40 +289,8 @@ public class PRFDatabase extends SQLiteOpenHelper {
             }
         }
         return result;
-
     }
 
-
-
-   /* public PRF readPRF (String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_PRF, new String[] { KEY_ID, "created" }, KEY_ID + "=?",
-                new String[] { String.valueOf(id) }, null, null, null, null);
-
-        PRF prf = new PRF(id);
-
-        if (cursor != null) {
-            cursor.moveToFirst();
-            // Start with the PRF Table - should only be one!
-            Date dd = Util.dbStringToDate(cursor.getString(1));
-            Util.copyDate(prf.getCreatedAt(), dd);
-
-            // Now copy the Incident Table
-            cursor = db.query(TABLE_DISCHARGE, new String[]{KEY_ID, "walking_unaided", "walking_aided" , "other", "own_transport",
-            "public_transport", "ambulance", "taxi", "completed", "hospital", "review", "advised", "time_left", "refused",
-            "seen_by"}, KEY_ID + "=?",
-                    new String[]{String.valueOf(id)}, null, null, null, null);
-
-            cursor = db.query(TABLE_INCIDENT, new String[]{KEY_ID, "time", "location", "forname", "surname", "email", "address",
-                    "postcode", "dob", "age", "gender", "kin"}, KEY_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
-
-
-        }
-
-        return prf;
-    }*/
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {

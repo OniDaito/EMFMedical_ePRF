@@ -69,7 +69,7 @@ public class Serious extends BaseData {
         values.put("cpr", ""+_cpr);
         values.put("cpr_started", Util.dateToDBString(_cpr_started));
         values.put("defib_used", ""+_defib_used);
-        values.put("defib_shocks", ""+_defib_shocks);
+        values.put("defib_shocks", String.valueOf(_defib_shocks));
         values.put("witnessed_collapse", ""+_witnessed_collapse);
         return values;
     }
@@ -82,7 +82,7 @@ public class Serious extends BaseData {
         if (Util.isValidCharValue(values,"cpr")){_cpr = ((String) values.get("cpr")).charAt(0);}
         _cpr_started = Util.dbStringToDate((String) values.get("cpr_started"));
         if (Util.isValidCharValue(values,"defib_used")){_defib_used = ((String) values.get("defib_used")).charAt(0);}
-        if (Util.isValidCharValue(values,"defib_shocks")){_defib_shocks = ((String) values.get("defib_shocks")).charAt(0);}
+        _defib_shocks = Integer.parseInt((String) values.get("defib_shocks"));
         if (Util.isValidCharValue(values,"witnessed_collapse")){ _witnessed_collapse = ((String) values.get("witnessed_collapse")).charAt(0);}
     }
 

@@ -18,7 +18,8 @@ import uk.co.section9.emfmedical.data.PRF;
 // If the patient refuses, they should use this tab
 
 public class RefusedActivity extends FragmentActivity {
-    public static class RefusedFragment extends Fragment {
+
+    public static class RefusedFragment extends PRFFragment {
 
         static View mainView;
 
