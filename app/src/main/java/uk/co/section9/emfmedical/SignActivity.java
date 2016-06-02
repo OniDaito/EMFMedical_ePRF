@@ -22,7 +22,7 @@ public class SignActivity extends FragmentActivity {
     public static class SignFragment extends PRFFragment {
 
         static View mainView;
-        static boolean mUsed = false;
+        static boolean mUsed = false; // Set if we sign out on this activity. Perhaps not the best way of doing this
 
         public static boolean used() {
         return mUsed;

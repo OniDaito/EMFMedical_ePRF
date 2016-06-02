@@ -44,10 +44,7 @@ android:layout_height="?android:attr/listPreferredItemHeight"
 
 
 </RelativeLayout>
-		
-        
-         
-	
+
 		<android.support.v4.app.FragmentTabHost
 		    xmlns:android="http://schemas.android.com/apk/res/android"
 		    android:id="@+id/tabhost"
@@ -62,13 +59,12 @@ android:layout_height="?android:attr/listPreferredItemHeight"
 		         <HorizontalScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:scrollbars="none" >
+            android:fillViewport="true">
 		
 		        <TabWidget
 		            android:id="@android:id/tabs"
 		            android:orientation="vertical"
-		            android:layout_width="wrap_content"
+		            android:layout_width="fill_parent"
 		            android:layout_height="wrap_content"
 		            android:layout_weight="0"/>
 		        

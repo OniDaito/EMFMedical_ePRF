@@ -63,34 +63,34 @@ public class PRFActivity extends FragmentActivity  {
 		_tabhost = (FragmentTabHost)findViewById(R.id.tabhost);
 	    _tabhost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
 
-        _tabhost.addTab(_tabhost.newTabSpec("incident").setIndicator("1.Incident"),
+        _tabhost.addTab(_tabhost.newTabSpec("incident").setIndicator("1"),
 				IncidentActivity.IncidentFragment.class, null);
 	        
-	    _tabhost.addTab(_tabhost.newTabSpec("primary_survey").setIndicator("2.Primary Survey"),
+	    _tabhost.addTab(_tabhost.newTabSpec("primary_survey").setIndicator("2"),
 	    		PrimarySurveyActivity.PrimarySurveyFragment.class, null);
 	        
-		_tabhost.addTab(_tabhost.newTabSpec("history").setIndicator("3.History"),
+		_tabhost.addTab(_tabhost.newTabSpec("history").setIndicator("3"),
 				SecondarySurveyActivity.SecondarySurveyFragment.class, null);
 
-		_tabhost.addTab(_tabhost.newTabSpec("observations").setIndicator("4.Observations"),
+		_tabhost.addTab(_tabhost.newTabSpec("observations").setIndicator("4"),
 				ObservationsActivity.ObservationsFragment.class, null);
 	        
-		_tabhost.addTab(_tabhost.newTabSpec("treatment").setIndicator("5.Treatment"),
+		_tabhost.addTab(_tabhost.newTabSpec("treatment").setIndicator("5"),
 				TreatmentActivity.TreatmentFragment.class, null);
 	        
-		_tabhost.addTab(_tabhost.newTabSpec("serious").setIndicator("6.Serious"),
+		_tabhost.addTab(_tabhost.newTabSpec("serious").setIndicator("6"),
                 SeriousActivity.SeriousFragment.class, null);
 
-        _tabhost.addTab(_tabhost.newTabSpec("notes").setIndicator("7.Notes"),
+        _tabhost.addTab(_tabhost.newTabSpec("notes").setIndicator("7"),
                 NotesActivity.NotesFragment.class, null);
 
-        _tabhost.addTab(_tabhost.newTabSpec("outcome").setIndicator("8.Outcome"),
+        _tabhost.addTab(_tabhost.newTabSpec("outcome").setIndicator("8"),
                 DischargeActivity.OutcomeFragment.class, null);
 
-        _tabhost.addTab(_tabhost.newTabSpec("sign").setIndicator("9.Sign"),
+        _tabhost.addTab(_tabhost.newTabSpec("sign").setIndicator("9"),
                 SignActivity.SignFragment.class, null);
 
-        _tabhost.addTab(_tabhost.newTabSpec("refused").setIndicator("9.Refused"),
+        _tabhost.addTab(_tabhost.newTabSpec("refused").setIndicator("9"),
                 RefusedActivity.RefusedFragment.class, null);  	   // Setup the cancel button
 
         Button cancelButton = (Button) findViewById(R.id.prf_activity_cancel);
@@ -220,94 +220,8 @@ public class PRFActivity extends FragmentActivity  {
 
     // Form is completed! Grab all data and encrypt
     public void completeForm(){
-
-        EMFMedicalApp.completePRF();
-
-/*
-        String total_data = new String();
-        if (IncidentActivity.IncidentFragment.used())
-            total_data += IncidentActivity.IncidentFragment.getData();
-        if (PrimarySurveyActivity.PrimarySurveyFragment.used())
-            total_data += PrimarySurveyActivity.PrimarySurveyFragment.getData();
-        if (SecondarySurveyActivity.MedicalHistoryFragment.used())
-            total_data += SecondarySurveyActivity.MedicalHistoryFragment.getData();
-
-        if (SecondarySurveyActivity.SecondarySurveyFragment.used())
-            total_data += SecondarySurveyActivity.SecondarySurveyFragment.getData();
-        if (ObservationsActivity.ObservationsFragment.used())
-            total_data += ObservationsActivity.ObservationsFragment.getData();
-        if (TreatmentActivity.TreatmentFragment.used())
-            total_data += TreatmentActivity.TreatmentFragment.getData();
-        if (SeriousActivity.SeriousFragment.used())
-            total_data += SeriousActivity.SeriousFragment.getData();
-        if ( ResponseActivity.ResponseFragment.used())
-            total_data += ResponseActivity.ResponseFragment.getData();
-        if (NotesActivity.NotesFragment.used())
-         total_data += NotesActivity.NotesFragment.getData();
-        if (DischargeActivity.OutcomeFragment.used())
-            total_data += DischargeActivity.OutcomeFragment.getData();
-        if (SignActivity.SignFragment.used())
-            total_data += SignActivity.SignFragment.getData();
-
-        Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR);
-        int minute = c.get(Calendar.MINUTE);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        int month = c.get(Calendar.MONTH);
-
-        String time_date = new String();
-        time_date += hour + "_" + minute + "_" + day + "_" + month;
-
-        String filename = new String(time_date + "_" + _prfID + ".prf");
-
-        //System.out.println("Data: " + total_data );
-
-        try {
-            File root = getFilesDir();
-
-            //File root = new File("/media/My Files");
-            //System.out.println("Root Dir: " + root.getAbsolutePath() );
-
-            FileOutputStream f = new FileOutputStream(new File(root, filename));
-
-
-            // Write the string to the file
-
-            // Start with all the text then do the two jpegs seperately
-
-            byte[] encrypted_data = _crypto.encode(total_data.getBytes());
-            f.write(encrypted_data);
-            // Encrypt!!
-            if (SignActivity.SignFragment.used()){
-                String jpg_sig ="***JPEG_SIGNATURE***:";
-                byte[] encrypted_sig_header = _crypto.encode(jpg_sig.getBytes());
-                f.write(encrypted_sig_header);
-                ByteArrayOutputStream bs = SignActivity.SignFragment.getSignatureView().convertToByteArrayOutputStream();
-                byte[] encrypted_signature = _crypto.encode(bs.toByteArray());
-                f.write(encrypted_signature);
-            }
-
-
-            if (RefusedActivity.RefusedFragment.used()){
-                String jpg_sig ="***JPEG_REFUSED***:";
-                byte[] encrypted_sig_header = _crypto.encode(jpg_sig.getBytes());
-                f.write(encrypted_sig_header);
-                ByteArrayOutputStream bs = RefusedActivity.RefusedFragment.getSignatureView().convertToByteArrayOutputStream();
-                byte[] encrypted_signature = _crypto.encode(bs.toByteArray());
-                f.write(encrypted_signature);
-            }
-
-            f.close();
-
-        } catch (IOException ioe) {
-            System.out.println("Exception on Form");
-            ioe.printStackTrace();
-        }
-
-        System.out.println("Completed Form: " + filename);*/
-
+        ((EMFMedicalApp)getApplication()).completePRF();
         finish();
-
     }
 
     @Override
@@ -362,6 +276,8 @@ public class PRFActivity extends FragmentActivity  {
     public boolean dispatchKeyEvent(KeyEvent event) {
         int keyCode = event.getKeyCode();
 
+        Log.d("OUTPUT", "keycode: " + keyCode);
+
         // 92 & 93 are on the left. 95 and 96 are the two on the right
         switch (keyCode) {
         case KeyEvent.KEYCODE_PAGE_UP:
@@ -377,15 +293,21 @@ public class PRFActivity extends FragmentActivity  {
         case KeyEvent.KEYCODE_PICTSYMBOLS:
         case KeyEvent.KEYCODE_SWITCH_CHARSET:{
             if (event.getAction() == KeyEvent.ACTION_UP){
-                // Move tab left
+                // Move tab right
                 int ctab = _tabhost.getCurrentTab();
                 _tabhost.setCurrentTab(ctab+1);
                 return true;
             }
         }
 
+        // Looks like back and forward are the new side keys now :S
         case KeyEvent.KEYCODE_BACK: {
-            postponeForm();
+            if (event.getAction() == KeyEvent.ACTION_UP){
+                // Move tab right
+                int ctab = _tabhost.getCurrentTab();
+                _tabhost.setCurrentTab(ctab-1);
+                return true;
+            }
         }
 
         default:

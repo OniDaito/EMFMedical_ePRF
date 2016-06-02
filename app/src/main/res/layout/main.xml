@@ -9,25 +9,13 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:paddingBottom="30dp" >
-        
-       
+
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             android:layout_marginRight="30dp"
-            android:src="@drawable/emf_logo_small" />
-        
-         <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="EMF Camp First Aid 2016\nPatient Report System"
-            android:layout_toRightOf="@+id/imageView1"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="32sp" />
+            android:src="@drawable/logo_small" />
 
-    
     </RelativeLayout>
 
     <TableLayout
@@ -41,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="20dp"
+            android:layout_marginBottom="20dp"
             android:text="Start New PRF"
             android:textSize="32sp" />
 
@@ -54,42 +43,34 @@
 
     </TableLayout>
 
-    <LinearLayout
-        android:id="@+id/main_prf_list"
+    <RelativeLayout
+        android:id="@+id/main_prf_list_heading"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:layout_marginBottom="40dp">
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Existing Reports"
+            android:text="Pending Reports to Encrypt"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="32sp" />
+            android:textSize="28sp" />
 
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/main_prf_list"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="40dp">
 
 
     </LinearLayout>
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal" >
-
-    
-        <TextView
-            android:id="@+id/textView22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Benjamin Blundell\nsection9.co.uk"
-            android:layout_below="@+id/main_minor_wound_dressed"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="18sp" />
-
-
-    </RelativeLayout>
 
 </LinearLayout>

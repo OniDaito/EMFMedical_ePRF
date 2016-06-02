@@ -19,12 +19,10 @@ public final class R {
     public static final class drawable {
         public static final int emf_logo_small=0x7f020000;
         public static final int ic_launcher=0x7f020001;
+        public static final int logo_large=0x7f020002;
+        public static final int logo_small=0x7f020003;
     }
     public static final class id {
-        public static final int TableRow01=0x7f0800ab;
-        public static final int TableRow02=0x7f0800aa;
-        public static final int TableRow03=0x7f0800b1;
-        public static final int TableRow04=0x7f0800b0;
         public static final int ambulance_arrived=0x7f0800a5;
         public static final int ambulance_called=0x7f0800a1;
         public static final int ambulance_called_no=0x7f0800a3;
@@ -47,7 +45,8 @@ public final class R {
         public static final int incident_time=0x7f080003;
         public static final int layout_observations=0x7f080058;
         public static final int main_minor_wound_dressed=0x7f080026;
-        public static final int main_prf_list=0x7f080027;
+        public static final int main_prf_list=0x7f080029;
+        public static final int main_prf_list_heading=0x7f080027;
         public static final int main_start_new_prf=0x7f080025;
         public static final int medical_history_allergies=0x7f08003a;
         public static final int medical_history_asthma=0x7f080030;
@@ -152,15 +151,9 @@ public final class R {
         public static final int resuscitation_witnessed_collapse_yes=0x7f080095;
         public static final int scrollView1=0x7f080093;
         public static final int scrollViewObs=0x7f080057;
-        public static final int secondary_survey_head_and_face=0x7f0800a9;
-        public static final int secondary_survey_left_arm_and_hand=0x7f0800ae;
-        public static final int secondary_survey_left_leg_and_left_foot=0x7f0800b2;
-        public static final int secondary_survey_right_arm_and_hand=0x7f0800ac;
-        public static final int secondary_survey_right_leg_and_right_foot=0x7f0800af;
-        public static final int secondary_survey_torso_front_and_back=0x7f0800ad;
-        public static final int sign_name=0x7f0800b3;
-        public static final int sign_signature=0x7f0800b4;
-        public static final int signature_complete_form=0x7f0800b5;
+        public static final int sign_name=0x7f0800a9;
+        public static final int sign_signature=0x7f0800aa;
+        public static final int signature_complete_form=0x7f0800ab;
         public static final int tabhost=0x7f08006c;
         public static final int tableRow0=0x7f080000;
         public static final int tableRow1=0x7f080002;
@@ -190,7 +183,6 @@ public final class R {
         public static final int textView16=0x7f080067;
         public static final int textView17=0x7f08005b;
         public static final int textView2=0x7f080032;
-        public static final int textView22=0x7f080029;
         public static final int textView23=0x7f0800a7;
         public static final int textView24=0x7f0800a4;
         public static final int textView28=0x7f08004a;
@@ -203,15 +195,15 @@ public final class R {
         public static final int textView77=0x7f080019;
         public static final int textView8=0x7f08001c;
         public static final int textView9=0x7f08001e;
-        public static final int treatment_adhesive_dressing=0x7f0800bb;
-        public static final int treatment_none=0x7f0800b9;
-        public static final int treatment_other=0x7f0800b6;
-        public static final int treatment_recovery_position=0x7f0800bc;
-        public static final int treatment_rice=0x7f0800ba;
-        public static final int treatment_sling=0x7f0800bd;
-        public static final int treatment_splint=0x7f0800be;
-        public static final int treatment_wound_cleansed=0x7f0800b7;
-        public static final int treatment_wound_dressed=0x7f0800b8;
+        public static final int treatment_adhesive_dressing=0x7f0800b1;
+        public static final int treatment_none=0x7f0800af;
+        public static final int treatment_other=0x7f0800ac;
+        public static final int treatment_recovery_position=0x7f0800b2;
+        public static final int treatment_rice=0x7f0800b0;
+        public static final int treatment_sling=0x7f0800b3;
+        public static final int treatment_splint=0x7f0800b4;
+        public static final int treatment_wound_cleansed=0x7f0800ad;
+        public static final int treatment_wound_dressed=0x7f0800ae;
     }
     public static final class layout {
         public static final int incident=0x7f030000;
@@ -225,9 +217,8 @@ public final class R {
         public static final int primary_survey=0x7f030008;
         public static final int refused=0x7f030009;
         public static final int resuscitation=0x7f03000a;
-        public static final int secondary_survey=0x7f03000b;
-        public static final int signature=0x7f03000c;
-        public static final int treatment=0x7f03000d;
+        public static final int signature=0x7f03000b;
+        public static final int treatment=0x7f03000c;
     }
     public static final class raw {
         public static final int emf_medical=0x7f040000;

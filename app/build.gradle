@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "uk.co.section9.emfmedical"
-        minSdkVersion 10
+        minSdkVersion 7 // Change to 8 for tests
         targetSdkVersion 10
     }
     buildTypes {
@@ -15,18 +15,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-    defaultConfig {
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
+
+    // Un-comment for tests
+    //defaultConfig {
+    //    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    //}
     productFlavors {
     }
 }
 
 dependencies {
     compile 'com.android.support:support-v4:18.0.0'
-    testCompile 'junit:junit:4.+'
-    testCompile 'org.mockito:mockito-core:1.9.5'
-    androidTestCompile 'com.android.support.test:runner:0.4'
-    androidTestCompile 'com.android.support.test:rules:0.4'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    // Un-comment for tests
+    //testCompile 'junit:junit:4.+'
+    //testCompile 'org.mockito:mockito-core:1.9.5'
+    //androidTestCompile 'com.android.support.test:runner:0.4'
+    //androidTestCompile 'com.android.support.test:rules:0.4'
+    //androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 }
