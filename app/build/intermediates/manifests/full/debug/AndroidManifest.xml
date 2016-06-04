@@ -12,7 +12,7 @@
     <application
         android:name="uk.co.section9.emfmedical.EMFMedicalApp"
         android:allowBackup="true"
-        android:icon="@drawable/emf_logo_small"
+        android:icon="@drawable/logo_small"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity

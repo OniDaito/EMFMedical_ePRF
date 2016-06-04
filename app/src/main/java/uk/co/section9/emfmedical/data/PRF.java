@@ -75,6 +75,20 @@ public class PRF extends BaseData {
         return CREATE_TABLE_PRFS;
     }
 
+    // Set the basics for the minor wound dressing
+    public void setMinorWound() {
+        _incident.set_location("EMF First Aid Point");
+        _primary.set_response('a');
+        _primary.set_consciousness('c');
+        _secondary.set_fast('n');
+        _serious.set_defib_used('n');
+        _serious.set_defib_shocks(0);
+        _serious.set_cpr('n');
+        _treatment.set_wound_dressed('y');
+        _treatment.set_wound_cleaned('y');
+        _discharge.set_walking_unaided('y');
+    }
+
     public String toXML() {
         String s;
         s = "<xml>\n";

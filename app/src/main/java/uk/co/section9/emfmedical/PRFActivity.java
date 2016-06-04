@@ -182,9 +182,8 @@ public class PRFActivity extends FragmentActivity  {
     		
 
         // Pre-populate if we have been asked to
-        // TODO - move this to the PRF Class
         if(message.equalsIgnoreCase("MinorWoundDressed")){
-
+            EMFMedicalApp.getCurrentPRF().setMinorWound();
         }
     }
 

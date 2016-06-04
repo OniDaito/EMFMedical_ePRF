@@ -97,10 +97,11 @@ public class EMFMedicalApp extends Application {
                 image_bytes = bs.toByteArray();
             }
 
-            if (RefusedActivity.RefusedFragment.used()){
+            else if (RefusedActivity.RefusedFragment.used()){
                 ByteArrayOutputStream bs = RefusedActivity.RefusedFragment.getSignatureView().convertToByteArrayOutputStream();
                 image_bytes = _crypto.encode(bs.toByteArray());
             }
+
             // Create one large array for encrypting
             int total_size = text_bytes.length + divider_bytes.length + image_bytes.length;
 
@@ -130,6 +131,7 @@ public class EMFMedicalApp extends Application {
 
         // Assuming its in the db - should probably remove from memory too :S
         _db.deletePRF(_currentPRF);
+
     }
 
     public static PRFDatabase getDatabase() {

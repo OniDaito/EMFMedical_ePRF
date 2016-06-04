@@ -36,7 +36,7 @@ ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:
 	android:allowBackup
 		ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:14:9-35
 	android:icon
-		ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:15:9-48
+		ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:15:9-44
 	android:theme
 		ADDED from C:\Users\oni\Projects\EMF_2016_ePRF\app\src\main\AndroidManifest.xml:17:9-40
 	android:name

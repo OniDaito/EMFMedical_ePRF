@@ -9,12 +9,16 @@ import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
+import java.security.Provider;
 import java.security.PublicKey;
+import java.security.SecureRandom;
+import java.security.Security;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -32,12 +36,20 @@ public class EMFCrypto{
 	private PublicKey mKey = null;
 	private Cipher mEncodeKeyCipher = null;
 	private Cipher mEncodeDataCipher = null;
-	private int block_size=117;
-	
+
 	public void init(Context ctx) {
 
 		// reads the public key stored in a file
 		// http://stackoverflow.com/questions/11532989/android-decrypt-rsa-text-using-a-public-key-stored-in-a-file
+
+        /*Provider[] providers = Security.getProviders();
+        for (Provider provider : providers) {
+            Log.i("CRYPTO","provider: "+provider.getName());
+            Set<Provider.Service> services = provider.getServices();
+            for (Provider.Service service : services) {
+                Log.i("CRYPTO","  algorithm: "+service.getAlgorithm());
+            }
+        }*/
 
 		// Start with the RSA we need to encrypt the symmetric key
 		BufferedReader br;
@@ -72,12 +84,21 @@ public class EMFCrypto{
 				KeyFactory keyFactory;
 
 				keyFactory = KeyFactory.getInstance("RSA");
-
 				mKey = keyFactory.generatePublic(spec);
+                // Simulator likes the below line but the device does not :(
+				//mEncodeKeyCipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING"); // Not sure this is the most ideal but we should be less than one block
 
-				//mEncodeKeyCipher = Cipher.getInstance("RSA/ECB/PKCS1Padding","BC");
-				mEncodeKeyCipher = Cipher.getInstance("RSA");
-				mEncodeKeyCipher.init(Cipher.ENCRYPT_MODE, mKey);
+                // Others to try?
+
+                /*RSA/NONE/OAEPWithMD5AndMGF1Padding
+                RSA/NONE/OAEPWithSHA1AndMGF1Padding
+                RSA/NONE/OAEPWithSHA224AndMGF1Padding
+                RSA/NONE/OAEPWithSHA256AndMGF1Padding
+                RSA/NONE/OAEPWithSHA384AndMGF1Padding
+                RSA/NONE/OAEPWithSHA512AndMGF1Padding */
+                
+                mEncodeKeyCipher = Cipher.getInstance("RSA/NONE/OAEPWithSHA1AndMGF1Padding");
+                mEncodeKeyCipher.init(Cipher.ENCRYPT_MODE, mKey);
 
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
@@ -150,13 +171,14 @@ public class EMFCrypto{
     }
 
     // Perform the actual encoding
+    // TODO - we may need to convert to Base64Encoding ><
     public byte[] encode (byte[] data_bytes){
 
         // First create a new symmetric cipher
         try {
             mEncodeDataCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            byte[] testkey = new byte[32]; // 256 bit - could go with more? Also the random is a weak link?
-            new Random().nextBytes(testkey);
+            byte[] testkey = new byte[32]; // 256 bit - Seems to be the max for our AES
+            new SecureRandom().nextBytes(testkey);
             SecretKeySpec skeySpec = new SecretKeySpec(testkey, "AES");
             byte[] encrypted_key = mEncodeKeyCipher.doFinal(testkey);
             mEncodeDataCipher.init(Cipher.ENCRYPT_MODE, skeySpec);
@@ -166,6 +188,8 @@ public class EMFCrypto{
             int total_size = encrypted_data.length + encrypted_key.length;
 
             byte [] finalBytes = new byte[total_size ];
+
+            Log.d("CRYPTO", "KeyBlockSize: " + encrypted_key.length );
 
             for (int i=0; i <  encrypted_key.length; i++){
                 finalBytes[i] = encrypted_key[i];
