@@ -8,13 +8,13 @@ This is an Android studio project designed for the Nook E-Reader tablets that us
 
 With a version of Android Studio installed, hopefully importing this project and hitting build will work. Likely you'll need to install Android 2.3.3 (Gingerbread?) and the usual Android tools first. The Nook instructions can be found here:
 
-[https://nookdeveloper.zendesk.com/entries/21943338-nook-developer-start-up-guide#_Install_NOOK_SDK_Addon https://nookdeveloper.zendesk.com/entries/21943338-nook-developer-start-up-guide#_Install_NOOK_SDK_Addon]
+[https://nookdeveloper.zendesk.com/entries/21943338-nook-developer-start-up-guide#_Install_NOOK_SDK_Addon](https://nookdeveloper.zendesk.com/entries/21943338-nook-developer-start-up-guide#_Install_NOOK_SDK_Addon)
 
 There are some support files and an emulator available for testing your applications.
 
 I found this link to be very handy, if you view the source, in order to download API10 which I use for building
 
-[http://qdevarena.blogspot.co.uk/2010/05/download-android-sdk-standalone-for.html http://qdevarena.blogspot.co.uk/2010/05/download-android-sdk-standalone-for.html]
+[http://qdevarena.blogspot.co.uk/2010/05/download-android-sdk-standalone-for.html](http://qdevarena.blogspot.co.uk/2010/05/download-android-sdk-standalone-for.html)
 
 ## Testing
 
