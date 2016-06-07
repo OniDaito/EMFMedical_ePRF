@@ -5,25 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.Provider;
 import java.security.PublicKey;
 import java.security.SecureRandom;
-import java.security.Security;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Set;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import android.content.Context;
@@ -96,7 +93,7 @@ public class EMFCrypto{
                 RSA/NONE/OAEPWithSHA256AndMGF1Padding
                 RSA/NONE/OAEPWithSHA384AndMGF1Padding
                 RSA/NONE/OAEPWithSHA512AndMGF1Padding */
-                
+
                 mEncodeKeyCipher = Cipher.getInstance("RSA/NONE/OAEPWithSHA1AndMGF1Padding");
                 mEncodeKeyCipher.init(Cipher.ENCRYPT_MODE, mKey);
 
@@ -171,32 +168,87 @@ public class EMFCrypto{
     }
 
     // Perform the actual encoding
-    // TODO - we may need to convert to Base64Encoding ><
+    // A decryption routine would look like this
+    /*
+
+#!/bin/bash
+
+# Simple bash script to decode the EMF ePRF files using openssl and a few bash commands
+
+head -c 128 $1 > prfkeyfile
+openssl rsautl -oaep -decrypt -inkey emf_medical.pem -in prfkeyfile -out prfkey_decrypted
+dd bs=128 skip=1 if=$1 of=prf_plus_iv
+
+head -c 128 prf_plus_iv > prfivfile
+openssl rsautl -oaep -decrypt -inkey emf_medical.pem -in prfivfile -out iv_decrypted
+dd bs=128 skip=1 if=prf_plus_iv of=prf_encrypted
+
+iv=`cat iv_decrypted`
+key=`cat prfkey_decrypted`
+
+echo $iv
+echo $key
+
+openssl aes-256-cbc -d -in prf_encrypted -out prf_decrypted.txt -iv $iv -K $key
+
+rm iv_decrypted
+rm prfkey_decrypted
+rm prf_encrypted
+rm prf_plus_iv
+rm prfivfile
+rm prfkeyfile
+
+
+     */
+
+
     public byte[] encode (byte[] data_bytes){
 
         // First create a new symmetric cipher
         try {
             mEncodeDataCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            byte[] testkey = new byte[32]; // 256 bit - Seems to be the max for our AES
-            new SecureRandom().nextBytes(testkey);
-            SecretKeySpec skeySpec = new SecretKeySpec(testkey, "AES");
-            byte[] encrypted_key = mEncodeKeyCipher.doFinal(testkey);
-            mEncodeDataCipher.init(Cipher.ENCRYPT_MODE, skeySpec);
+            byte[] aeskey = new byte[32]; // 256 bit - Seems to be the max for our AES
+            new SecureRandom().nextBytes(aeskey);
+
+            byte[] iv = new byte[16];
+            new SecureRandom().nextBytes(iv);
+            IvParameterSpec ivspec = new IvParameterSpec(iv);
+
+            // TODO - is there a security issue about using the mEncodeDataCipher twice with the same deets?
+            SecretKeySpec skeySpec = new SecretKeySpec(aeskey, "AES");
+
+            byte[] encrypted_key = new byte[0];
+            byte[] encypted_iv = new byte[0];
+            try {
+                // Convert to their hex representations here to save us bother later (we hope!)
+                encrypted_key = mEncodeKeyCipher.doFinal(toHex(aeskey).getBytes("UTF-8"));
+                encypted_iv = mEncodeKeyCipher.doFinal(toHex(iv).getBytes("UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                mEncodeDataCipher.init(Cipher.ENCRYPT_MODE, skeySpec, ivspec);
+            } catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            }
 
             // Encrypt the key
             byte[] encrypted_data = mEncodeDataCipher.doFinal(data_bytes);
-            int total_size = encrypted_data.length + encrypted_key.length;
+            int total_size = encrypted_data.length + encrypted_key.length + encypted_iv.length;
 
             byte [] finalBytes = new byte[total_size ];
-
-            Log.d("CRYPTO", "KeyBlockSize: " + encrypted_key.length );
 
             for (int i=0; i <  encrypted_key.length; i++){
                 finalBytes[i] = encrypted_key[i];
             }
 
+            for (int i=0; i < encypted_iv.length; i++) {
+                finalBytes[i + encrypted_key.length] = encypted_iv[i];
+            }
+
             for (int i= 0; i < encrypted_data.length; i++){
-                finalBytes[i + encrypted_key.length] = encrypted_data[i];
+                finalBytes[i + encrypted_key.length + encypted_iv.length] = encrypted_data[i];
             }
 
             return finalBytes;
