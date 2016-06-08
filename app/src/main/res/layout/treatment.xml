@@ -10,22 +10,38 @@
         android:layout_height="wrap_content" >
 
 
-
-
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
             <TableRow
-                android:id="@+id/tableRow1"
+                android:id="@+id/tableRow42"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#000000" >
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Treatment Given"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#ffffff"
+                    android:textSize="32dp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
 
                 <TextView
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Write in box below or use checkboxes"
+                    android:text="Write in box below and/or use the checkboxes"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </TableRow>
 
@@ -51,12 +67,6 @@
                     android:layout_height="wrap_content"
                     android:text="Wound Cleansed" />
 
-                <CheckBox
-                    android:id="@+id/treatment_wound_dressed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Wound Dressed" />
-
 
             </TableRow>
 
@@ -81,11 +91,6 @@
                     android:text="No Treatment Required" />
 
 
-                <CheckBox
-                    android:id="@+id/treatment_rice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rest Ice Comfort Elevate" />
 
             </TableRow>
 
@@ -96,14 +101,11 @@
 
 
 
-
                 <CheckBox
                     android:id="@+id/treatment_adhesive_dressing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Adhesive Dressing" />
-
-
 
 
 
@@ -128,8 +130,6 @@
             </TableRow>
 
 
-         
-
             <TableRow
                 android:id="@+id/tableRow12"
                 android:layout_width="wrap_content"
@@ -141,15 +141,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sling" />
+                
+            </TableRow>
 
-                <CheckBox
-                    android:id="@+id/treatment_splint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Splint" />
+
+            <TableRow
+                android:id="@+id/tableRow13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            <CheckBox
+                android:id="@+id/treatment_rice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rest Ice Comfort Elevate" />
 
             </TableRow>
 
+            <TableRow
+                android:id="@+id/tableRow14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            <CheckBox
+                android:id="@+id/treatment_splint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Splint" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/treatment_wound_dressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wound Dressed" />
+            </TableRow>
 
         </TableLayout>
 

@@ -80,7 +80,9 @@ public class PRF extends BaseData {
         _incident.set_location("EMF First Aid Point");
         _primary.set_response('a');
         _primary.set_consciousness('c');
-        _secondary.set_fast('n');
+        _primary.set_airway('c');
+        _primary.set_breathing('n');
+        _primary.set_circulation('n');
         _serious.set_defib_used('n');
         _serious.set_defib_shocks(0);
         _serious.set_cpr('n');

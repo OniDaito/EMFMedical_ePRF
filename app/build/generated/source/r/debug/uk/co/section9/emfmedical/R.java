@@ -169,6 +169,7 @@ public final class R {
         public static final int tableRow21=0x7f08005a;
         public static final int tableRow3=0x7f080009;
         public static final int tableRow4=0x7f08003b;
+        public static final int tableRow42=0x7f0800ac;
         public static final int tableRow5=0x7f08000c;
         public static final int tableRow6=0x7f08000f;
         public static final int tableRow7=0x7f080012;
@@ -195,15 +196,15 @@ public final class R {
         public static final int textView77=0x7f080019;
         public static final int textView8=0x7f08001c;
         public static final int textView9=0x7f08001e;
-        public static final int treatment_adhesive_dressing=0x7f0800b1;
+        public static final int treatment_adhesive_dressing=0x7f0800b0;
         public static final int treatment_none=0x7f0800af;
-        public static final int treatment_other=0x7f0800ac;
-        public static final int treatment_recovery_position=0x7f0800b2;
-        public static final int treatment_rice=0x7f0800b0;
-        public static final int treatment_sling=0x7f0800b3;
+        public static final int treatment_other=0x7f0800ad;
+        public static final int treatment_recovery_position=0x7f0800b1;
+        public static final int treatment_rice=0x7f0800b3;
+        public static final int treatment_sling=0x7f0800b2;
         public static final int treatment_splint=0x7f0800b4;
-        public static final int treatment_wound_cleansed=0x7f0800ad;
-        public static final int treatment_wound_dressed=0x7f0800ae;
+        public static final int treatment_wound_cleansed=0x7f0800ae;
+        public static final int treatment_wound_dressed=0x7f0800b5;
     }
     public static final class layout {
         public static final int incident=0x7f030000;
