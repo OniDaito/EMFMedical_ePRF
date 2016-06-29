@@ -57,6 +57,7 @@ public class Treatment extends BaseData {
         return TABLE_NAME;
     }
 
+
     public static String createTable() {
         String CREATE_TABLE_TREATMENT = "CREATE TABLE \"" + TABLE_NAME + "\" (\"none\" BOOL, \"airway_opened\" BOOL, " +
                 "\"wound_cleaned\" BOOL, \"wound_dressed\" BOOL, \"rice\" BOOL, \"adhesive_dressing\" BOOL, " +
@@ -80,6 +81,8 @@ public class Treatment extends BaseData {
             values.put("other", _other);
         return values;
     }
+
+
 
     public void setValues(ContentValues values) {
         if(Util.isValidCharValue(values,"none")) { _none = ((String) values.get("none")).charAt(0); }

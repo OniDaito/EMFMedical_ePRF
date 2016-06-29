@@ -3,6 +3,8 @@ package uk.co.section9.emfmedical.data;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.Date;
+
 import uk.co.section9.emfmedical.Util;
 
 /**
@@ -18,6 +20,7 @@ public class Secondary extends BaseData{
     protected char _asthma;
     protected char _respiratory;
     protected char _fast;
+    protected Date _fast_onset;
     protected String _allergies;
     protected String _medications;
     protected String _medical_history;
@@ -34,7 +37,7 @@ public class Secondary extends BaseData{
         _asthma = 'x';
         _respiratory = 'x';
         _fast = 'x';
-
+        _fast_onset = new Date();
         _allergies = "";
         _medications = "";
         _medical_history = "";
@@ -43,8 +46,8 @@ public class Secondary extends BaseData{
 
     public static String createTable() {
         String CREATE_SECONDARY_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"high_blood_pressure\" VARCHAR, \"stroke\" VARCHAR," +
-                " \"seizures\" VARCHAR, \"diabetes\" VARCHAR, \"cardiac\" VARCHAR, \"asthma\" VARCHAR, \"respiratory\"" +
-                " VARCHAR, \"allergies\" TEXT, \"medications\" TEXT, \"medical_history\" TEXT, \"history_presenting_complaint\" TEXT, \"fast\" VARCHAR, \"id\" GUID PRIMARY KEY  NOT NULL )";
+                " \"seizures\" VARCHAR, \"diabetes\" VARCHAR, \"cardiac\" VARCHAR, \"asthma\" VARCHAR, \"respiratory\""  +
+                " VARCHAR, \"fast_onset\" DATETIME, \"allergies\" TEXT, \"medications\" TEXT, \"medical_history\" TEXT, \"history_presenting_complaint\" TEXT, \"fast\" VARCHAR, \"id\" GUID PRIMARY KEY  NOT NULL )";
 
         return CREATE_SECONDARY_TABLE;
     }
@@ -68,6 +71,7 @@ public class Secondary extends BaseData{
         s += "<asthma>" + Util.ynConv(_asthma) + "</asthma>\n";
         s += "<respiratory>" + Util.ynConv(_respiratory) + "</respiratory>\n";
         s += "<fast>" + Util.ynConv(_fast) + "</fast>\n";
+        s += "<fast_onset>" + Util.dateToDBString(_fast_onset) + "</fast_onset>\n";
         s += "<allergies>" + _allergies + "</allergies>\n";
         s += "<medications>" + _medications + "</medications>\n";
         s += "<medical_history>" +  _medical_history + "</medical_history>\n";
@@ -87,6 +91,7 @@ public class Secondary extends BaseData{
         values.put("asthma", ""+_asthma);
         values.put("respiratory", ""+_respiratory);
         values.put("fast", ""+_fast);
+        values.put("fast_onset", Util.dateToDBString(_fast_onset));
         if (_allergies != "")
             values.put("allergies", _allergies);
         if (_medications != "")
@@ -107,6 +112,7 @@ public class Secondary extends BaseData{
         if(Util.isValidCharValue(values,"asthma")) { _asthma = ((String) values.get("asthma")).charAt(0); }
         if(Util.isValidCharValue(values,"respiratory")) { _respiratory = ((String) values.get("respiratory")).charAt(0); }
         if(Util.isValidCharValue(values,"fast")) { _fast = ((String) values.get("fast")).charAt(0); }
+        _fast_onset = Util.dbStringToDate((String) values.get("fast_onset"));
         _allergies = ((String) values.get("allergies"));
         _medications = ((String) values.get("medications"));
         _medical_history = ((String) values.get("medical_history"));
@@ -217,4 +223,11 @@ public class Secondary extends BaseData{
         this._history_presenting_complaint = _history;
     }
 
+    public void set_fast_onset(Date dd){
+        _fast_onset = dd;
+    }
+
+    public Date get_fast_onset(){
+        return  _fast_onset;
+    }
 }

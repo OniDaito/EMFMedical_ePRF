@@ -3,6 +3,11 @@ package uk.co.section9.emfmedical.data;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.Vector;
+
 import uk.co.section9.emfmedical.Util;
 
 /**
@@ -24,7 +29,7 @@ public class Primary extends BaseData {
     protected static final String TABLE_NAME = "primarysurvey";
 
     public Primary() {
-        _presenting = "";
+        _presenting = new String("");
         _capacity = 'x';
         _consent = 'x';
         _response = 'x';
@@ -67,8 +72,7 @@ public class Primary extends BaseData {
 
     public ContentValues getValues () {
         ContentValues values = new ContentValues();
-        if (_presenting != "")
-            values.put("presenting", _presenting);
+        values.put("presenting", _presenting);
         values.put("capacity", ""+_capacity);
         values.put("consent", ""+_consent);
         values.put("response", ""+_response);
@@ -81,8 +85,22 @@ public class Primary extends BaseData {
         return values;
     }
 
+    public boolean isValid(Vector<String> errormessages) {
+        boolean valid = true;
+        if (_presenting.equals("")){
+            valid = false;
+            errormessages.add("primary - presenting");
+        }
+
+        return valid;
+    }
+
     public void setValues(ContentValues values) {
-        _presenting = ((String) values.get("presenting"));
+        if (values.containsKey("presenting")) {
+            _presenting = (String) values.get("presenting");
+        } else {
+            _presenting = "";
+        }
         if(Util.isValidCharValue(values,"response")) { _response = ((String) values.get("response")).charAt(0); }
         if(Util.isValidCharValue(values,"capacity")) { _capacity = ((String) values.get("capacity")).charAt(0); }
         if(Util.isValidCharValue(values,"consent")) { _consent = ((String) values.get("consent")).charAt(0); }

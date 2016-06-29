@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.Date;
+import java.util.Vector;
 
 import uk.co.section9.emfmedical.Util;
 
@@ -81,6 +82,16 @@ public class Discharge extends BaseData {
         s += "</discharge>\n";
 
         return s;
+    }
+
+    public boolean isValid(Vector<String> errormessages) {
+        boolean valid = true;
+        if (get_seen_by().length() <= 0 ){
+            valid = false;
+            errormessages.add("discharge - Seen By");
+        }
+
+        return valid;
     }
 
     public ContentValues getValues() {

@@ -77,8 +77,6 @@
             android:layout_height="wrap_content"
             android:entries="@array/response_options" />
 
-    
-
     </LinearLayout>
 
     </TableRow>

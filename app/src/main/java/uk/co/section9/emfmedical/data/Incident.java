@@ -7,6 +7,7 @@ import android.util.Log;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.Vector;
 
 import uk.co.section9.emfmedical.Util;
 
@@ -20,6 +21,7 @@ public class Incident extends BaseData {
     protected String _forname;
     protected String _surname;
     protected String _email;
+    protected String _role;
     protected String _address;
     protected String _postcode;
     protected Date _dob;
@@ -37,6 +39,7 @@ public class Incident extends BaseData {
         _surname = "";
         _email = "";
         _address = "";
+        _role = "";
         _postcode = "";
         _dob = new Date();
         _age = 0;
@@ -49,7 +52,7 @@ public class Incident extends BaseData {
         String CREATE_INCIDENT_TABLE = "CREATE TABLE \"" + TABLE_NAME + "\" (\"time\" DATETIME" +
                 ", \"location\" TEXT, \"forname\" TEXT, \"surname\" TEXT, \"email\" TEXT, " +
                 "\"address\" TEXT, \"postcode\" TEXT, \"dob\" DATETIME, \"age\" INTEGER, \"gender\" VARCHAR, " +
-                "\"kin\" TEXT, \"id\" GUID PRIMARY KEY  NOT NULL )";
+                "\"kin\" TEXT,  \"role\" VARCHAR, \"id\" GUID PRIMARY KEY  NOT NULL )";
 
         return CREATE_INCIDENT_TABLE;
     }
@@ -70,11 +73,33 @@ public class Incident extends BaseData {
         s+= "<postcode>" + _postcode + "</postcode>\n";
         s+= "<dob>" + _dob.toString() + "</dob>\n";
         s+= "<age>" + _age + "</age>\n";
+        s+= "<role>" + _role + "</role>\n";
         s+= "<gender>" + _gender + "</gender>\n";
         s+= "<kin>" + _kin + "</kin>";
         s+= "</incident>\n";
 
         return s;
+    }
+
+    public boolean isValid(Vector<String> errormessages) {
+        boolean valid = true;
+        if (_location.length() <= 0 ){
+            valid = false;
+            errormessages.add("incident - location");
+        }
+        if (_forname.length() <= 0 ){
+            valid = false;
+            errormessages.add("incident - forname");
+        }
+
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        Date dd = cal.getTime();
+        if (_dob.compareTo(dd) == 0 ){
+            valid = false;
+            errormessages.add("incident - date of birth");
+        }
+
+        return valid;
     }
 
     public ContentValues getValues(){
@@ -86,7 +111,7 @@ public class Incident extends BaseData {
         values.put("email", get_email());
         values.put("address", get_address());
         values.put("postcode", get_postcode());
-
+        values.put("role", get_role());
         values.put("dob", Util.dateToDBString(get_dob()));
         values.put("age", Integer.toString(get_age()));
         values.put("gender", get_gender());
@@ -102,6 +127,7 @@ public class Incident extends BaseData {
         _surname = ((String) values.get("surname"));
         _email = ((String) values.get("email"));
         _address = ((String) values.get("address"));
+        _role = ((String) values.get("role"));
         _postcode = ((String) values.get("postcode"));
         _dob = Util.dbStringToDate((String) values.get("dob"));
         _age =  Integer.parseInt((String)values.get("age")); // TODO - need a catch
@@ -201,5 +227,8 @@ public class Incident extends BaseData {
     public void set_kin(String _kin) {
         this._kin = _kin;
     }
+
+    public String get_role() { return _role;}
+    public void set_role(String s) { _role = s;}
 
 }

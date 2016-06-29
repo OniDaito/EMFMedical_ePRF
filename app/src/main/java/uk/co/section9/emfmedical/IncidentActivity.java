@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import java.util.Calendar;
 
@@ -132,6 +133,9 @@ public class IncidentActivity  extends FragmentActivity {
 			EditText incident_next_of_kin = (EditText)mainView.findViewById(R.id.incident_next_of_kin);
 			inc.set_kin(""+incident_next_of_kin.getEditableText());
 
+			Spinner incident_role = (Spinner)mainView.findViewById(R.id.incident_role);
+			inc.set_role((incident_role.getSelectedItem().toString()));
+
 		}
 
 		public static void getCurrentPRF(){
@@ -184,6 +188,15 @@ public class IncidentActivity  extends FragmentActivity {
 
 			EditText incident_next_of_kin = (EditText)mainView.findViewById(R.id.incident_next_of_kin);
             incident_next_of_kin.setText(inc.get_kin());
+
+			Spinner incident_role = (Spinner)mainView.findViewById(R.id.incident_role);
+
+            if (inc.get_role().equals("Not Recorded")){ incident_role.setSelection(0); }
+            if (inc.get_role().equals("Volunteer")){ incident_role.setSelection(1); }
+            if (inc.get_role().equals("Attendee")){ incident_role.setSelection(2); }
+            if (inc.get_role().equals("Caterer")){ incident_role.setSelection(3); }
+            if (inc.get_role().equals("External")){ incident_role.setSelection(4); }
+
 
 		}
 	}

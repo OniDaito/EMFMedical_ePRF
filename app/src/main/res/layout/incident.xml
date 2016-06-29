@@ -79,7 +79,7 @@
 
             <EditText
                 android:id="@+id/incident_location"
-                android:layout_width="180dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:layout_marginLeft="101dp"
@@ -137,7 +137,7 @@
 
             <EditText
                 android:id="@+id/incident_forename"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_toRightOf="@id/textView4"
@@ -168,7 +168,7 @@
 
                 <EditText
                     android:id="@+id/incident_family_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
@@ -200,7 +200,7 @@
 
             <EditText
                 android:id="@+id/incident_email"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/textView44"
@@ -230,7 +230,7 @@
 
             <EditText
                 android:id="@+id/incident_address"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/textView5"
                 android:ems="10"
@@ -262,11 +262,30 @@
 
                 <EditText
                 android:id="@+id/incident_postcode"
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="38dp"
                 android:layout_toRightOf="@id/textView6"
                 android:ems="10" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Role"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_toRightOf="@id/incident_postcode"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/incident_role"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/textView16"
+                    android:entries="@array/role_options" />
 
             </RelativeLayout>
         </TableRow>
@@ -373,7 +392,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next of Kin Details"
+                android:text="Second Contact Details"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="24dp"
                 android:textStyle="bold" />

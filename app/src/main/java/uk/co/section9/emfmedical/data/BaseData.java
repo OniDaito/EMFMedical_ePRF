@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.Vector;
+
 /**
  * Created by oni on 18/05/2016.
  */
@@ -30,6 +32,11 @@ public class BaseData {
 
     public static String get_table_name() {
         return TABLE_NAME;
+    }
+
+    // Overridden in subclasses. Called to see if fields have been filled in
+    public boolean isValid(Vector<String> errormessages){
+        return true;
     }
 
 

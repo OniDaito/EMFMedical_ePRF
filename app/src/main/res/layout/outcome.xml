@@ -14,64 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <TableRow
-                android:id="@+id/tableRow21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#000000" >
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Outcome"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#ffffff"
-                    android:textSize="32dp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <CheckBox
-                    android:id="@+id/outcome_walking_unaided"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Walking un-aided" />
-
-                <CheckBox
-                    android:id="@+id/outcome_walking_aided"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Walking Aided" />
-            </TableRow>
 
 
-
-       `
-
-            <TableRow
-                android:id="@+id/tableRow4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Other"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <EditText
-                    android:id="@+id/outcome_departure_other"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10" />
-            </TableRow>
         </TableLayout>
 
         <TableLayout
@@ -97,6 +41,25 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <CheckBox
+                    android:id="@+id/outcome_walking_unaided"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Walking unaided" />
+
+                <CheckBox
+                    android:id="@+id/outcome_walking_aided"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Walking aided"
+                    android:checked="false" />
+            </TableRow>
+
+            <TableRow
                 android:id="@+id/tableRow6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
@@ -105,13 +68,15 @@
                     android:id="@+id/outcome_own_transport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Own Transport" />
+                    android:text="Own transport"
+                    android:checked="false" />
 
                 <CheckBox
                     android:id="@+id/outcome_public_transport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Public Transport" />
+                    android:text="Public transport"
+                    android:checked="false" />
 
                 <CheckBox
                     android:id="@+id/outcome_ambulance"
@@ -124,6 +89,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Taxi" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/outcome_departure_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
             </TableRow>
         </TableLayout>
 
@@ -158,13 +141,15 @@
                     android:id="@+id/outcome_treatment_completed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Treatment Completed" />
+                    android:text="Treatment completed"
+                    android:checked="false" />
 
                 <CheckBox
                     android:id="@+id/outcome_advised_to_seek"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Advised to Seek further medical treatment" />
+                    android:text="Advised to seek further medical treatment"
+                    android:checked="false" />
             </TableRow>
 
             <TableRow
@@ -182,7 +167,8 @@
                     android:id="@+id/outcome_review_later"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Review Later" />
+                    android:text="Review later"
+                    android:checked="false" />
 
             </TableRow>
 
@@ -195,7 +181,7 @@
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Receiving Centre"
+                    android:text="Receiving centre"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText

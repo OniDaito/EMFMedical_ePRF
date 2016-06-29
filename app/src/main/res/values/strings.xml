@@ -8,7 +8,15 @@
         <item>Pain</item>
    		<item>Unresponsive</item>
     </string-array>
-    
+
+    <string-array name="role_options">
+        <item>Not Recorded</item>
+        <item>Volunteer</item>
+        <item>Attendee</item>
+        <item>Caterer</item>
+        <item>External</item>
+    </string-array>
+
     <string-array name="breathing_options">
         <item>Normal</item>
         <item>Shallow</item>

@@ -103,7 +103,6 @@ public class PRF extends BaseData {
         s += _secondary.toXML();
         s += _serious.toXML();
         s += _treatment.toXML();
-        s += _incident.toXML();
 
         // Potentially could have a masshoosive string
         for (Observation ob : _observations) {
@@ -112,6 +111,25 @@ public class PRF extends BaseData {
 
         s += "</xml>";
         return s;
+    }
+
+    public boolean isValid(Vector<String> errormessages){
+        // Could cheat and just add up :P
+        boolean v0 = _discharge.isValid(errormessages);
+        boolean v1 = _incident.isValid(errormessages);
+        boolean v2 = _notes.isValid(errormessages);
+        boolean v3 = _primary.isValid(errormessages);
+        boolean v4 = _secondary.isValid(errormessages);
+        boolean v5 = _serious.isValid(errormessages);
+        boolean v6 = _treatment.isValid(errormessages);
+
+        boolean valid = true;
+        if (!(v0 && v1 && v2 && v3 && v4 && v5 && v6)) {
+            valid = false;
+        }
+
+        return valid;
+
     }
 
     public ContentValues getValues(){

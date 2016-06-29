@@ -20,6 +20,8 @@ import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import java.util.Vector;
+
 import uk.co.section9.emfmedical.data.Incident;
 
 
@@ -217,10 +219,48 @@ public class PRFActivity extends FragmentActivity  {
         finish();
     }
 
-    // Form is completed! Grab all data and encrypt
+    // Form is completed! Grab all data and encrypt but check its valid before we do
     public void completeForm(){
-        ((EMFMedicalApp)getApplication()).completePRF();
-        finish();
+        Vector<String> errormessages = new Vector<String>();
+        final Activity prfactivity = this;
+
+        if (!(EMFMedicalApp.getCurrentPRF().isValid(errormessages)))  {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(prfactivity);
+
+            String messages = "The following values are incorrect - continue?\n";
+            for (String s : errormessages) {
+                messages = messages + s + "\n";
+            }
+            // set title
+            alertDialogBuilder.setTitle("");
+
+            // set dialog message
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setMessage(messages)
+                    .setPositiveButton("Go Back",new DialogInterface.OnClickListener()
+                    {
+
+                        public void onClick(DialogInterface dialog,int id) {
+                            return;
+                        }
+                    }).setNegativeButton("Continue",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog,int id) {
+                    ((EMFMedicalApp)getApplication()).completePRF();
+                    finish();
+                    dialog.cancel();
+                }
+            });
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+        } else {
+            ((EMFMedicalApp) getApplication()).completePRF();
+            finish();
+        }
     }
 
     @Override

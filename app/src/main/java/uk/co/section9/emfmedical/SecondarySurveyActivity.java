@@ -8,8 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TimePicker;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import uk.co.section9.emfmedical.data.PRF;
 import uk.co.section9.emfmedical.data.Secondary;
@@ -115,6 +121,15 @@ public class SecondarySurveyActivity extends FragmentActivity {
 
             EditText medical_history_medication = (EditText)mainView.findViewById(R.id.medical_history_medication);
             ss.set_medications(""+medical_history_medication.getEditableText());
+
+            TimePicker onset_time = (TimePicker)mainView.findViewById(R.id.fast_onset);
+            onset_time.setIs24HourView(true);
+            Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+            cal.set( Calendar.MINUTE, onset_time.getCurrentMinute());
+            cal.set( Calendar.HOUR_OF_DAY, onset_time.getCurrentHour());
+
+            Date dd = cal.getTime();
+            ss.set_fast_onset(dd);
         }
 
         public static void getCurrentPRF() {
@@ -180,6 +195,17 @@ public class SecondarySurveyActivity extends FragmentActivity {
 
             EditText medical_history_medication = (EditText)mainView.findViewById(R.id.medical_history_medication);
             medical_history_medication.setText(ss.get_medications());
+
+            Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+
+            TimePicker fast_onset = (TimePicker)mainView.findViewById(R.id.fast_onset);
+            fast_onset.setIs24HourView(true);
+            Date dd = ss.get_fast_onset();
+            cal.set(Calendar.HOUR_OF_DAY, dd.getHours());
+            cal.set(Calendar.MINUTE, dd.getMinutes());
+            fast_onset.setCurrentMinute(cal.get(Calendar.MINUTE));
+            fast_onset.setCurrentHour(cal.get(Calendar.HOUR_OF_DAY));
+
         }
     }
 	

@@ -22,7 +22,7 @@
               android:layout_height="match_parent"
               android:ems="10"
               android:inputType="textMultiLine"
-              android:lines="10" >
+              android:lines="20" >
 
     </EditText>
   </LinearLayout>
