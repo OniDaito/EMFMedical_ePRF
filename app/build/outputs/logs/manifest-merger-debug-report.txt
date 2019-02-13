@@ -1,12 +1,6 @@
 -- Merging decision tree log ---
 manifest
 ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:1-41:12
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:1-41:12
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:1-41:12
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:1-41:12
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:1-41:12
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:1-41:12
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:1-41:12
 	package
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:3:2-37
 		INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml
@@ -17,36 +11,31 @@ INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:1-41:1
 		INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:2:2-48
-	xmlns:android
-		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:11-69
 	android:versionCode
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:4:2-25
 		INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:1:11-69
 	android:installLocation
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:6:2-42
 uses-sdk
 ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:8:5-46
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:8:5-46
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:8:5-46
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:8:5-46
-INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:8:5-46
 	android:targetSdkVersion
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:8:15-43
 		INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml
-		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:8:5-46
 		INJECTED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml
 application
 ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:10:5-38:16
 	android:label
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:14:9-41
-	android:icon
-		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:13:9-44
 	android:allowBackup
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:12:9-35
+	android:icon
+		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:13:9-44
 	android:theme
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:15:9-40
 	android:name
@@ -61,7 +50,7 @@ ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:19:6-28:21
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:20:25-78
 	android:name
 		ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:19:16-44
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.DEFAULT+category:name:android.intent.category.LAUNCHER
+intent-filter#android.intent.action.MAIN+android.intent.category.DEFAULT+android.intent.category.LAUNCHER
 ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:22:11-27:27
 action#android.intent.action.MAIN
 ADDED from /Users/oni/Projects/ePRF/app/src/main/AndroidManifest.xml:23:19-71

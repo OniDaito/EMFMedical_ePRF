@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 'Barnes and Noble, Inc.:NOOK Tablet:10'
     // Potentially this should be Nook API or similar
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '19.1.0'
     defaultConfig {
         applicationId "uk.co.section9.emfmedical"
         minSdkVersion 7 // Change to 8 for tests
@@ -24,6 +24,10 @@ android {
     //    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     //}
     productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
     }
 }
 
